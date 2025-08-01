@@ -4,3 +4,28 @@ font-family: Georgia;
 color: purple;
 
 }
+
+    /* Set the container to use flexbox */
+    .container {
+      display: flex;
+      height: 100vh; /* Ensure the container takes up the full height of the viewport */
+    }
+
+    /* Style the two divs */
+    .left, .right {
+     
+      height: 100%; /* Ensure the divs take up the full height */
+    }
+
+    /* Optional: Adding some background color for visual separation */
+    .left {
+        flex: 0 0 20%;
+display: flex;
+      justify-content: flex-end;
+      background-color: ;
+    }
+
+    .right {
+        flex: 0 0 80%;
+      background-color: ;
+    }
