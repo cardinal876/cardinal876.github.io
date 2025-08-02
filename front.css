@@ -5,6 +5,12 @@ color: purple;
 
 }
 
+body{
+    
+    
+    background-color: #fd00ff;
+}
+
     /* Set the container to use flexbox */
     .container {
       display: flex;
