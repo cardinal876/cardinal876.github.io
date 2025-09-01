@@ -1,14 +1,16 @@
-h1 {
+h1, h5{
 
-font-family: 'Courier New';
-color: purple;
+font-family: 'Boulder';
+color: black;
+margin: 0;
+padding: 0;
 
 }
 
 body{
     
     
-    background-color: #fd00ff;
+    background-color: white;
 }
 
     /* Set the container to use flexbox */
@@ -35,3 +37,13 @@ display: flex;
         flex: 0 0 80%;
       background-color: ;
     }
+    
+    
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0; /* Removes space between paragraphs */
+  text-indent: 2em; /* Indents the first line of each paragraph */
+}
