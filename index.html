@@ -1,36 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Web Page</title>
-  <link rel="stylesheet" type="text/css" href="front.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elmer book</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111111;
+      --accent-color: #10a37f;
+      --border-color: #e2e2e2;
+      --input-bg: #f9f9f9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    } 
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-color);
+      flex: 1 1 auto;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      color: var(--accent-color);
+      font-weight: 500;
+      border: 1px solid var(--accent-color);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .nav-buttons a:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 2rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      .nav-buttons a {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.7rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    
-    
-<div class="container">
+  <header>
+    <div class="title">Elmer Book</div>
+    <div class="nav-buttons">
+      <a href="/login">Log in</a>
+    </div>
+  </header>
 
-        
+  <main>
+    <h1>Explore Knowledge</h1>
+    <p>The biology encyclopedia for curious minds.</p>
+    <div class="search-box">
+      <form action="searchresults.html" method="GET">
+        <input type="text" name="q" placeholder="Search Elmer Book..." />
+      </form>
+    </div>
+  </main>
 
-
-<div class="left"><!--
-<img src="leaficon.svg" alt="icon" style="width:50px;height:50px;">-->
-</div>
-
-<div class="right">
-  <a href="index.html"><h1>elmerbook</h1></a>
-  <h5>encyclopedia on biology</h5>
-  <br/>
-<form action="results.html" method="GET">
-  <label for="search-input" class="sr-only">Search</label>
-  <input type="search" id="search-input" name="query" placeholder="Search...">
-  <button type="submit">Search</button>
-</form>
-  </div>
- </div>
-
-  <script src="front.js"></script>
+  <footer>
+    &copy; 2025 Elmer Book. All rights reserved.
+  </footer>
 </body>
 </html>
-
