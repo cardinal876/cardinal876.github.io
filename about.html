@@ -122,19 +122,20 @@
 
     main {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block; /* Ensures text is stacked vertically */
       padding: 2rem 1.5rem;
-      text-align: center;
+      text-align: left;
       max-width: 800px;
       margin: 0 auto;
+      width: 100%;
     }
 
     main p {
       font-size: 1.1rem;
       line-height: 1.6;
       color: #333;
+      text-indent: 1.5em;
+      margin-bottom: 1.5rem; /* Space between paragraphs */
     }
 
     footer {
@@ -170,8 +171,12 @@
   <main>
     <p>
       edwinbook is a general encyclopedia by leading experts for all ages.  
-      It emphasizes readability by all levels and the latest research, development, and insights.  
+      It emphasizes readability by all levels and the latest research, development, and insights. 
       The writers are professors in higher education who research, publish, and teach or are widely recognized leading experts.
+    </p>
+    
+    <p>
+      Our subscribers make it possible to provide the most recent version of every entry to everyone everywhere for free. The subscribers also receive additional services including analytics, ability to like and view likes, ability to comment and view comments, most popular lists, advanced search, entries people read after the current entry, all previous entry versions and records of changes, notifications for updates and new entries by topic and author, authors stats like h-index and recently published papers and more.
     </p>
   </main>
 
