@@ -38,6 +38,12 @@
       font-weight: 500;
     }
 
+    .top-banner a {
+      color: inherit;
+      text-decoration: none;
+      display: block; /* makes entire banner clickable */
+    }
+
     header {
       padding: 1rem 1.5rem;
       border-bottom: 1px solid var(--border-color);
@@ -142,13 +148,13 @@
 </head>
 <body>
   <div class="top-banner">
-    Join to make knowledge free for everyone everywhere.
+    <a href="subscribe.html">Join to make knowledge free for everyone everywhere.</a>
   </div>
  
   <header>
     <div class="title">edwinbook</div>
     <div class="nav-buttons">
-      <a href="/login">Log in</a>
+      <a href="subscribe.html">Log in</a>
     </div>
   </header>
 
@@ -161,7 +167,7 @@
       </form>
     </div>
   </main>
-
+  
   <footer>
     &copy; 2025 edwinbook. All rights reserved.
   </footer>
