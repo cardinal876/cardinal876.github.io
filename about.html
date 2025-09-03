@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>edwinbook</title>
+  <title>About - edwinbook</title>
   <style>
     :root {
       --bg-color: #ffffff;
@@ -14,9 +14,7 @@
       --banner-blue: #3b82f6;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -51,7 +49,7 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
-    } 
+    }
 
     .header-left {
       display: flex;
@@ -90,18 +88,19 @@
       font-size: 0.95rem;
     }
 
-    .menu-dropdown a:last-child {
-      border-bottom: none;
-    }
+    .menu-dropdown a:last-child { border-bottom: none; }
 
-    .menu-dropdown a:hover {
-      background-color: #f5f5f5;
-    }
+    .menu-dropdown a:hover { background-color: #f5f5f5; }
 
     .title {
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--text-color);
+    }
+
+    .title a {
+      text-decoration: none;
+      color: inherit;
     }
 
     .nav-buttons a {
@@ -124,39 +123,18 @@
     main {
       flex: 1;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem 1rem;
+      padding: 2rem 1.5rem;
       text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      color: var(--text-color);
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #555;
-    }
-
-    .search-box {
-      width: 100%;
-      max-width: 400px;
-      margin-top: 2rem;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      font-size: 1rem;
-      background-color: var(--input-bg);
-      color: var(--text-color);
+    main p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
     }
 
     footer {
@@ -172,11 +150,11 @@
   <div class="top-banner">
     <a href="subscribe.html">Join to make knowledge free for everyone everywhere.</a>
   </div>
- 
+
   <header>
     <div class="header-left">
       <button class="menu-button" id="menuToggle">☰</button>
-      <div class="title">edwinbook</div>
+      <div class="title"><a href="index.html">edwinbook</a></div>
     </div>
     <div class="nav-buttons">
       <a href="subscribe.html">Log in</a>
@@ -190,15 +168,13 @@
   </header>
 
   <main>
-    <h1>edwinbook</h1>
-    <p>The encyclopedia by leading experts.</p>
-    <div class="search-box">
-      <form action="searchresults.html" method="GET">
-        <input type="text" name="q" placeholder="Search edwinbook..." />
-      </form>
-    </div>
+    <p>
+      edwinbook is a general encyclopedia by leading experts for all ages.  
+      It emphasizes readability by all levels and the latest research, development, and insights.  
+      The writers are professors in higher education who research, publish, and teach or are widely recognized leading experts.
+    </p>
   </main>
-  
+
   <footer>
     &copy; 2025 edwinbook. All rights reserved.
   </footer>
@@ -212,7 +188,6 @@
         menuDropdown.style.display === "flex" ? "none" : "flex";
     });
 
-    // Optional: close menu if clicking outside
     document.addEventListener("click", (e) => {
       if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
         menuDropdown.style.display = "none";
@@ -221,4 +196,3 @@
   </script>
 </body>
 </html>
-

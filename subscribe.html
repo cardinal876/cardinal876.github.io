@@ -48,14 +48,45 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      position: relative;
     } 
+
+    .menu-button {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 1rem;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      padding: 0.5rem 0;
+      z-index: 10;
+    }
+
+    .menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .menu a:hover {
+      background-color: #f5f5f5;
+    }
 
     .title {
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--text-color);
-      flex: 1 1 auto;
     }
 
     .title a {
@@ -132,12 +163,6 @@
     }
 
     @media (max-width: 600px) {
-      header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-
       .nav-buttons a {
         font-size: 0.9rem;
         padding: 0.35rem 0.7rem;
@@ -151,9 +176,17 @@
   </div>
  
   <header>
-    <div class="title"><a href="index.html">edwinbook</a></div>
+    <div style="display:flex; align-items:center;">
+      <button class="menu-button" onclick="toggleMenu()">☰</button>
+      <div class="title"><a href="index.html">edwinbook</a></div>
+    </div>
     <div class="nav-buttons">
       <a href="subscribe.html">Log in</a>
+    </div>
+    <div class="menu" id="menu">
+      <a href="about.html">About</a>
+      <a href="contributors.html">Contributors</a>
+      <a href="contact.html">Contact</a>
     </div>
   </header>
 
@@ -172,7 +205,7 @@
         <tr><td>7.</td><td>Early access to new draft entries</td></tr>
         <tr><td>8.</td><td>All past versions of entries and records of changes</td></tr>
         <tr><td>9.</td><td>Notifications for updates and new entries in your areas of interest</td></tr>
-                <tr><td>10.</td><td>Notifications for all updates and new entries from an author</td></tr>
+        <tr><td>10.</td><td>Notifications for all updates and new entries from an author</td></tr>
         <tr><td>11.</td><td>Stats on authors including h-index and recently published papers</td></tr>
         <tr><td>12.</td><td>More</td></tr>
       </tbody>
@@ -191,5 +224,12 @@
   <footer>
     &copy; 2025 edwinbook. All rights reserved.
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+  </script>
 </body>
 </html>
