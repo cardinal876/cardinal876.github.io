@@ -11,6 +11,7 @@
       --accent-color: #10a37f;
       --border-color: #e2e2e2;
       --input-bg: #f9f9f9;
+      --banner-blue: #3b82f6; /* ChatGPT typing indicator blue */
     }
 
     * {
@@ -26,6 +27,15 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+    }
+
+    .top-banner {
+      background-color: var(--banner-blue);
+      color: white;
+      text-align: center;
+      padding: 0.4rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
 
     header {
@@ -72,7 +82,7 @@
     }
 
     h1 {
-      font-size: 3rem; /* doubled from 1.5rem */
+      font-size: 3rem;
       font-weight: 600;
       color: var(--text-color);
       margin-bottom: 1rem;
@@ -116,7 +126,7 @@
       }
 
       h1 {
-        font-size: 2.5rem; /* Adjusted for smaller screens */
+        font-size: 2.5rem;
       }
 
       p {
@@ -131,6 +141,10 @@
   </style>
 </head>
 <body>
+  <div class="top-banner">
+    Join to make knowledge free for everyone everywhere.
+  </div>
+ 
   <header>
     <div class="title">edwinbook</div>
     <div class="nav-buttons">
