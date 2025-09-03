@@ -10,7 +10,7 @@
       --text-color: #111111;
       --accent-color: #10a37f;
       --border-color: #e2e2e2;
-      --banner-blue: #3b82f6; /* ChatGPT typing indicator blue */
+      --banner-blue: #3b82f6;
     }
 
     * { box-sizing: border-box; }
@@ -39,7 +39,7 @@
     .top-banner a {
       color: inherit;
       text-decoration: none;
-      display: block; /* make banner fully clickable */
+      display: block;
     }
 
     header {
@@ -61,7 +61,7 @@
     .title a {
       text-decoration: none;
       color: inherit;
-      display: block; /* makes the whole logo area clickable */
+      display: block;
     }
 
     .nav-buttons a {
@@ -79,6 +79,38 @@
     .nav-buttons a:hover {
       background-color: var(--accent-color);
       color: white;
+    }
+
+    .benefits {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .benefits h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: var(--accent-color);
+    }
+
+    .benefits table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .benefits td {
+      padding: 0.5rem;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .benefits td:first-child {
+      width: 2rem;
+      font-weight: bold;
+      text-align: right;
+      padding-right: 1rem;
+      color: var(--accent-color);
     }
 
     main {
@@ -99,7 +131,6 @@
       border-top: 1px solid var(--border-color);
     }
 
-    /* Mobile tweaks */
     @media (max-width: 600px) {
       header {
         flex-direction: row;
@@ -126,13 +157,33 @@
     </div>
   </header>
 
+  <!-- Benefits Section -->
+  <div class="benefits">
+    <h2>Benefits of Subscribing</h2>
+    <table>
+      <tbody>
+        <tr><td>1.</td><td>All the most recent versions of all the entries are available to everyone everywhere for free. Your subscription makes that possible.</td></tr>
+        <tr><td>2.</td><td>Analytics like page views</td></tr>
+        <tr><td>3.</td><td>Ability to like entries</td></tr>
+        <tr><td>4.</td><td>Ability to comment and read comments</td></tr>
+        <tr><td>5.</td><td>Most popular lists by time periods</td></tr>
+        <tr><td>6.</td><td>Other entries people read based on current entry</td></tr>
+        <tr><td>7.</td><td>Early access to new draft entries</td></tr>
+        <tr><td>8.</td><td>All past versions of entries and records of changes</td></tr>
+        <tr><td>9.</td><td>Notifications for updates and new entries in your areas of interest</td></tr>
+                <tr><td>10.</td><td>Notifications for all updates and new entries from an author</td></tr>
+        <tr><td>11.</td><td>Stats on authors including h-index and recently published papers</td></tr>
+        <tr><td>12.</td><td>More</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <main>
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
     <stripe-buy-button
       buy-button-id="buy_btn_1S3K2fKIW7G70nmdsCSKGU5I"
-      publishable-key="pk_live_51S3J1GKIW7G70nmdBIz5iN5hYqzQZp9YDQzfwx5byyEsPCChgXJrlPQktMJGVxe7r52m6QZYC5iA6AnUz1K9T3xR00mu3SPkdH"
-    >
+      publishable-key="pk_live_51S3J1GKIW7G70nmdBIz5iN5hYqzQZp9YDQzfwx5byyEsPCChgXJrlPQktMJGVxe7r52m6QZYC5iA6AnUz1K9T3xR00mu3SPkdH">
     </stripe-buy-button>  
   </main>
   
