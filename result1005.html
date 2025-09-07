@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charse="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Great Depression – edwinbook</title>
+  <title>Steel – edwinbook</title>
   <style>
     :root {
       --bg-color: #ffffff;
@@ -27,21 +27,6 @@
       flex-direction: column;
     }
 
-    .top-banner {
-      background-color: var(--banner-blue);
-      color: white;
-      text-align: center;
-      padding: 0.4rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .top-banner a {
-      color: inherit;
-      text-decoration: none;
-      display: block;
-    }
-
     header {
       padding: 1rem 1.5rem;
       border-bottom: 1px solid var(--border-color);
@@ -49,7 +34,7 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
-    } 
+    }
 
     .header-left {
       display: flex;
@@ -96,7 +81,7 @@
       background-color: #f5f5f5;
     }
 
-    .title {
+        .title {
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--text-color);
@@ -107,7 +92,7 @@
       color: inherit;
       display: block;
     }
-
+    
     .nav-buttons a {
       text-decoration: none;
       color: var(--accent-color);
@@ -136,7 +121,34 @@
 
     h1 { font-size: 2rem; margin-bottom: 0.5rem; }
     .author { font-size: 0.95rem; color: #666; font-style: italic; margin-bottom: 1.5rem; }
+
+    .author-link {
+      color: inherit;
+      text-decoration: none;
+      transition: font-weight 0.2s;
+    }
+    .author-link:hover {
+      font-weight: 600;
+    }
+
     p { margin-bottom: 1.25rem; font-size: 1.05rem; color: #333; }
+
+    figure {
+      margin: 2rem auto;
+      text-align: center;
+    }
+
+    img.article-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    figcaption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.5rem;
+    }
 
     footer {
       text-align: center;
@@ -149,8 +161,6 @@
   </style>
 </head>
 <body>
-
-
   <header>
     <div class="header-left">
       <button class="menu-button" id="menuToggle">☰</button>
@@ -159,7 +169,6 @@
     <div class="nav-buttons">
       <a href="subscribe.html">Log in</a>
     </div>
-
     <div class="menu-dropdown" id="menuDropdown">
       <a href="about.html">About</a>
       <a href="contributors.html">Contributors</a>
@@ -169,46 +178,55 @@
 
   <main>
     <h1>Steel</h1>
-    <div class="author">By James Example</div>
+    
+    <p class="author">
+      By: <a href="author1.html" class="author-link">James Example</a>
+    </p>
 
+    <p>Steel, one of the most essential materials in the modern world, is an alloy primarily composed of iron and carbon. From the skyscrapers that define city skylines to the cars we drive and the tools we use, steel forms the backbone of industrial civilization. What makes steel extraordinary is not only its strength and durability but also its adaptability, making it the material of choice across centuries. Today, new research and technological advances are reshaping how steel is produced, recycled, and applied, ensuring its continued dominance in the 21st century and beyond.</p>
 
+    <p>Steel is simply a form of iron that has been refined by controlling the amount of carbon within it. While pure iron is soft, the addition of carbon strengthens it significantly. Human use of steel dates back over two millennia, with early blacksmiths in places like India developing high-quality steels such as the famed “wootz” steel. However, steel remained difficult and expensive to produce until breakthroughs in modern smelting techniques.</p>
 
-<p>Steel, one of the most essential materials used throughout the world, has a history that dates back over 3,000 years. The journey of steel began with the discovery of iron, a metal far stronger than the copper or bronze used by earlier civilizations. The first known use of iron dates back to the Iron Age, around 1200 BCE, in regions that are now Turkey and Iran. The earliest societies began to work with iron by smelting it from its ore, a process that involved heating the metal until it separated from the rock. This early iron, while stronger than bronze, was still not as useful as it could be. It wasn’t until the discovery of steel that iron truly began to show its potential.</p>
+    <p>The production of steel took a significant leap forward in Europe during the 17th century with the advent of the blast furnace. These furnaces allowed for the efficient smelting of iron ore into pig iron, which could then be refined into steel. Yet it was the 19th century that truly revolutionized steelmaking, thanks to innovations like the Bessemer process, which dramatically lowered the cost of producing large quantities of steel.</p>
 
-<p>Steel is simply a form of iron that has been alloyed with a small amount of carbon, typically around 0.1 to 2 percent. The process of creating steel involves heating iron in the presence of carbon, which strengthens the metal significantly. This was discovered in ancient India, where metallurgists developed the first known steel, known as Wootz steel. Around 300 BCE, Indian smiths began producing this steel, which was renowned for its strength and ability to hold a sharp edge. Wootz steel became highly valued, particularly in the creation of weapons such as swords. The art of making steel gradually spread to the Middle East and then to Europe, where blacksmiths began to experiment with and refine the process.</p>
+    <!-- First image (1/3 point) -->
+    <figure>
+      <img src="image1.jpg" alt="Historic steel production" class="article-image" />
+      <figcaption>In the mid-1800s before the Bessmer process, making steel was expensive and it cost more than silver by weight.</figcaption>
+    </figure>
 
-<p>The production of steel took a significant leap forward in Europe during the 17th century with the advent of the blast furnace. This furnace, powered by air blast, allowed metalworkers to smelt larger quantities of iron at a time, making the process more efficient. While the blast furnace improved iron production, it still didn’t produce the high-quality steel needed for large-scale industrial uses. The real breakthrough in steel production came in the 19th century with the development of the Bessemer process, which allowed steel to be made more efficiently and in larger quantities. This paved the way for steel to become the backbone of industrial societies around the world.</p>
+    <h2>The Rise of Steel and Its Role in the Industrial Revolution</h2>
+    <p>As the world entered the 19th century, steel became the key material of the Industrial Revolution. The Bessemer process, developed in the 1850s, allowed molten pig iron to be converted into steel by blowing air through it to reduce impurities. This made steel production faster, cheaper, and scalable. Soon, railways, bridges, and factories were being constructed with steel, propelling economies forward.</p>
 
-<h2>The Rise of Steel and Its Role in the Industrial Revolution</h2>
+    <p>The expansion of steel production was vital in shaping the modern world. Railroads enabled the mass movement of goods and people, steel ships crossed oceans with unmatched durability, and steel-framed skyscrapers reshaped urban landscapes. The famous Brooklyn Bridge (completed in 1883) and the Eiffel Tower (completed in 1889) stand as early monuments to the transformative power of steel.</p>
 
-<p>As the world entered the 19th century, steel became the key material that powered the Industrial Revolution. It was during this period that steel’s true impact on society began to unfold. One of the most influential figures in the rise of steel was Andrew Carnegie, a Scottish immigrant who moved to the United States in the mid-19th century. Carnegie was pivotal in revolutionizing the steel industry in America. By adopting the Bessemer process, Carnegie’s steel company was able to produce steel quickly, efficiently, and at a much lower cost. This allowed the United States to rapidly expand its industrial base and infrastructure.</p>
+    <p>Steel’s role didn’t stop with railroads and bridges. It became crucial in military applications, from armor plating to weaponry. The late 19th and early 20th centuries saw steel industries emerge as symbols of national power. Countries with large steel capacities, such as the United States, Germany, and Britain, rose as global industrial leaders.</p>
 
-<p>The expansion of steel production was vital to the growth of the railroad industry, which was the backbone of transportation during the Industrial Revolution. Steel rails, stronger and more durable than previous materials, allowed trains to run on tracks for much longer distances without needing to be replaced. Railroads, powered by steam engines, connected cities and regions, facilitating the rapid movement of goods and people. Steel bridges, like the famous Brooklyn Bridge in New York, became icons of industrial achievement and made it possible for cities to expand across rivers and challenging terrain.</p>
+    <p>The impact of steel during the Industrial Revolution was felt around the globe. Nations without strong steel industries were often left behind, while those that mastered its production surged ahead. This divide helped set the stage for global power dynamics that lasted well into the 20th century.</p>
 
-<p>Steel’s role didn’t stop with railroads. The growing demand for steel was also driven by its use in construction, particularly in the creation of skyscrapers. The use of steel in building allowed for the rise of tall buildings, especially in cities like Chicago and New York, where land was scarce. Steel framed buildings could rise higher than ever before, and they were strong enough to withstand the forces of wind and weather. The ability to build higher, combined with the development of steel in manufacturing, allowed urban centers to expand and become the hubs of economic and social activity.</p>
+    <h2>The Story of Steel in the 20th and 21st Century</h2>
+    <p>As the world moved into the 20th century, steel’s importance continued to expand. It was vital in the construction of automobiles, airplanes, and the massive infrastructure projects of the early 20th century. The U.S. became the world’s largest steel producer by the early 1900s, powering both its domestic growth and international influence.</p>
 
-<p>The impact of steel during the Industrial Revolution was felt around the globe. Countries that mastered steel production were able to build the infrastructure that supported industrialization, whether in Europe, the United States, or later in Japan. Steel became the material that powered the engines of the global economy, driving innovation and expansion across nearly every industry.</p>
+    <p>World War I and World War II further emphasized steel’s importance. Tanks, battleships, and aircraft all relied on steel, and the nations that could produce it at scale often had significant advantages on the battlefield. Following the wars, steel production surged as countries rebuilt their economies and cities.</p>
 
-<h2>The Story of Steel in the 20th and 21st Century</h2>
+    <!-- Second image (2/3 point) -->
+    <figure>
+      <img src="image2.jpg" alt="Modern steel industry" class="article-image" />
+      <figcaption>The world now produces over 2 billion metric tons of steel every year — about 550 pounds for every single person on Earth.</figcaption>
+    </figure>
 
-<p>As the world moved into the 20th century, steel’s importance continued to grow, particularly in the fields of transportation and manufacturing. The mass production of automobiles was one of the most significant developments of the early 20th century, and steel played a central role in the development of the car industry. Steel was essential for the construction of car frames, bodies, engines, and other components. Major automotive manufacturers, such as Ford and General Motors, relied on steel to produce vehicles on a massive scale. This created an even greater demand for steel, and as steel production techniques improved, it became more affordable and accessible for a wide range of industries.</p>
+    <p>The 20th century also saw the rise of new steel-producing countries. Japan, South Korea, and later China emerged as major players. By the late 20th century, China, in particular, became the global leader in steel production, a status it continues to hold today. In fact, China now produces more than half of the world’s steel, shaping not only markets but also geopolitics.</p>
 
-<p>World War I and World War II further emphasized steel’s importance, as steel was essential for building tanks, aircraft, and ships. The massive production of wartime steel helped shape the course of these global conflicts, with countries that had strong steel industries being better equipped for war. After the war, the importance of steel remained, especially as countries rebuilt and modernized their infrastructure. Steel was used in the construction of bridges, highways, and buildings that formed the backbone of post-war economies.</p>
+    <h2>Current Research and Development in Steel Production</h2>
+    <p>As we move further into the 21st century, steel continues to evolve. One of the greatest challenges facing the industry today is its environmental impact. Steelmaking is energy-intensive and accounts for roughly 7–9% of global carbon dioxide emissions. This has led to a surge in research aimed at making steel production more sustainable.</p>
 
-<p>The 20th century also saw the rise of new steel-producing countries. After World War II, Japan became a global leader in steel production, and by the late 20th century, China emerged as the world’s largest producer. As these countries industrialized, they needed steel for everything from transportation to infrastructure, and they were able to produce it in massive quantities. However, as the steel industry grew, so did the environmental concerns surrounding its production. Steelmaking is a highly energy-intensive process, and it became a major contributor to greenhouse gas emissions. As the world entered the 21st century, the steel industry began to look for ways to reduce its environmental impact while continuing to meet global demand.</p>
+    <p>One of the most promising advancements is the development of “green steel.” This involves reducing or even eliminating carbon emissions from steelmaking by replacing traditional coal-based blast furnaces with hydrogen-based direct reduction methods. Pilot projects in Europe and elsewhere are already showing that carbon-neutral steel is possible, though scaling this technology remains a challenge.</p>
 
-<h2>Current Research and Development in Steel Production</h2>
+    <p>Recycling is another area where the steel industry is making strides. Unlike many materials, steel can be recycled endlessly without losing quality. Today, nearly 30% of all steel comes from recycled scrap, and some countries are pushing to increase that figure significantly. Advanced electric arc furnaces are enabling higher recycling rates, reducing the need for virgin ore and cutting emissions.</p>
 
-<p>As we move further into the 21st century, steel continues to be a vital material in nearly every aspect of life, from the construction of buildings to the creation of cars and machinery. However, the steel industry is facing new challenges, particularly related to its environmental impact. Steel production, traditionally carried out through processes that involve the use of coke (a form of coal), is responsible for a large portion of industrial carbon dioxide emissions. As the world grapples with climate change, the need for more sustainable steel production has become a central focus of research and development.</p>
+    <p>In addition to these environmental innovations, researchers are also working on developing new high-performance steels. These materials are lighter, stronger, and more resistant to corrosion, making them ideal for applications in aerospace, renewable energy, and medical technology. Nanostructured steels, for example, are being engineered at the atomic level to maximize strength and durability.</p>
 
-<p>One of the most promising advancements in steelmaking is the development of hydrogen-based steel production. In traditional steelmaking, coke is used to reduce iron ore to iron, but this process produces carbon dioxide. Hydrogen, however, can be used as a cleaner alternative. When hydrogen is used as a reducing agent, the only byproduct is water vapor, which makes it a much more environmentally friendly option. Several large steel companies, particularly in Europe, are investing in hydrogen-based technologies, and pilot plants are already in operation. While this technology is still in the early stages, it holds great promise for reducing the carbon footprint of steel production.</p>
-
-<p>Recycling is another area where the steel industry is making strides. Steel is one of the most recycled materials in the world, but there is still room for improvement. The development of electric arc furnaces, which melt down steel scrap using electricity, has made recycling more energy-efficient and cost-effective. The increased use of recycled steel can help reduce the need for virgin iron ore and lower the energy required for steel production. Additionally, the use of recycled materials helps to reduce the environmental impact of mining and resource extraction.</p>
-
-<p>In addition to these environmental innovations, research is also focused on creating stronger, lighter, and more durable types of steel. Advanced high-strength steels (AHSS) are being developed for use in industries such as automotive manufacturing, where reducing the weight of vehicles is important for improving fuel efficiency. These steels are stronger than traditional steels, allowing manufacturers to use less material while still achieving the required strength and durability. Other areas of research include the development of steel alloys that can resist corrosion, making steel structures last longer in harsh environments.</p>
-
-<p>As steel continues to evolve, it will play an even greater role in addressing the challenges of the modern world. The push for sustainable steel production, along with advances in materials science, will help ensure that steel remains a crucial material for the future. Whether in the construction of skyscrapers, the development of renewable energy infrastructure, or the creation of the next generation of automobiles, steel will remain a cornerstone of modern civilization.</p>
-
+    <p>As steel continues to evolve, it will play an even greater role in shaping the future. From green buildings and electric vehicles to renewable energy systems and space exploration, the next chapter of steel’s story is still being written. What remains clear is that steel is far more than just a material — it is, and will continue to be, a foundation of human progress.</p>
   </main>
 
   <footer>
