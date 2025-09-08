@@ -81,7 +81,7 @@
       background-color: #f5f5f5;
     }
 
-        .title {
+    .title {
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--text-color);
@@ -92,7 +92,7 @@
       color: inherit;
       display: block;
     }
-    
+
     .nav-buttons a {
       text-decoration: none;
       color: var(--accent-color);
@@ -158,6 +158,23 @@
       border-top: 1px solid var(--border-color);
       width: 100%;
     }
+
+    /* Desktop float styles */
+    @media (min-width: 900px) {
+      figure.float-right {
+        float: right;
+        max-width: 40%;
+        margin: 0 0 1rem 2rem;
+        text-align: center;
+      }
+
+      figure.float-left {
+        float: left;
+        max-width: 40%;
+        margin: 0 2rem 1rem 0;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -180,20 +197,19 @@
     <h1>Steel</h1>
     
     <p class="author">
-      By: <a href="author1.html" class="author-link">James Example</a>
+      By: <a href="author1.html" class="author-link">James T. Example, University of Oregon</a>
     </p>
 
     <p>Steel, one of the most essential materials in the modern world, is an alloy primarily composed of iron and carbon. From the skyscrapers that define city skylines to the cars we drive and the tools we use, steel forms the backbone of industrial civilization. What makes steel extraordinary is not only its strength and durability but also its adaptability, making it the material of choice across centuries. Today, new research and technological advances are reshaping how steel is produced, recycled, and applied, ensuring its continued dominance in the 21st century and beyond.</p>
 
     <p>Steel is simply a form of iron that has been refined by controlling the amount of carbon within it. While pure iron is soft, the addition of carbon strengthens it significantly. Human use of steel dates back over two millennia, with early blacksmiths in places like India developing high-quality steels such as the famed “wootz” steel. However, steel remained difficult and expensive to produce until breakthroughs in modern smelting techniques.</p>
 
-    <p>The production of steel took a significant leap forward in Europe during the 17th century with the advent of the blast furnace. These furnaces allowed for the efficient smelting of iron ore into pig iron, which could then be refined into steel. Yet it was the 19th century that truly revolutionized steelmaking, thanks to innovations like the Bessemer process, which dramatically lowered the cost of producing large quantities of steel.</p>
-
-    <!-- First image (1/3 point) -->
-    <figure>
+    <figure class="float-right">
       <img src="image1.jpg" alt="Historic steel production" class="article-image" />
-      <figcaption>In the mid-1800s before the Bessmer process, making steel was slow and expensive. It cost more than silver by weight.</figcaption>
+      <figcaption>In the mid-1800s before the Bessemer process, making steel was so slow and expensive that it cost more than silver by weight.</figcaption>
     </figure>
+
+    <p>The production of steel took a significant leap forward in Europe during the 17th century with the advent of the blast furnace. These furnaces allowed for the efficient smelting of iron ore into pig iron, which could then be refined into steel. Yet it was the 19th century that truly revolutionized steelmaking, thanks to innovations like the Bessemer process, which dramatically lowered the cost of producing large quantities of steel.</p>
 
     <h2>The Rise of Steel and Its Role in the Industrial Revolution</h2>
     <p>As the world entered the 19th century, steel became the key material of the Industrial Revolution. The Bessemer process, developed in the 1850s, allowed molten pig iron to be converted into steel by blowing air through it to reduce impurities. This made steel production faster, cheaper, and scalable. Soon, railways, bridges, and factories were being constructed with steel, propelling economies forward.</p>
@@ -209,8 +225,7 @@
 
     <p>World War I and World War II further emphasized steel’s importance. Tanks, battleships, and aircraft all relied on steel, and the nations that could produce it at scale often had significant advantages on the battlefield. Following the wars, steel production surged as countries rebuilt their economies and cities.</p>
 
-    <!-- Second image (2/3 point) -->
-    <figure>
+    <figure class="float-left">
       <img src="image2.jpg" alt="Modern steel industry" class="article-image" />
       <figcaption>The world now produces over 2 billion metric tons of steel annually — about 550 pounds for every person on Earth.</figcaption>
     </figure>
