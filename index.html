@@ -106,6 +106,21 @@
       color: var(--text-color);
     }
 
+
+.main-title {
+  display: flex;           /* place icon + text in a row */
+  align-items: center;     /* vertically center icon with text */
+  gap: 0.0rem;            /* spacing between icon and text */
+  justify-content: center; /* keep both centered horizontally */
+}
+
+.main-title .main-icon {
+  height: 1em;             /* match the text height */
+  width: auto;             /* keep natural proportions */
+  
+  transform: translateY(-0.06em);
+}
+
     .nav-buttons a {
       text-decoration: none;
       color: var(--accent-color);
@@ -181,6 +196,7 @@
       
       
     </div>
+
     <div class="nav-buttons">
       <a href="">Log in</a>
     </div>
@@ -193,7 +209,12 @@
   </header>
 
   <main>
-    <h1>edwinbook</h1>
+
+    
+    <h1 class="main-title">
+  <img src="library-big.svg" alt="edwinbook icon" class="main-icon" />
+  <span>edwinbook</span>
+</h1>
     
     <div class="search-box">
       <form action="searchresults.html" method="GET">
