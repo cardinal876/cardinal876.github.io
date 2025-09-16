@@ -1,128 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>edwinbook search</title>
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #111111;
-      --accent-color: #10a37f;
-      --border-color: #e2e2e2;
-      --input-bg: #f9f9f9;
-      --banner-blue: #3b82f6;
-      --link-hover: #0c6b52;
-    }
-
-    * { box-sizing: border-box; }
-
-    
-        body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-
-
-
-
-header {
- 
-    
-  display: flex;
-  justify-content: space-between; /* left + right sides */
-  align-items: center;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>edwinbook search</title>
+<style>
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --accent-color: #10a37f;
+  --border-color: #e2e2e2;
+  --input-bg: #f9f9f9;
 }
 
+* { box-sizing: border-box; }
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+/* HEADER */
+header {
+  border-bottom: 1px solid var(--border-color);
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* mobile stacked */
+  align-items: center;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  padding: 1rem 0;
+}
 
 .header-left {
-    position: relative;   /* ⬅️ CHANGE: Needed so absolute dropdown positions relative to this container */
-    display: flex;
-    align-items: center;
-    gap: .4rem;
-}
-
-
-
-
-    .menu-button {
-        color: black;
--webkit-appearance: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-      padding: 0.25rem;
-      line-height: 1;
-    }
-
-    .menu-dropdown {
-      position: absolute;
-      top: 100%;
-      
-      left: 0;
-      background: white;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: none;
-      flex-direction: column;
-      min-width: 150px;
-      z-index: 1000;
-    }
-    
-
-
-    .menu-dropdown a {
-      padding: 0.75rem 1rem;
-      text-decoration: none;
-      color: var(--text-color);
-      border-bottom: 1px solid var(--border-color);
-      font-size: 0.95rem;
-    }
-
-    .menu-dropdown a:last-child {
-      border-bottom: none;
-    }
-
-    .menu-dropdown a:hover {
-      background-color: #f5f5f5;
-    }
-
-    
-
-
-
-.title {
-    color: var(--text-color);
-
-    position: static; /* UPDATED */
-  transform: none; /* UPDATED */
-
   display: flex;
   align-items: center;
-  gap: 0.0rem;  /* tighter space between icon and text */
-  font-size: 1.5rem;
-  font-weight: 600;
+  gap: 0.4rem;
+  position: relative;
 }
 
+.menu-button {
+  color: black;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.25rem;
+  line-height: 1;
+}
 
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: none;
+  flex-direction: column;
+  min-width: 150px;
+  z-index: 1000;
+}
 
+.menu-dropdown a {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
 
+.menu-dropdown a:last-child { border-bottom: none; }
+.menu-dropdown a:hover { background-color: #f5f5f5; }
 
-
-
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
 
 .title-icon {
   height: 1em;
@@ -130,67 +102,61 @@ header {
   transform: translateY(-0.06em);
 }
 
-    .nav-buttons a {
-      text-decoration: none;
-      color: var(--accent-color);
-      font-weight: 500;
-      border: 1px solid var(--accent-color);
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      transition: background-color 0.2s ease;
-      font-size: 0.95rem;
-      white-space: nowrap;
-    }
-
-    .nav-buttons a:hover {
-      background-color: var(--accent-color);
-      color: white;
-    }
-
-
-    .search-container {
-      width: 100%;
-      max-width: 700px;
-      padding: 2rem 1.5rem 1rem;
-      box-sizing: border-box;
-    }
-
-    .search-container input[type="text"] {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      background-color: var(--input-bg);
-      color: var(--text-color);
-    }
-
-    .results {
-      width: 100%;
-      max-width: 700px;
-      padding: 1rem 1.5rem;
-      box-sizing: border-box;
-      flex: 1;
-    }
-
-.search-container, .results {
-  margin: 0 auto; /* center horizontally */
+.nav-buttons a {
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 500;
+  border: 1px solid var(--accent-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
 }
 
-    .result-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 0;
-      transition: background-color 0.2s ease;
-    }
+.nav-buttons a:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
 
+/* SEARCH BAR */
+.search-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0.5rem auto;
+}
 
+.search-container input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border-radius: 6px;
+}
 
+/* RESULTS */
+.results {
+  width: 100%;
+  max-width: 700px;
+  padding: 1rem 1.5rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  flex: 1;
+}
 
+.result-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
+  transition: background-color 0.2s ease;
+}
 
-    .result-title {
+.result-title {
   font-size: 1.25rem;
   font-weight: 400; 
   color: #1a0dab;    
@@ -199,99 +165,164 @@ header {
   width: fit-content; 
 }
 
-.result-title:hover {
-    text-decoration: underline; 
-    
+.result-title:hover { text-decoration: underline; }
+.result-link:hover { background-color: #f5f5f5; }
+
+.author { font-size: 0.9rem; color: #666; margin-top: 0.25rem; font-style: italic; }
+.snippet { margin-top: 0.5rem; font-size: 1rem; color: #333; }
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+  border-top: 1px solid var(--border-color);
+  width: 100%;
+}
+
+/* Default (mobile first) */
+.search-container-two { display: none; }   /* hide desktop search bar */
+.search-container { display: block; }      /* show bottom search bar */
+
+/* Desktop view */
+@media (min-width: 768px) {
+  .search-container-two { display: flex; } /* show desktop search bar */
+  .search-container { display: none; }     /* hide bottom search bar */
+
+  .header-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* left | center | right */
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    padding: 1rem 0;
+  }
+
+  /* Center search bar with fixed width */
+  .search-container-two {
+    justify-content: center; /* centers form in middle column */
+    width: 100%;
+  }
+
+  .search-container-two form {
+    width: 100%;
+    max-width: 500px; /* keeps it from stretching too wide */
+    margin: 0 auto;   /* ensure it’s centered */
+  }
+
+  .search-container-two input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: flex-end; /* keeps login to far right */
+    align-items: center;
+  }
 }
 
 
-.result-link:hover .result-title {
-  
-  color: #1a0dab; 
-}
-.result-link:hover {
-      background-color: #f5f5f5;
-    }
 
 
 
-    .author { font-size: 0.9rem; color: #666; margin-top: 0.25rem; font-style: italic; }
-    .snippet { margin-top: 0.5rem; font-size: 1rem; color: #333; }
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      border-top: 1px solid var(--border-color);
-      width: 100%;
-    }
-  </style>
+
+
+
+
+
+</style>
 </head>
 <body>
 
-  <header>
-  <div class="header-left">
-    <button class="menu-button" id="menuToggle">☰</button>
+<header>
+  <div class="header-top">
+    <div class="header-left">
+      <button class="menu-button" id="menuToggle">☰</button>
+      <div class="title">
+        <img src="library-big.svg" alt="Library Icon" class="title-icon">
+        <a href="index.html" style="text-decoration:none; color:inherit;">edwinbook</a>
+      </div>
+      
+            <div class="menu-dropdown" id="menuDropdown">
+        <a href="">Account</a>
+        <a href="contributors.html">Contributors</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      
+      
     
-        
-    
-    
-    
-    <div class="title">
-      <img src="library-big.svg" alt="Library Icon" class="title-icon" />
-      <a href="index.html" style="text-decoration:none; color:inherit;">edwinbook</a>
-    </div>
-    
-          <div class="menu-dropdown" id="menuDropdown">
-      <a href="">Account</a>
-      <a href="contributors.html">Contributors</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-
-  <div class="nav-buttons">
-    <a href="">Log in</a>
   </div>
   
+  
+      
+      
 
-</header>
-
-
-  <div class="search-container">
+      
+      
+              <div class="search-container-two" id="searchContainerTwo">
     <form action="searchresults.html" method="GET">
-      <input type="text" name="q" value="" placeholder="edwinbook encyclopedia" />
+      <input type="text" name="q" placeholder="edwinbook encyclopedia">
+    </form>
+
+
+    </div>
+    
+        <div class="nav-buttons">
+      <a href="">Log in</a>
+    </div>
+    
+
+  </div>
+
+  <!-- SEARCH BAR: mobile stacked -->
+  <div class="search-container" id="searchContainer">
+    <form action="searchresults.html" method="GET">
+      <input type="text" name="q" placeholder="edwinbook encyclopedia">
     </form>
   </div>
+</header>
 
-  <div class="results">
-    <a href="result1005.html" class="result-link">
-      <h2 class="result-title">Steel</h2>
-      <div class="author">by James T. Example</div>
-      <div class="snippet">
-Steel, one of the most essential materials used throughout the world, has a history that dates back over 3,000 years.
-      </div>
-    </a>
-  </div>
+<div class="results">
+  <a href="result1005.html" class="result-link">
+    <h2 class="result-title">Steel</h2>
+    <div class="author">by James T. Example</div>
+    <div class="snippet">
+      Steel, one of the most essential materials used throughout the world, has a history that dates back over 3,000 years.
+    </div>
+  </a>
+</div>
 
-  <footer>
-    &copy; 2025 edwinbook™. All rights reserved.
-  </footer>
+<footer>
+  &copy; 2025 edwinbook™. All rights reserved.
+</footer>
 
-  <script>
-    const menuButton = document.getElementById("menuToggle");
-    const menuDropdown = document.getElementById("menuDropdown");
+<script>
+const menuButton = document.getElementById("menuToggle");
+const menuDropdown = document.getElementById("menuDropdown");
 
-    menuButton.addEventListener("click", () => {
-      menuDropdown.style.display =
-        menuDropdown.style.display === "flex" ? "none" : "flex";
-    });
+menuButton.addEventListener("click", () => {
+  menuDropdown.style.display = menuDropdown.style.display === "flex" ? "none" : "flex";
+});
 
-    document.addEventListener("click", (e) => {
-      if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-        menuDropdown.style.display = "none";
-      }
-    });
-  </script>
+document.addEventListener("click", (e) => {
+  if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
+    menuDropdown.style.display = "none";
+  }
+});
+</script>
+
 </body>
 </html>
