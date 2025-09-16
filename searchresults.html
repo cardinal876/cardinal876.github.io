@@ -33,6 +33,7 @@ header {
   display: flex;
   flex-direction: column; /* mobile stacked */
   align-items: center;
+  
 }
 
 .header-top {
@@ -120,12 +121,16 @@ header {
 }
 
 
-/* SEARCH BAR */
+
+
 .search-container {
   width: 90%;
   max-width: 1200px;
-  margin: .1rem auto 1.3rem auto; /* top, left/right, bottom */
+  margin: 0 auto;   /* remove top/bottom margin */
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
+
 
 
 .search-container input[type="text"] {
@@ -138,6 +143,15 @@ header {
   color: var(--text-color);
   border-radius: 6px;
 }
+
+/* Remove default form spacing */
+.search-container form {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1.2rem; /* control bottom space consistently */
+  
+}
+
 
 /* RESULTS */
 .results {
@@ -190,26 +204,34 @@ footer {
 @media (min-width: 768px) {
   .search-container-two { display: flex; } /* show desktop search bar */
   .search-container { display: none; }     /* hide bottom search bar */
-
+  
+    /* ADD: header-top aligned to edges like page 2 */
   .header-top {
     display: grid;
     grid-template-columns: auto 1fr auto; /* left | center | right */
     align-items: center;
-    width: 90%;
+    width: 100%;          /* full width for edges */
     max-width: 1200px;
-    padding: 1rem 0;
+    margin: 0 auto;       /* center grid horizontally */
+    padding: 1rem 1.5rem; /* hamburger and login flush with edges */
   }
 
-  /* Center search bar with fixed width */
-  .search-container-two {
-    justify-content: center; /* centers form in middle column */
+  /* ADD: desktop search bar show/hide */
+  .search-container-two { 
+    display: flex;           /* show desktop search bar */
+    justify-content: center; /* center search bar */
     width: 100%;
   }
 
+  .search-container { 
+    display: none;           /* hide mobile search bar */
+  }
+
+  /* ADD: search form width */
   .search-container-two form {
     width: 100%;
-    max-width: 500px; /* keeps it from stretching too wide */
-    margin: 0 auto;   /* ensure it’s centered */
+    max-width: 500px; /* prevent stretching too wide */
+    margin: 0 auto;   /* center search form */
   }
 
   .search-container-two input[type="text"] {
@@ -217,7 +239,7 @@ footer {
     padding: 0.6rem 1rem;
     font-size: 1rem;
     border: 1px solid var(--border-color);
-border-radius: 6px;
+    border-radius: 6px;
     background-color: var(--input-bg);
     color: var(--text-color);
   }
@@ -230,9 +252,10 @@ border-radius: 6px;
 
   .nav-buttons {
     display: flex;
-    justify-content: flex-end; /* keeps login to far right */
+    justify-content: flex-end; /* keeps login far right */
     align-items: center;
   }
+
 }
 
 
