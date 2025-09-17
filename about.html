@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>edwinbook search</title>
-<style>
-:root {
-  --bg-color: #ffffff;
-  --text-color: #111111;
-  --accent-color: #10a37f;
-  --border-color: #e2e2e2;
-  --input-bg: #f9f9f9;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>edwinbook</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111111;
+      --accent-color: #10a37f;
+      --border-color: #e2e2e2;
+      --input-bg: #f9f9f9;
+      --banner-blue: #3b82f6;
+    }
 
-* { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+
 
 /* HEADER */
 header {
@@ -216,50 +221,63 @@ header {
 }
 
 
-/* RESULTS */
-.results {
-  width: 100%;
-  max-width: 700px;
-  padding: 1rem 1.5rem;
-  margin: 0 auto;
-  box-sizing: border-box;
-  flex: 1;
-}
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
 
-.result-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border-bottom: 1px solid var(--border-color);
-  padding: 1rem 0;
-  transition: background-color 0.2s ease;
-}
-
-.result-title {
-  font-size: 1.25rem;
-  font-weight: 400; 
-  color: #1a0dab;    
-  margin: 0;
-  text-decoration: none;
-  width: fit-content; 
-}
-
-.result-title:hover { text-decoration: underline; }
-.result-link:hover { background-color: #f5f5f5; }
-
-.author { font-size: 0.9rem; color: #666; margin-top: 0.25rem;}
-.snippet { margin-top: 0.5rem; font-size: 1rem; color: #333; }
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #888;
-  border-top: 1px solid var(--border-color);
-  width: 100%;
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #555;
 }
 
 
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 2rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    
 
 
 
@@ -269,9 +287,20 @@ footer {
 
 
 
+/**
+.title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 1em;       
+  width: 100vw;   
+  height: 1px;
+  background: red; 
+}
 
+**/
 
-</style>
+  </style>
 </head>
 <body>
 
@@ -330,34 +359,33 @@ footer {
 </header>
 
 
-<div class="results">
-  <a href="result1005.html" class="result-link">
-    <h2 class="result-title">Steel</h2>
-    <div class="author">by James T. Example</div>
-    <div class="snippet">
-      Steel, one of the most essential materials used throughout the world, has a history that dates back over 3,000 years.
-    </div>
-  </a>
-</div>
 
-<footer>
-  &copy; 2025 edwinbook™. All rights reserved.
-</footer>
+  <main>
+  Edwinbook’s mission is to make knowledge more accessible through an encyclopedia written by the world’s leading experts — so people everywhere can learn reliably, thoroughly, and directly from those at the forefront of their fields.
+</main>
 
-<script>
-const menuButton = document.getElementById("menuToggle");
-const menuDropdown = document.getElementById("menuDropdown");
+  
+  <footer>
+    &copy; 2025 edwinbook™. All rights reserved.
 
-menuButton.addEventListener("click", () => {
-  menuDropdown.style.display = menuDropdown.style.display === "flex" ? "none" : "flex";
-});
+  </footer>
 
-document.addEventListener("click", (e) => {
-  if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-    menuDropdown.style.display = "none";
-  }
-});
-</script>
+  <script>
+    const menuButton = document.getElementById("menuToggle");
+    const menuDropdown = document.getElementById("menuDropdown");
 
+    menuButton.addEventListener("click", () => {
+      menuDropdown.style.display = 
+        menuDropdown.style.display === "flex" ? "none" : "flex";
+    });
+
+    // Optional: close menu if clicking outside
+    document.addEventListener("click", (e) => {
+      if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
+        menuDropdown.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
+

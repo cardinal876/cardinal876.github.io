@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>edwinbook</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Author Login - EdwinBook Encyclopedia</title>
   <style>
-    :root {
+  
+  :root {
       --bg-color: #ffffff;
       --text-color: #111111;
       --accent-color: #10a37f;
@@ -30,7 +31,97 @@
     }
 
   
-/* HEADER */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .login-container {
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      width: 400px;
+      padding: 40px;
+      text-align: center;
+    }
+    .login-container h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .login-container p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+    .form-group input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .form-group input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .forgot-password {
+      font-size: 14px;
+      color: #4CAF50;
+      text-decoration: none;
+      margin-top: 20px;
+      display: inline-block;
+    }
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    .divider {
+      margin: 30px 0;
+      height: 1px;
+      background-color: #ddd;
+    }
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .social-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .social-button:hover {
+      background-color: #f1f1f1;
+    }
+    .social-button img {
+      width: 20px;
+    }
+    
+    
+    
+    /* HEADER */
 header {
   border-bottom: 1px solid var(--border-color);
   width: 100%;
@@ -220,12 +311,6 @@ header {
 }
 
 
-    .left-align-block {
-  text-align: left;
-  max-width: 400px;     
-}
-
-
     main {
       flex: 1;
       display: flex;
@@ -235,6 +320,8 @@ header {
       padding: 2rem 1rem;
       text-align: center;
     }
+    
+    
 
     h1 {
       font-size: 3rem;
@@ -242,6 +329,16 @@ header {
       color: var(--text-color);
       margin-bottom: 1rem;
     }
+    
+    .contact-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
 
     p {
       font-size: 1rem;
@@ -271,11 +368,12 @@ header {
       color: #888;
       border-top: 1px solid var(--border-color);
     }
+    
   </style>
 </head>
 <body>
-
-<header>
+    
+  <header>
   <div class="header-top">
     <div class="header-left">
    
@@ -329,12 +427,42 @@ header {
   </div>
 </header>
 
-  <main>
-  <div class="left-align-block">
-    <p>If you're interested in contributing, please contact write@edwinbook.com.</p>
-  </div>
-</main>
+<main>
 
+  <div class="login-container">
+    <h1>Author Login</h1>
+    <p>Welcome back to the EdwinBook Encyclopedia platform. Please sign in to manage your articles.</p>
+    
+    
+    
+    <div id="error-message" style="color: red; font-size: 14px; display: none;">
+  Username or Password is Incorrect
+</div>
+
+
+
+    
+ <form id="loginForm" action="login" method="POST">
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Email Address" required>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Log In">
+      </div>
+    </form>
+    
+    <a href="#" class="forgot-password">Forgot password?</a>
+
+    <div class="divider"></div>
+    
+
+  </div>
+  </main>
+  
+  
   <footer>
     &copy; 2025 edwinbook™. All rights reserved.
 
@@ -356,6 +484,20 @@ header {
       }
     });
   </script>
+  
+<script>
+const loginForm = document.getElementById('loginForm');
+
+loginForm.addEventListener('submit', function(event) {
+  event.preventDefault();  // stops the POST request
+
+  const email = document.querySelector('#loginForm input[name="email"]').value;
+  const password = document.querySelector('#loginForm input[name="password"]').value;
+
+  // simulate incorrect login
+  document.getElementById('error-message').style.display = 'block';
+});
+</script>
+
 </body>
 </html>
-

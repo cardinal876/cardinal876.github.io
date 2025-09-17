@@ -233,61 +233,58 @@ header {
     
     
     
-    main {
+main {
   flex: 1;
   max-width: 800px;
   width: 100%;
-  padding: 2rem 1.5rem;
-  margin: 0 auto;
-  line-height: 1.65; /* slightly taller for readability */
+  margin: 3rem auto;
+  padding: 0 1.5rem;
   font-size: 1.05rem;
-  color: #222; /* slightly darker than #111 for soft reading */
+  line-height: 1.7;
+  color: #222;
 }
 
 h1 { 
-  font-size: 2.2rem; 
-  margin-bottom: 1rem; 
+  font-size: 1.8rem; 
+  margin-bottom: 2rem; 
   font-weight: 700; 
-  border-bottom: 2px solid #e2e2e2; /* subtle underline for header separation */
-  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #e2e2e2;
+  padding-bottom: 0.5rem;
 }
 
 .category {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  color: #111;
-  border-left: 3px solid var(--accent-color); /* subtle visual cue */
-  padding-left: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333; /* darker neutral, no vertical line */
 }
+
+
+
+
+
+
+
 
 .book, .article {
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
-}
-
-.book a, .article a {
-  text-decoration: none;
-  color: #111;
-  font-weight: 500;
+  display: block; /* ensures the whole <a> fills card */
+  background-color: #ffffff;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+  color: #111;        /* default text color */
+  text-decoration: none; /* remove underline */
 }
 
 .book:hover, .article:hover {
-  background-color: #f9f9f9; /* subtle hover background */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  color: var(--accent-color); /* hover text color */
 }
 
-.book a:hover, .article a:hover {
-  color: var(--accent-color); /* highlight on hover */
-  text-decoration: underline;
-}
-
-/* Optional: add small spacing between each book/article */
-.book + .book, .article + .article {
-  margin-top: 0.5rem;
-}
 
   </style>
 </head>
@@ -295,15 +292,20 @@ h1 {
 <header>
   <div class="header-top">
     <div class="header-left">
-      <button class="menu-button" id="menuToggle">☰</button>
+   
       <div class="title">
         <img src="library-big.svg" alt="Library Icon" class="title-icon">
         <a href="index.html" style="text-decoration:none; color:inherit;">edwinbook</a>
       </div>
       
             <div class="menu-dropdown" id="menuDropdown">
-        <a href="">Account</a>
-        <a href="contributors.html">Contributors</a>
+        <a href="about.html">About</a>
+           <a href="login.html">Account</a> 
+        <a href="">Advanced Search</a>
+        <a href="">New Articles</a>
+        <a href="">Most Read</a>
+        <a href="">Newsletter</a>
+        <a href="">Feedback</a>
         <a href="contact.html">Contact</a>
       </div>
       
@@ -326,7 +328,8 @@ h1 {
     </div>
     
         <div class="nav-buttons">
-      <a href="">Log in</a>
+     
+         <button class="menu-button" id="menuToggle">☰</button>
     </div>
     
 
@@ -340,18 +343,22 @@ h1 {
   </div>
 </header>
 
+
   <main>
     <h1>James T. Example</h1>
 
-    <div class="category">Books</div>
-    <div class="book">
-      <a href="https://www.amazon.com">The Steel Age: The Evolution of Metal Fabrication During the Industrial Revolution</a>
-    </div>
 
-    <div class="category">Edwinbook Articles</div>
-    <div class="article">
-      <a href="result1005.html">Steel</a>
-    </div>
+    
+    <div class="category">Books</div>
+<a href="https://www.amazon.com" class="book">
+  The Steel Age: The Evolution of Metal Fabrication During the Industrial Revolution
+</a>
+
+<div class="category">Edwinbook Articles</div>
+<a href="result1005.html" class="article">
+  Steel
+</a>
+
   </main>
 
   <footer>
