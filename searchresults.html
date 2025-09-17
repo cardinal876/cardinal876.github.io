@@ -66,7 +66,8 @@ header {
 .menu-dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: auto;
+  right:0;
   background: white;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -103,21 +104,13 @@ header {
   transform: translateY(-0.06em);
 }
 
-.nav-buttons a {
-  text-decoration: none;
-  color: var(--accent-color);
-  font-weight: 500;
-  border: 1px solid var(--accent-color);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  transition: background-color 0.2s ease;
-  white-space: nowrap;
-}
-
-.nav-buttons a:hover {
-  background-color: var(--accent-color);
-  color: white;
+.nav-buttons{
+    display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+    left: auto;
+    right: 0;
 }
 
 
@@ -216,6 +209,9 @@ header {
 }
 
 
+    
+
+
 /* RESULTS */
 .results {
   width: 100%;
@@ -284,17 +280,7 @@ footer {
         <a href="index.html" style="text-decoration:none; color:inherit;">edwinbook</a>
       </div>
       
-            <div class="menu-dropdown" id="menuDropdown">
-        <a href="about.html">About</a>
-           <a href="login.html">Account</a> 
-        <a href="">Advanced Search</a>
-        <a href="">New Articles</a>
-        <a href="">Most Read</a>
-        <a href="">Newsletter</a>
-        <a href="">Feedback</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      
+        
       
     
   </div>
@@ -316,6 +302,18 @@ footer {
         <div class="nav-buttons">
      
          <button class="menu-button" id="menuToggle">☰</button>
+         
+             <div class="menu-dropdown" id="menuDropdown">
+        <a href="about.html">About</a>
+           <a href="login.html">Account</a> 
+        <a href="">Advanced Search</a>
+        <a href="">New Articles</a>
+        <a href="">Most Read</a>
+        <a href="">Newsletter</a>
+        <a href="">Feedback</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      
     </div>
     
 
@@ -328,6 +326,7 @@ footer {
     </form>
   </div>
 </header>
+
 
 
 <div class="results">
