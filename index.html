@@ -268,11 +268,40 @@ header {
       color: #555;
     }
 
-    .search-box {
-      width: 100%;
-      max-width: 400px;
-      margin-top: 2rem;
-    }
+.search-form {
+  position: relative;
+  display: flex;
+  align-items: center;  /* this centers icon vertically */
+}
+
+.search-form input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem; /* add room on right */
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.search-form img.search-icon {
+  position: absolute;
+  right: 0.4rem;
+  width: 26px;
+  height: 26px;
+  display: block;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 400px;
+  margin: 1.25rem auto 2rem auto; /* top | left/right | bottom | left/right */
+  position: relative;
+}
+
+
 
     input[type="text"] {
       width: 100%;
@@ -358,10 +387,18 @@ header {
 
 <p style="display:none">edwinbook makes knowledge more accessible through an encyclopedia written by the world’s leading experts — so people everywhere can learn reliably, thoroughly, and directly from those at the forefront of their fields.</p>
     
-    <div class="search-box">
-      <form action="searchresults.html" method="GET">
-        <input type="text" name="q" placeholder="edwinbook encyclopedia" />
-      </form>
+
+
+          
+          <div class="search-box">
+  <form action="searchresults.html" method="GET" class="search-form">
+    <input type="text" name="q" placeholder="edwinbook encyclopedia" />
+    <img src="iconmonstr-glass.svg" alt="Search" class="search-icon" />
+  </form>
+</div>
+
+  
+
     </div>
   </main>
   
