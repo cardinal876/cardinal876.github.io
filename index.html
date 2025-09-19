@@ -56,13 +56,14 @@ header {
 }
 
 .menu-button {
-  color: black;
+  color: #202124;
   -webkit-appearance: none;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
   padding: 0.25rem;
+  margin-left: .5rem;
   line-height: 1;
 }
 
@@ -107,22 +108,35 @@ header {
   transform: translateY(-0.06em);
 }
 
-.nav-buttons-two a {
-      text-decoration: none;
-      color: var(--accent-color);
-      font-weight: 500;
-      border: 1px solid var(--accent-color);
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      transition: background-color 0.2s ease;
-      font-size: 0.95rem;
-      white-space: nowrap;
-    }
 
-    .nav-buttons-two a:hover {
-      background-color: var(--accent-color);
-      color: white;
-    }
+
+.nav-buttons-two {
+    display: flex;
+    gap: 0.5rem; /* space between links */
+}
+
+
+
+
+
+/* Plain black header links for both desktop and mobile */
+.nav-buttons-two a {
+    text-decoration: none;   /* remove underline */
+    color: #202124;
+    font-weight: normal;      /* normal weight */
+    font-size: 1rem;          /* normal size */
+    padding: 0;               /* remove padding */
+    border: none;             /* remove any border */
+    border-radius: 0;         /* remove rounding */
+}
+
+.nav-buttons-two a:hover {
+    color: var(--text-color); /* stay black on hover */
+    text-decoration: none;    /* no underline on hover */
+}
+
+
+
 
 .nav-buttons{
     display: flex;
@@ -171,63 +185,24 @@ header {
 .search-container-two { display: none; }   /* hide desktop search bar */
 .search-container { display: block; }      /* show bottom search bar */
 
-/* Desktop view */
-@media (min-width: 768px) {
-  .search-container-two { display: flex; } /* show desktop search bar */
-  .search-container { display: none; }     /* hide bottom search bar */
-  
-    /* ADD: header-top aligned to edges like page 2 */
-  .header-top {
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* left | center | right */
-    align-items: center;
-    width: 100%;          /* full width for edges */
-    max-width: 1200px;
-    margin: 0 auto;       /* center grid horizontally */
-    padding: 1rem 1.5rem; /* hamburger and login flush with edges */
-  }
 
-  /* ADD: desktop search bar show/hide */
-  .search-container-two { 
-    display: flex;           /* show desktop search bar */
-    justify-content: center; /* center search bar */
-    width: 100%;
-  }
 
-  .search-container { 
-    display: none;           /* hide mobile search bar */
-  }
-
-  /* ADD: search form width */
-  .search-container-two form {
-    width: 100%;
-    max-width: 500px; /* prevent stretching too wide */
-    margin: 0 auto;   /* center search form */
-  }
-
-  .search-container-two input[type="text"] {
-    width: 100%;
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background-color: var(--input-bg);
-    color: var(--text-color);
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .nav-buttons {
-    display: flex;
-    justify-content: flex-end; /* keeps login far right */
-    align-items: center;
-  }
+.header-icon {
+    height: 1.5rem;       /* adjust size as needed */
+    width: auto;
+    margin: 0 0.5rem;     /* spacing around the icon */
+    cursor: pointer;
+    vertical-align: middle;
 }
 
+
+
+
+header{
+    
+    
+    border:none;
+}
 
     
     
@@ -320,6 +295,96 @@ header {
       color: #888;
       border-top: 1px solid var(--border-color);
     }
+    
+      #about{
+      display:none;
+  }
+    
+    
+    
+    /* Desktop view */
+@media (min-width: 768px) {
+    main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* align to top instead of center */
+    padding-top: 30vh;           /* space from top of page */
+  }
+    
+    
+  .search-container-two { display: flex; } /* show desktop search bar */
+  .search-container { display: none; }     /* hide bottom search bar */
+  
+    /* ADD: header-top aligned to edges like page 2 */
+  .header-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* left | center | right */
+    align-items: center;
+    width: 100%;          /* full width for edges */
+    max-width: 1200px;
+    margin: 0 auto;       /* center grid horizontally */
+    padding: 1rem 1.5rem; /* hamburger and login flush with edges */
+  }
+
+  /* ADD: desktop search bar show/hide */
+  .search-container-two { 
+    display: flex;           /* show desktop search bar */
+    justify-content: center; /* center search bar */
+    width: 100%;
+  }
+
+  .search-container { 
+    display: none;           /* hide mobile search bar */
+  }
+
+  /* ADD: search form width */
+  .search-container-two form {
+    width: 100%;
+    max-width: 500px; /* prevent stretching too wide */
+    margin: 0 auto;   /* center search form */
+  }
+
+  .search-container-two input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-buttons {
+    display: flex;
+    justify-content: flex-end; /* keeps login far right */
+    align-items: center;
+  }
+  
+  /* Desktop view */
+
+  .nav-buttons-two {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .nav-buttons-two a {
+    font-weight: 500;
+    font-size: 1rem; /* slightly larger for desktop */
+  }
+  
+  
+  #about{
+      display:block;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -335,11 +400,13 @@ header {
 <header>
   <div class="header-top">
     <div class="header-left">
-        <div class="nav-buttons-two">
-      
-      <a  href="login.html">Log in</a>
+       
+            <div class="nav-buttons-two">
+
+<a href="about.html" id="about">About</a>
+        <a href="">Advanced Search</a>
       </div>
-   
+      
 
         
       
@@ -355,6 +422,13 @@ header {
 
     
         <div class="nav-buttons">
+            <div class="nav-buttons-two">
+            <a href="" class="right-link">New Articles</a></div>
+            
+            <!-- Light bulb icon -->
+            <a href="">
+    <img src="iconmonstr-light.svg" alt="Light bulb" class="header-icon" /></a>
+
      
          <button class="menu-button" id="menuToggle">☰</button>
          

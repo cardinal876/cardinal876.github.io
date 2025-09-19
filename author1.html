@@ -207,7 +207,65 @@ header {
     justify-content: flex-end; /* keeps login far right */
     align-items: center;
   }
+  
+  
+  
+  
+  /* Desktop header: 30% taller and everything inside bigger 
+@media (min-width: 768px) {*/
+  header {
+    padding-top: 1.3rem;   /* 30% taller than original ~1rem */
+    padding-bottom: 1.3rem;
+  }
+
+  .header-top {
+    padding: 1.3rem 1.5rem;  /* increase horizontal padding proportionally */
+  }
+
+  /* Scale logo/title */
+  .title a {
+    font-size: 2rem;        /* was ~1.5rem */
+  }
+  .title-icon {
+    height: 1.3em;          /* scale with title */
+  }
+
+  /* Scale menu button */
+  .menu-button {
+    font-size: 2rem;        /* bigger hamburger */
+    padding: 0.35rem;       /* slightly bigger clickable area */
+  }
+
+  /* Scale nav buttons if any */
+  .nav-buttons a {
+    font-size: 1.25rem;
+    padding: 0.55rem 1rem;
+  }
+
+  /* Scale desktop search bar */
+  .search-container-two input[type="text"] {
+    font-size: 1.25rem;     /* bigger text */
+    padding: 0.8rem 1rem;   /* taller input */
+  }
+
+  /* Optional: dropdown menu links */
+  .menu-dropdown a {
+    font-size: 1.1rem;
+    padding: 0.9rem 1.2rem;
+  }
+  
+  header {
+  padding-top: 0.8rem;    /* smaller than before */
+  padding-bottom: 0.8rem; /* smaller than before */
 }
+
+.header-top {
+  padding: 0.8rem 1.5rem; /* reduced top/bottom padding, keep horizontal spacing */
+}
+
+}
+
+
 
 
     
