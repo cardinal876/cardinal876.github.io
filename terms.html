@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>James Example – edwinbook</title>
+  <title>edwinbook</title>
   <style>
     :root {
       --bg-color: #ffffff;
@@ -14,7 +14,9 @@
       --banner-blue: #3b82f6;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -22,11 +24,12 @@
       font-family: system-ui, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
+  
 /* HEADER */
 header {
   border-bottom: 1px solid var(--border-color);
@@ -207,71 +210,52 @@ header {
     justify-content: flex-end; /* keeps login far right */
     align-items: center;
   }
-  
-  
-  
-  
-  /* Desktop header: 30% taller and everything inside bigger 
-@media (min-width: 768px) {*/
-  header {
-    padding-top: 1.3rem;   /* 30% taller than original ~1rem */
-    padding-bottom: 1.3rem;
-  }
-
-  .header-top {
-    padding: 1.3rem 1.5rem;  /* increase horizontal padding proportionally */
-  }
-
-  /* Scale logo/title */
-  .title a {
-    font-size: 2rem;        /* was ~1.5rem */
-  }
-  .title-icon {
-    height: 1.3em;          /* scale with title */
-  }
-
-  /* Scale menu button */
-  .menu-button {
-    font-size: 2rem;        /* bigger hamburger */
-    padding: 0.35rem;       /* slightly bigger clickable area */
-  }
-
-  /* Scale nav buttons if any */
-  .nav-buttons a {
-    font-size: 1.25rem;
-    padding: 0.55rem 1rem;
-  }
-
-  /* Scale desktop search bar */
-  .search-container-two input[type="text"] {
-    font-size: 1.25rem;     /* bigger text */
-    padding: 0.8rem 1rem;   /* taller input */
-  }
-
-  /* Optional: dropdown menu links */
-  .menu-dropdown a {
-    font-size: 1.1rem;
-    padding: 0.9rem 1.2rem;
-  }
-  
-  header {
-  padding-top: 0.8rem;    /* smaller than before */
-  padding-bottom: 0.8rem; /* smaller than before */
-}
-
-.header-top {
-  padding: 0.8rem 1.5rem; /* reduced top/bottom padding, keep horizontal spacing */
-}
-
 }
 
 
+    .left-align-block {
+  text-align: left;
+  max-width: 400px;     
+}
 
 
-    
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
 
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
 
-    
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 2rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
 
     footer {
       text-align: center;
@@ -279,67 +263,11 @@ header {
       font-size: 0.9rem;
       color: #888;
       border-top: 1px solid var(--border-color);
-      width: 100%;
     }
-    
-    
-    
-main {
-  flex: 1;
-  max-width: 800px;
-  width: 100%;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #222;
-}
-
-h1 { 
-  font-size: 1.8rem; 
-  margin-bottom: 2rem; 
-  font-weight: 700; 
-  border-bottom: 2px solid #e2e2e2;
-  padding-bottom: 0.5rem;
-}
-
-.category {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  color: #333; /* darker neutral, no vertical line */
-}
-
-
-
-
-
-
-
-
-.book, .article {
-  display: block; /* ensures the whole <a> fills card */
-  background-color: #ffffff;
-  padding: 1rem 1.2rem;
-  margin-bottom: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: all 0.25s ease;
-  color: #111;        /* default text color */
-  text-decoration: none; /* remove underline */
-}
-
-.book:hover, .article:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  color: var(--accent-color); /* hover text color */
-}
-
-
   </style>
 </head>
 <body>
+
 <header>
   <div class="header-top">
     <div class="header-left">
@@ -349,7 +277,8 @@ h1 {
         <a href="index.html" style="text-decoration:none; color:inherit;">edwinbook</a>
       </div>
       
-        
+
+      
       
     
   </div>
@@ -372,7 +301,7 @@ h1 {
      
          <button class="menu-button" id="menuToggle">☰</button>
          
-             <div class="menu-dropdown" id="menuDropdown">
+                     <div class="menu-dropdown" id="menuDropdown">
         <a href="about.html">About</a>
            <a href="login.html">Account</a> 
         <a href="">Advanced Search</a>
@@ -382,7 +311,6 @@ h1 {
         <a href="">Feedback</a>
         <a href="contact.html">Contact</a>
       </div>
-      
     </div>
     
 
@@ -396,23 +324,10 @@ h1 {
   </div>
 </header>
 
-
   <main>
-    <h1>James T. Example</h1>
+  <p>All rights reserved.</p>
+</main>
 
-
-    
-    <div class="category">Books</div>
-<a href="https://www.amazon.com" class="book">
-  The Steel Age: The Evolution of Metal Fabrication During the Industrial Revolution
-</a>
-
-<div class="category">Edwinbook Articles</div>
-<a href="result1005.html" class="article">
-  Steel
-</a>
-
-  </main>
   <footer>
     &copy; 2025 edwinbook™. <a href="terms.html" style="text-decoration:none;color:inherit;" >Terms & Conditions</a>
 
@@ -424,12 +339,11 @@ h1 {
     const menuDropdown = document.getElementById("menuDropdown");
 
     menuButton.addEventListener("click", () => {
-      menuDropdown.style.display =
-        menuDropdown.style.display === "flex" 
-          ? "none" 
-          : "flex";
+      menuDropdown.style.display = 
+        menuDropdown.style.display === "flex" ? "none" : "flex";
     });
 
+    // Optional: close menu if clicking outside
     document.addEventListener("click", (e) => {
       if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
         menuDropdown.style.display = "none";
@@ -438,3 +352,4 @@ h1 {
   </script>
 </body>
 </html>
+
