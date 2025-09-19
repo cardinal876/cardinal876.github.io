@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>edwinbook</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Author Login - EdwinBook Encyclopedia</title>
   <style>
-    :root {
+  
+  :root {
       --bg-color: #ffffff;
       --text-color: #111111;
       --accent-color: #10a37f;
@@ -29,6 +30,96 @@
       min-height: 100vh;
     }
 
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .login-container {
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      width: 400px;
+      padding: 40px;
+      text-align: center;
+    }
+    .login-container h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .login-container p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+    .form-group input:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+    .form-group input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .form-group input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .forgot-password {
+      font-size: 14px;
+      color: #4CAF50;
+      text-decoration: none;
+      margin-top: 20px;
+      display: inline-block;
+    }
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    .divider {
+      margin: 30px 0;
+      height: 1px;
+      background-color: #ddd;
+    }
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .social-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .social-button:hover {
+      background-color: #f1f1f1;
+    }
+    .social-button img {
+      width: 20px;
+    }
+    
+    
 /* HEADER */
 header {
   border-bottom: 1px solid var(--border-color);
@@ -56,14 +147,13 @@ header {
 }
 
 .menu-button {
-  color: #202124;
+  color: black;
   -webkit-appearance: none;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
   padding: 0.25rem;
-  margin-left: .5rem;
   line-height: 1;
 }
 
@@ -107,36 +197,6 @@ header {
   width: auto;
   transform: translateY(-0.06em);
 }
-
-
-
-.nav-buttons-two {
-    display: flex;
-    gap: 0.5rem; /* space between links */
-}
-
-
-
-
-
-/* Plain black header links for both desktop and mobile */
-.nav-buttons-two a {
-    text-decoration: none;   /* remove underline */
-    color: #202124;
-    font-weight: normal;      /* normal weight */
-    font-size: 1rem;          /* normal size */
-    padding: 0;               /* remove padding */
-    border: none;             /* remove any border */
-    border-radius: 0;         /* remove rounding */
-}
-
-.nav-buttons-two a:hover {
-    color: var(--text-color); /* stay black on hover */
-    text-decoration: none;    /* no underline on hover */
-}
-
-
-
 
 .nav-buttons{
     display: flex;
@@ -185,134 +245,8 @@ header {
 .search-container-two { display: none; }   /* hide desktop search bar */
 .search-container { display: block; }      /* show bottom search bar */
 
-
-
-.header-icon {
-    height: 1.5rem;       /* adjust size as needed */
-    width: auto;
-    margin: 0 0.5rem;     /* spacing around the icon */
-    cursor: pointer;
-    vertical-align: middle;
-}
-
-
-
-
-header{
-    
-    
-    border:none;
-}
-
-    
-    
-    .main-title {
-  display: flex;           /* place icon + text in a row */
-  align-items: center;     /* vertically center icon with text */
-  gap: 0.0rem;            /* spacing between icon and text */
-  justify-content: center; /* keep both centered horizontally */
-}
-
-.main-title .main-icon {
-  height: 1em;             /* match the text height */
-  width: auto;             /* keep natural proportions */
-  
-  transform: translateY(-0.06em);
-}
-
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      color: var(--text-color);
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #555;
-    }
-
-.search-form {
-  position: relative;
-  display: flex;
-  align-items: center;  /* this centers icon vertically */
-}
-
-.search-form input[type="text"] {
-  width: 100%;
-  padding: 0.75rem 2.5rem 0.75rem 1rem; /* add room on right */
-  font-size: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background-color: var(--input-bg);
-  color: var(--text-color);
-}
-
-.search-form img.search-icon {
-  position: absolute;
-  right: 0.4rem;
-  width: 26px;
-  height: 26px;
-  display: block;
-  pointer-events: none;
-  opacity: 0.95;
-}
-
-.search-box {
-  width: 100%;
-  max-width: 400px;
-  margin: 1.25rem auto 2rem auto; /* top | left/right | bottom | left/right */
-  position: relative;
-}
-
-
-
-    input[type="text"] {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      font-size: 1rem;
-      background-color: var(--input-bg);
-      color: var(--text-color);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      border-top: 1px solid var(--border-color);
-    }
-    
-      #about{
-      display:none;
-  }
-    
-    
-    
-    /* Desktop view */
+/* Desktop view */
 @media (min-width: 768px) {
-    main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* align to top instead of center */
-    padding-top: 30vh;           /* space from top of page */
-  }
-    
-    
   .search-container-two { display: flex; } /* show desktop search bar */
   .search-container { display: none; }     /* hide bottom search bar */
   
@@ -366,48 +300,82 @@ header{
     justify-content: flex-end; /* keeps login far right */
     align-items: center;
   }
-  
-  /* Desktop view */
-
-  .nav-buttons-two {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .nav-buttons-two a {
-    font-weight: 500;
-    font-size: 1rem; /* slightly larger for desktop */
-  }
-  
-  
-  #about{
-      display:block;
-  }
 }
 
+
+    
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    
+    
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+    
+    .contact-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 2rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid var(--border-color);
+    }
+    
   </style>
 </head>
 <body>
-
- <!-- <header>
-    <div class="header-left">
-<div class="nav-buttons">
-      
-      <a  href="">Log in</a>
-      </div>
-    </div> -->
-
+    
 <header>
   <div class="header-top">
     <div class="header-left">
-       
-            <div class="nav-buttons-two">
-
-<a href="about.html" id="about">About</a>
-        <a href="">Advanced Search</a>
+   
+      <div class="title">
+        <img src="library-big.svg" alt="Library Icon" class="title-icon">
+        <a href="index.html" style="text-decoration:none; color:inherit;">edwinbook</a>
       </div>
       
-
         
       
     
@@ -419,16 +387,15 @@ header{
 
       
       
+              <div class="search-container-two" id="searchContainerTwo">
+    <form action="searchresults.html" method="GET">
+      <input type="text" name="q" placeholder="edwinbook encyclopedia">
+    </form>
 
+
+    </div>
     
         <div class="nav-buttons">
-            <div class="nav-buttons-two">
-            <a href="" class="right-link">New Articles</a></div>
-            
-            <!-- Light bulb icon -->
-            <a href="beta.html">
-    <img src="iconmonstr-light.svg" alt="Light bulb" class="header-icon" /></a>
-
      
          <button class="menu-button" id="menuToggle">☰</button>
          
@@ -448,33 +415,67 @@ header{
 
   </div>
 
-
+  <!-- SEARCH BAR: mobile stacked -->
+  <div class="search-container" id="searchContainer">
+    <form action="searchresults.html" method="GET">
+      <input type="text" name="q" placeholder="edwinbook encyclopedia">
+    </form>
+  </div>
 </header>
 
-  <main>
 
+<main>
+
+  <div class="login-container">
+    <h1>Beta Signup</h1>
+    <p>
+       Welcome back to the Edwinbook Encyclopedia platform. If you would like you try new, unreleased features and answer questions about your experience with Edwinbook's education and technology, please signup to join the beta group.
+        
+        </p>
     
-    <h1 class="main-title">
-  <img src="library-big.svg" alt="edwinbook icon" class="main-icon" />
-  <span>edwinbook</span>
-</h1>
-
-<p style="display:none">edwinbook makes knowledge more accessible through an encyclopedia written by the world's leading experts — so people everywhere can learn reliably, thoroughly, and directly from those at the forefront of their respective fields.</p>
     
-
-
-          
-          <div class="search-box">
-  <form action="searchresults.html" method="GET" class="search-form">
-    <input type="text" name="q" placeholder="edwinbook encyclopedia" />
-    <img src="iconmonstr-glass.svg" alt="Search" class="search-icon" />
-  </form>
+    
+    <div id="error-message" style="color: red; font-size: 14px; display: none;">
+  Username or Password is Incorrect
 </div>
 
-  
 
-    </div>
+
+    
+ <form id="loginForm" action="" onsubmit="return false;" method="POST">
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Email Address" required>
+      </div>
+    <div class="form-group">
+        <input type="email" name="email2" placeholder="Confirm Email Address" required>
+      </div>
+      <div class="form-group">
+        <input type="text" name="firstname" placeholder="First Name" required>
+      </div>
+            <div class="form-group">
+        <input type="text" name="lastname" placeholder="Last Name" required>
+      </div>
+           <div class="form-group">
+        <input type="text" name="city" placeholder="City" required>
+      </div>
+                 <div class="form-group">
+        <input type="text" name="state" placeholder="State" required>
+      </div>
+
+
+      <div class="form-group">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+    
+
+
+    <div class="divider"></div>
+    
+
+  </div>
   </main>
+  
   
   <footer>
     &copy; 2025 edwinbook™. All rights reserved.
@@ -497,6 +498,8 @@ header{
       }
     });
   </script>
+  
+
+
 </body>
 </html>
-
