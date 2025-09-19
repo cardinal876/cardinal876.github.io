@@ -214,17 +214,10 @@ header {
 }
 
 
+
+
     
     
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
 
     h1 {
       font-size: 3rem;
@@ -273,11 +266,103 @@ header {
     }
     
     
+ 
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem; /* reduced vertical padding */
+}
+
+.image-box {
+  margin-top: 1rem; /* adjust spacing under header */
+}
+
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+ 
+}
+
+.text-box {
+  width: 30%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.text-box p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.row img {
+  width: 30%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
 
 
 
+.image-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 1200px;
+  gap: 2rem; /* spacing between rows */
+  margin: 0rem;
+  padding:0rem;
+  margin-top: 1rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem; /* spacing between items in same row */
+}
 
 
+/* === MOBILE STYLES === */
+@media (max-width: 767px) {
+  .image-box {
+    width: 100%;
+    gap: 1rem;
+
+  }
+
+  .row {
+      gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem;
+    margin: 0rem;
+  }
+
+  .text-box,
+  .row img {
+    width: 100% !important; /* Force full width */
+    max-width: 100%;
+  }
+
+  .row img {
+    height: auto;
+    padding:0rem;
+    margin:0rem;
+  }
+  
+  .text-box{
+      margin:0rem;
+      padding: 0rem;
+  }
+}
 
 
 
@@ -356,9 +441,29 @@ header {
 </header>
 
 
-  <main>
-  Edwinbook’s mission is to make knowledge more accessible through an encyclopedia written by the world’s leading experts — so people everywhere can learn reliably, thoroughly, and directly from those at the forefront of their fields.
+
+
+<main>
+  <div class="image-box">
+    <!-- First Row: Text Box + Portrait Images -->
+    <div class="row">
+      <div class="text-box">
+        <p>
+          edwinbook's mission is to make knowledge more accessible through an encyclopedia written by the world's leading experts — so people everywhere can learn reliably, thoroughly, and directly from those at the forefront of their respective fields.
+        </p>
+      </div>
+      <img src="mask-wikimedia.jpg" alt="Image 1">
+      <img src="vermeer.jpg" alt="Image 2">
+    </div>
+    <!-- Second Row: Three Images -->
+    <div class="row">
+      <img src="earth.jpg" alt="Image 1">
+      <img src="hightech.jpg" alt="Image 2">
+      <img src="rover.jpg" alt="Image 3">
+    </div>
+  </div>
 </main>
+
 
   
   <footer>
