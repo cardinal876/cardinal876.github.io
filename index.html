@@ -35,6 +35,8 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      
+     
     }
 
 /* HEADER */
@@ -44,7 +46,7 @@ header {
   display: flex;
   flex-direction: column; /* mobile stacked */
   align-items: center;
-  
+  font-size: inherit;
 }
 
 .header-top {
@@ -64,6 +66,9 @@ header {
 }
 
 .menu-button {
+  
+  margin-top: -0.2rem;
+
   
   -webkit-appearance: none;
   background: none;
@@ -195,7 +200,7 @@ header {
 
 
 
-.header-icon {
+.beta-icon {
     height: 1.5rem;       /* adjust size as needed */
     width: auto;
     margin: 0 0.5rem;     /* spacing around the icon */
@@ -331,6 +336,11 @@ header{
     
     /* Desktop view */
 @media (min-width: 768px) {
+  
+.menu-button {
+  margin-top: -0.2rem;
+}
+  
     main {
     display: flex;
     flex-direction: column;
@@ -339,11 +349,11 @@ header{
     padding-top: 30vh;           /* space from top of page */
   }
   
-  .header-icon{
+  .beta-icon{
     height:1rem;
   }
   
-    .header-icon {
+    .beta-icon {
     margin: 0;      /* remove extra margin around icon */
       padding:0;
     
@@ -425,15 +435,13 @@ header{
 
   .nav-buttons-two a {
     font-weight: 500;
-    font-size: .7rem; /* slightly larger for desktop */
   }
   
   
-  /* Shrink nav links */
-  .nav-buttons-two a,
-  .nav-buttons a {
-    font-size: 0.7rem; /* 30% smaller than 1rem */
-  }
+  header a {
+  font-size: inherit; /* takes size from parent */
+}
+
 
   
 
@@ -441,14 +449,27 @@ header{
     font-size: 1.05rem; /* 1.5rem × 0.7 ≈ 1.05rem */
   }
   
+.menu-button {
+  position: relative;
+  transform: translateY(-0.0em); /* raise slightly */
+}
+  
   
   #about{
       display:block;
   }
+
+  
   
   
 }
 
+.beta-icon {
+    margin-top: -0.3rem; /* moves it up slightly */
+}    
+  
+
+  
 .nav-buttons-two a {
   color: var(--text-color) !important; /* override anything else */
 }
@@ -499,7 +520,7 @@ header{
             
             <!-- Light bulb icon -->
             <a href="beta.html" class="betalink">
-    <img src="iconmonstr-light.svg" alt="Light bulb" class="header-icon" /></a>
+    <img src="iconmonstr-light.svg" alt="Light bulb" class="beta-icon" /></a>
 
      
          <button class="menu-button" id="menuToggle">☰</button>
