@@ -12,7 +12,15 @@
       --border-color: #e2e2e2;
       --input-bg: #f9f9f9;
       --banner-blue: #3b82f6;
-    }
+      --footer-color:#888;
+      
+      
+      
+      
+  --header-text-color: blue; /* lighter gray for header text */
+}
+
+    
 
     * {
       box-sizing: border-box;
@@ -56,7 +64,7 @@ header {
 }
 
 .menu-button {
-  color: #202124;
+  
   -webkit-appearance: none;
   background: none;
   border: none;
@@ -91,7 +99,7 @@ header {
 }
 
 .menu-dropdown a:last-child { border-bottom: none; }
-.menu-dropdown a:hover { background-color: #f5f5f5; }
+.menu-dropdown a:hover { background-color: ; }
 
 .title {
   display: flex;
@@ -122,7 +130,7 @@ header {
 /* Plain black header links for both desktop and mobile */
 .nav-buttons-two a {
     text-decoration: none;   /* remove underline */
-    color: #202124;
+   
     font-weight: normal;      /* normal weight */
     font-size: 1rem;          /* normal size */
     padding: 0;               /* remove padding */
@@ -131,7 +139,7 @@ header {
 }
 
 .nav-buttons-two a:hover {
-    color: var(--text-color); /* stay black on hover */
+   
     text-decoration: none;    /* no underline on hover */
 }
 
@@ -240,7 +248,7 @@ header{
 
     p {
       font-size: 1rem;
-      color: #555;
+   
     }
 
 .search-form {
@@ -292,7 +300,7 @@ header{
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      color: #888;
+      color: var(--footer-color);
       border-top: 1px solid var(--border-color);
     }
     
@@ -310,6 +318,10 @@ header{
     align-items: center;
     justify-content: flex-start; /* align to top instead of center */
     padding-top: 30vh;           /* space from top of page */
+  }
+  
+  .header-icon{
+    height:1rem;
   }
     
     
@@ -376,13 +388,36 @@ header{
 
   .nav-buttons-two a {
     font-weight: 500;
-    font-size: 1rem; /* slightly larger for desktop */
+    font-size: .7rem; /* slightly larger for desktop */
+  }
+  
+  
+  /* Shrink nav links */
+  .nav-buttons-two a,
+  .nav-buttons a {
+    font-size: 0.7rem; /* 30% smaller than 1rem */
+  }
+
+  
+
+.menu-button {
+    font-size: 1.05rem; /* 1.5rem × 0.7 ≈ 1.05rem */
   }
   
   
   #about{
       display:block;
   }
+  
+  
+}
+
+.nav-buttons-two a {
+  color: var(--text-color) !important; /* override anything else */
+}
+
+.nav-buttons-two a:visited{
+  color: var(--text-color) !important;
 }
 
   </style>
