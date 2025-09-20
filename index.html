@@ -267,15 +267,34 @@ header{
   color: var(--text-color);
 }
 
-.search-form img.search-icon {
+  /* NEW: Make icon clickable as submit button */
+.search-form {
+  position: relative; /* parent for absolute button */
+}
+
+.search-form input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem; /* space for icon on right */
+}
+
+.search-form button.search-button {
   position: absolute;
   right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search-form img.search-icon {
   width: 26px;
   height: 26px;
   display: block;
-  pointer-events: none;
-  opacity: 0.95;
+  pointer-events: none; /* ensures click hits button */
 }
+
 
 .search-box {
   width: 100%;
@@ -502,7 +521,11 @@ header{
           <div class="search-box">
   <form action="searchresults.html" method="GET" class="search-form">
     <input type="text" name="q" placeholder="edwinbook encyclopedia" />
+    
+    <button type="submit" class="search-button">
     <img src="iconmonstr-glass.svg" alt="Search" class="search-icon" />
+  </button>
+    
   </form>
 </div>
 
