@@ -235,7 +235,7 @@ header {
 .search-container form {
   margin: 0;
   padding: 0;
-  padding-bottom: 1.2rem; /* control bottom space consistently */
+  margin-bottom: 1.2rem; /* control bottom space consistently */
   
 }
 
@@ -245,6 +245,46 @@ header {
 .search-container-two { display: none; }   /* hide desktop search bar */
 .search-container { display: block; }      /* show bottom search bar */
 
+    
+  
+.search-form {
+  position: relative;
+  display: flex;
+  align-items: center;  /* this centers icon vertically */
+}
+
+.search-form input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem; /* add room on right */
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+
+
+.search-form button.search-button {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search-form img.search-icon {
+  width: 26px;
+  height: 26px;
+  display: block;
+  pointer-events: none; /* ensures click hits button */
+}    
+    
+    
+    
 /* Desktop view */
 @media (min-width: 768px) {
   .search-container-two { display: flex; } /* show desktop search bar */
@@ -388,9 +428,13 @@ header {
       
       
               <div class="search-container-two" id="searchContainerTwo">
-    <form action="searchresults.html" method="GET">
+    
+ <form action="searchresults.html" method="GET" class="search-form">
       <input type="text" name="q" placeholder="edwinbook encyclopedia">
-    </form>
+        <button type="submit" class="search-button">
+    <img src="iconmonstr-glass.svg" alt="Search" class="search-icon" />
+  </button>
+    </form>                 
 
 
     </div>
@@ -417,8 +461,11 @@ header {
 
   <!-- SEARCH BAR: mobile stacked -->
   <div class="search-container" id="searchContainer">
-    <form action="searchresults.html" method="GET">
+    <form action="searchresults.html" method="GET" class="search-form">
       <input type="text" name="q" placeholder="edwinbook encyclopedia">
+        <button type="submit" class="search-button">
+    <img src="iconmonstr-glass.svg" alt="Search" class="search-icon" />
+  </button>
     </form>
   </div>
 </header>
