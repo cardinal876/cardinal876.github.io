@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>edwinbook search</title>
+
+<link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
+ 
+  
+
 <style>
 :root {
   --bg-color: #ffffff;
@@ -16,6 +21,7 @@
 * { box-sizing: border-box; }
 
 body {
+    visibility:hidden;
   margin: 0;
   padding: 0;
   font-family: system-ui, sans-serif;
@@ -26,188 +32,6 @@ body {
   min-height: 100vh;
 }
 
-/* HEADER */
-header {
-  border-bottom: 1px solid var(--border-color);
-  width: 100%;
-  display: flex;
-  flex-direction: column; /* mobile stacked */
-  align-items: center;
-  
-}
-
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  max-width: 1200px;
-  padding: 1rem 0;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  position: relative;
-}
-
-.menu-button {
-  margin-top: -0.2rem;
-  color: black;
-  -webkit-appearance: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.menu-dropdown {
-  position: absolute;
-  top: 100%;
-  left: auto;
-  right:0;
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  display: none;
-  flex-direction: column;
-  min-width: 150px;
-  z-index: 1000;
-}
-
-.menu-dropdown a {
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  color: var(--text-color);
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.95rem;
-}
-
-.menu-dropdown a:last-child { border-bottom: none; }
-.menu-dropdown a:hover { background-color: #f5f5f5; }
-
-.title {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-color);
-}
-
-.title-icon {
-  height: 1em;
-  width: auto;
-  transform: translateY(-0.06em);
-}
-
-.nav-buttons{
-    display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  position: relative;
-    left: auto;
-    right: 0;
-}
-
-
-
-
-.search-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;   /* remove top/bottom margin */
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-
-
-.search-container input[type="text"] {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background-color: var(--input-bg);
-  color: var(--text-color);
-  border-radius: 6px;
-}
-
-/* Remove default form spacing */
-.search-container form {
-  margin: 0;
-  padding: 0;
-  padding-bottom: 1.2rem; /* control bottom space consistently */
-  
-}
-
-
-
-/* Default (mobile first) */
-.search-container-two { display: none; }   /* hide desktop search bar */
-.search-container { display: block; }      /* show bottom search bar */
-
-/* Desktop view */
-@media (min-width: 768px) {
-  .search-container-two { display: flex; } /* show desktop search bar */
-  .search-container { display: none; }     /* hide bottom search bar */
-  
-    /* ADD: header-top aligned to edges like page 2 */
-  .header-top {
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* left | center | right */
-    align-items: center;
-    width: 100%;          /* full width for edges */
-    max-width: 1200px;
-    margin: 0 auto;       /* center grid horizontally */
-    padding: 1rem 1.5rem; /* hamburger and login flush with edges */
-  }
-
-  /* ADD: desktop search bar show/hide */
-  .search-container-two { 
-    display: flex;           /* show desktop search bar */
-    justify-content: center; /* center search bar */
-    width: 100%;
-  }
-
-  .search-container { 
-    display: none;           /* hide mobile search bar */
-  }
-
-  /* ADD: search form width */
-  .search-container-two form {
-    width: 100%;
-    max-width: 500px; /* prevent stretching too wide */
-    margin: 0 auto;   /* center search form */
-  }
-
-  .search-container-two input[type="text"] {
-    width: 100%;
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background-color: var(--input-bg);
-    color: var(--text-color);
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .nav-buttons {
-    display: flex;
-    justify-content: flex-end; /* keeps login far right */
-    align-items: center;
-  }
-}
 
 
     
@@ -272,61 +96,7 @@ footer {
 </head>
 <body>
 
-<header>
-  <div class="header-top">
-    <div class="header-left">
-   
-      <div class="title">
-        <img src="library-big.svg" alt="Library Icon" class="title-icon">
-        <a href="index.html" style="text-decoration:none; color:inherit;">edwinbook</a>
-      </div>
-      
-        
-      
-    
-  </div>
-  
-  
-      
-      
-
-      
-      
-              <div class="search-container-two" id="searchContainerTwo">
-    <form action="searchresults.html" method="GET">
-      <input type="text" name="q" placeholder="edwinbook encyclopedia">
-    </form>
-
-
-    </div>
-    
-        <div class="nav-buttons">
-     
-         <img src="iconmonstr-menu.svg" alt="menu" class="menu-button" id="menuToggle" />
-         
-             <div class="menu-dropdown" id="menuDropdown">
-       <a href="about.html">About</a>
-           <a href="login.html">Account</a> 
-        <a href="advanced.html">Advanced Search</a>
-        <a href="searchresults.html">New Articles</a>
-        <a href="searchresults.html">Most Read</a>
-        <a href="newsletter.html">Newsletter</a>
-        <a href="feedback.html">Feedback</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      
-    </div>
-    
-
-  </div>
-
-  <!-- SEARCH BAR: mobile stacked -->
-  <div class="search-container" id="searchContainer">
-    <form action="searchresults.html" method="GET">
-      <input type="text" name="q" placeholder="edwinbook encyclopedia">
-    </form>
-  </div>
-</header>
+ <header id="header-container"></header>
 
 
 
@@ -344,20 +114,96 @@ Lente ex oriente surgit et lucem auream in valles et flumina fundit, aves variis
   </footer>
 
 
-<script>
-const menuButton = document.getElementById("menuToggle");
-const menuDropdown = document.getElementById("menuDropdown");
+  <script>
+    
+    
 
-menuButton.addEventListener("click", () => {
-  menuDropdown.style.display = menuDropdown.style.display === "flex" ? "none" : "flex";
-});
+   
+    
+    // Wait until DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      // Create an XMLHttpRequest (works reliably on local servers)
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'header.html', true); // relative path to header.html
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200 || xhr.status == 0) { // 0 works for some local servers
+            document.getElementById('header-container').innerHTML = xhr.responseText;
 
-document.addEventListener("click", (e) => {
-  if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-    menuDropdown.style.display = "none";
-  }
+            
+              
+              const menuButton = document.getElementById("menuToggle");
+    const menuDropdown = document.getElementById("menuDropdown");
+
+    menuButton.addEventListener("click", () => {
+      menuDropdown.style.display = 
+        menuDropdown.style.display === "flex" ? "none" : "flex";
+    });
+
+    // Optional: close menu if clicking outside
+    document.addEventListener("click", (e) => {
+      if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
+        menuDropdown.style.display = "none";
+      }
+    });
+              
+              
+              
+              const body = document.body; // or document.querySelector('body')
+document.body.style.visibility = 'visible';
+    // Set its display style to block
+    //body.style.display = 'block';
+          } else {
+            console.error('Failed to load header.html');
+          }
+        }
+      };
+      xhr.send();
+    });
+    
+    
+    
+    
+    
+    /**
+    // Wait until DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('header.html')
+    .then(response => {
+      if (!response.ok) throw new Error('Failed to load header.html');
+      return response.text();
+    })
+    .then(html => {
+      document.getElementById('header-container').innerHTML = html;
+
+      // Menu toggle logic
+      const menuButton = document.getElementById("menuToggle");
+      const menuDropdown = document.getElementById("menuDropdown");
+
+      menuButton.addEventListener("click", () => {
+        menuDropdown.style.display =
+          menuDropdown.style.display === "flex" ? "none" : "flex";
+      });
+
+      // Optional: close menu if clicking outside
+      document.addEventListener("click", (e) => {
+        if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
+          menuDropdown.style.display = "none";
+        }
+      });
+
+      // Make body visible after header loads
+      document.body.style.visibility = 'visible';
+    })
+    .catch(err => {
+      console.error(err);
+    });
 });
-</script>
+**/
+    
+    
+    
+  </script>
 
 </body>
 </html>
