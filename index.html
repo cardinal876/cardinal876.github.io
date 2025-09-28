@@ -36,6 +36,8 @@
       flex-direction: column;
       min-height: 100vh;
       
+   
+      
      
     }
 
@@ -228,20 +230,33 @@ header{
 
     
     
-    .main-title {
-  display: flex;           /* place icon + text in a row */
-  align-items: center;     /* vertically center icon with text */
-  gap: 0.0rem;            /* spacing between icon and text */
-  justify-content: center; /* keep both centered horizontally */
+    h1 {
+        color:#000000;
+      font-size:3rem;
+  display: inline-block;      /* fallback for old browsers */
+  line-height: 1;
+      
+        align-items: baseline;      /* align icon to text baseline */
+  position: relative;
+   //   border: 1px solid green;
 }
 
-.main-title .main-icon {
-  height: 1em;             /* match the text height */
-  width: auto;             /* keep natural proportions */
-  
-  transform: translateY(-0.06em);
-}
 
+
+#bigicon{
+   // border:1px solid blue ;
+    margin-right: .5rem;
+
+  vertical-align: baseline;
+
+  vertical-align: baseline;   /* Aligns image with text baseline */
+  position: relative;         /* Allows fine-tune shift */
+  top: 0.007em;                 /* Adjust downward slightly for descenders */
+  height: .75em;                /* Scales SVG with font size */
+
+
+
+}
 
     main {
       flex: 1;
@@ -253,12 +268,7 @@ header{
       text-align: center;
     }
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      color: var(--text-color);
-      margin-bottom: 1rem;
-    }
+ 
 
     p {
       font-size: 1rem;
@@ -551,8 +561,7 @@ header{
 
     
     <h1 class="main-title">
-  <img src="library-big.svg" alt="edwinbook icon" class="main-icon" />
-  <span>edwinbook</span>
+  <img src="freesvgorgcowboy.svg" alt="edwinbook icon" class="main-icon" id="bigicon"/><span>edwinpage</span>
 </h1>
 
 <p style="display:none">edwinbook makes knowledge more accessible through an encyclopedia written by the world's leading experts — so people everywhere can learn reliably, thoroughly, and directly from those at the forefront of their respective fields.</p>
@@ -562,7 +571,7 @@ header{
           
           <div class="search-box">
   <form action="searchresults.html" method="GET" class="search-form">
-    <input type="text" name="q" placeholder="edwinbook encyclopedia" />
+    <input type="text" name="q" placeholder="edwinpage encyclopedia" />
     
     <button type="submit" class="search-button">
     <img src="iconmonstr-glass.svg" alt="Search" class="search-icon" />
@@ -577,7 +586,7 @@ header{
   </main>
   
   <footer>
-    &copy; 2025 edwinbook™. <a href="terms.html" style="text-decoration:none;color:inherit;" >Terms & Conditions</a>
+    &copy; 2025 edwinpage™. <a href="terms.html" style="text-decoration:none;color:inherit;" >Terms & Conditions</a>
 
   </footer>
 
