@@ -76,6 +76,7 @@ header {
   height: 1em;
   width: auto;
   transform: translateY(-0.06em);
+  margin-right: .5rem;
 }
 
 .nav-buttons{
