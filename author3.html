@@ -1,83 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>edwinbook search</title>
-
-<link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>James Example – edwinbook</title>
  
-  
+   <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
+ 
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111111;
+      --accent-color: #10a37f;
+      --border-color: #e2e2e2;
+      --input-bg: #f9f9f9;
+      --banner-blue: #3b82f6;
+    }
 
-<style>
-:root {
-  --bg-color: #ffffff;
-  --text-color: #111111;
-  --accent-color: #10a37f;
-  --border-color: #e2e2e2;
-  --input-bg: #f9f9f9;
-}
+    * { box-sizing: border-box; }
 
-* { box-sizing: border-box; }
+    body {
+        visibility:hidden;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-body {
-    visibility:hidden;
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+
 
 
 
     
 
 
-/* RESULTS */
-.results {
-  width: 100%;
-  max-width: 700px;
-  padding: 1rem 1.5rem;
-  margin: 0 auto;
-  box-sizing: border-box;
+    
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid var(--border-color);
+      width: 100%;
+    }
+    
+    
+    
+main {
   flex: 1;
-}
-
-.result-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border-bottom: 1px solid var(--border-color);
-  padding: 1rem 0;
-  transition: background-color 0.2s ease;
-}
-
-.result-title {
-  font-size: 1.25rem;
-  font-weight: 400; 
-  color: #1a0dab;    
-  margin: 0;
-  text-decoration: none;
-  width: fit-content; 
-}
-
-.result-title:hover { text-decoration: underline; }
-.result-link:hover { background-color: #f5f5f5; }
-
-.author { font-size: 0.9rem; color: #666; margin-top: 0.25rem;}
-.snippet { margin-top: 0.5rem; font-size: 1rem; color: #333; }
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #888;
-  border-top: 1px solid var(--border-color);
+  max-width: 800px;
   width: 100%;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #222;
+}
+
+h1 { 
+  font-size: 1.8rem; 
+  margin-bottom: 2rem; 
+  font-weight: 700; 
+  border-bottom: 2px solid #e2e2e2;
+  padding-bottom: 0.5rem;
+}
+
+.category {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333; /* darker neutral, no vertical line */
 }
 
 
@@ -87,59 +85,52 @@ footer {
 
 
 
+.book, .article {
+  display: block; /* ensures the whole <a> fills card */
+  background-color: #ffffff;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+  color: #111;        /* default text color */
+  text-decoration: none; /* remove underline */
+}
+
+.book:hover, .article:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  color: var(--accent-color); /* hover text color */
+}
 
 
-
-
-
-</style>
+  </style>
 </head>
 <body>
-
  <header id="header-container"></header>
 
+  <main>
+    <h1>Marcus Hartog</h1>
 
 
-<div class="results">
-  <a href="result1005.html" class="result-link">
-    <h2 class="result-title">Vaccination</h2>
-    <div class="author">by Sydney Monckton Copeman M.D.</div>
-    <div class="snippet">
-VACCINATION, the term originally devised for a method of protective inoculation against smallpox, consisting in the intentional transference to the human being of the eruptive disease of cattle called cow-pox (<i>vaccinia</i>).</div>
+    
+    <div class="category">Positions</div>
+<a href="" class="book">Professor and Chair of Natural History at Queen's College, Cork
   </a>
-</div>
 
+<div class="category">Voriwind Articles</div>
+<a href="result1007.html" class="article">
+  Dinoflageletta
+</a>
 
-<div class="results">
-  <a href="result1006.html" class="result-link">
-    <h2 class="result-title">Diffraction</h2>
-    <div class="author">by John William Strutt</div>
-    <div class="snippet">
-When light proceeding from a small source falls upon an opaque object, a shadow is cast upon a screen situated behind the obstacle, and this shadow is found to be bordered by alternations of brightness and darkness, known as “diffraction bands.” </div>
-  </a>
-</div>
-
-
-<div class="results">
-  <a href="result1007.html" class="result-link">
-    <h2 class="result-title">Dinoflagellata</h2>
-    <div class="author">by Marcus Manuel Hartog</div>
-    <div class="snippet">
-Dinoflagellata, so called by O. Bütschli (= the Cilioflagellata of E. Claparide and H. Lachmann), a group of Protozoa, characterized as Mastigophora, provided with two flagella, the one anterior extended in locomotion, the other coiled round its base, or lying in a transverse groove.</div>
-  </a>
-</div>
-
-
-
-
-
+  </main>
   <footer>
     &copy; 2025 Voriwind™. <a href="terms.html" style="text-decoration:none;color:inherit;" >Terms & Conditions</a>
 
   </footer>
 
 
-  <script>
+   <script>
     
     
 
@@ -229,6 +220,5 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
   </script>
-
 </body>
 </html>
