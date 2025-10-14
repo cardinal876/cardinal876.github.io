@@ -1,26 +1,68 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   console.log("🟢 Search script loaded.");
 
-  // Create the search index
   const index = new FlexSearch.Document({
     document: {
       id: "id",
       index: ["title", "content"],
-      store: ["id", "title", "content"] // ensure id is stored!
+      store: ["id", "title", "content"]
     }
   });
 
-  // Add all articles
   console.log("🧩 Adding articles:", articles);
   articles.forEach(article => index.add(article));
 
-  // Handle form submission
+  const resultsDiv = document.getElementById("results");
+  const perPage = 2; // 👈 show 2 results per page
+  let currentPage = 1;
+  let currentResults = [];
+
+  function renderPage(page) {
+    resultsDiv.innerHTML = "";
+
+    const start = (page - 1) * perPage;
+    const end = start + perPage;
+    const pageResults = currentResults.slice(start, end);
+
+    pageResults.forEach(article => {
+      const div = document.createElement("div");
+      const words = article.content.split(/\s+/).slice(0, 30).join(" ");
+      const preview = words + (article.content.split(/\s+/).length > 30 ? "…" : "");
+      div.innerHTML = `<h3>${article.title}</h3><p>${preview}</p>`;
+      resultsDiv.appendChild(div);
+    });
+
+    // Pagination controls
+    const controls = document.createElement("div");
+    controls.style.marginTop = "1em";
+
+    if (page > 1) {
+      const prevBtn = document.createElement("button");
+      prevBtn.textContent = "Previous";
+      prevBtn.onclick = () => {
+        currentPage--;
+        renderPage(currentPage);
+      };
+      controls.appendChild(prevBtn);
+    }
+
+    if (end < currentResults.length) {
+      const nextBtn = document.createElement("button");
+      nextBtn.textContent = "Next";
+      nextBtn.onclick = () => {
+        currentPage++;
+        renderPage(currentPage);
+      };
+      controls.appendChild(nextBtn);
+    }
+
+    resultsDiv.appendChild(controls);
+  }
+
   document.getElementById("searchForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
     const query = document.getElementById("searchInput").value.trim();
-    const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = "";
 
     if (!query) {
@@ -29,14 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     console.log("🔍 Searching for:", query);
-
-    // Perform search
     const results = index.search(query, { enrich: true, limit: 100 });
-    console.log("📦 Raw FlexSearch results:", JSON.stringify(results, null, 2));
+    console.log("📦 Raw FlexSearch results:", results);
 
     const allDocs = [];
 
-    // Flatten results
     results.forEach(fieldResult => {
       if (!fieldResult) return;
       if (Array.isArray(fieldResult.result)) {
@@ -55,33 +94,24 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    console.log("🪶 Flattened allDocs (before dedupe):", allDocs);
-    console.log("🧾 allDocs IDs:", allDocs.map(a => a.id));
-
-    // Normalize ID type and dedupe
     const uniqueResultsMap = new Map();
     allDocs.forEach(a => {
-      const idKey = String(a.id); // ensure consistent key
+      const idKey = String(a.id);
       if (!uniqueResultsMap.has(idKey)) {
         uniqueResultsMap.set(idKey, a);
       }
     });
 
-    const uniqueResults = Array.from(uniqueResultsMap.values());
-    console.log("✅ Unique results:", uniqueResults);
+    currentResults = Array.from(uniqueResultsMap.values());
+    currentPage = 1;
 
-    if (uniqueResults.length === 0) {
+    console.log("✅ Unique results:", currentResults);
+
+    if (currentResults.length === 0) {
       resultsDiv.innerHTML = "<p>No articles found.</p>";
       return;
     }
 
-    // Display
-    uniqueResults.forEach(article => {
-      const div = document.createElement("div");
-      const words = article.content.split(/\s+/).slice(0, 30).join(" ");
-      const preview = words + (article.content.split(/\s+/).length > 30 ? "…" : "");
-      div.innerHTML = `<h3>${article.title}</h3><p>${preview}</p>`;
-      resultsDiv.appendChild(div);
-    });
+    renderPage(currentPage);
   });
 });
