@@ -162,8 +162,8 @@ A black hole is a region in space where gravity is so strong that nothing—not 
     const index = new FlexSearch.Document({
       document: {
         id: "id",
-        index: ["title", "content"],
-        store: ["title", "content"]
+        index: ["title", "content","url"],
+        store: ["title", "content","url"]
       }
     });
     
@@ -227,13 +227,51 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
               if (flatResults.length === 0) {
                 resultsContainer.innerHTML = "<p>No results found</p>";
               } else {
-                resultsContainer.innerHTML = flatResults.map(r => `
-                  <div class="result-item">
-                    <h3>${r.title}</h3>
-                    <p>${r.content}</p>
-                  </div>
-                `).join('');
+                
+                
+                
+                
+                const WORDS_TO_SHOW = 3; // <-- adjustable number of words
+
+resultsContainer.innerHTML = flatResults.map(r => {
+  // Split content into words and take the first N words
+  const words = r.content.split(/\s+/).slice(0, WORDS_TO_SHOW).join(' ');
+  const more = r.content.split(/\s+/).length > WORDS_TO_SHOW ? "..." : "";
+  
+  return `
+    
+    <div class="results">
+  <a href="${r.url}" class="result-link">
+    <h2 class="result-title">${r.title}</h2>
+    <div class="author"></div>
+    <div class="snippet">${words}${more}</div>
+  </a>
+</div>
+  `;
+}).join('');
+                
+                
+                
+                
               }
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
             });
           }
 
