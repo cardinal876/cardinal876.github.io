@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Encyclopedia Search</title>
+</head>
+<body>
+  <h1>Encyclopedia</h1>
+
+  <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Enter search term..." required />
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="results"></div>
+
+  <!-- Load scripts in correct order -->
+  <script src="data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.31/dist/flexsearch.bundle.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>
