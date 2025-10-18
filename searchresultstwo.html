@@ -114,23 +114,7 @@ footer {
 </div>
 
 
-<div class="results">
-  <a href="result1006.html" class="result-link">
-    <h2 class="result-title">Black Hole</h2>
-    <div class="author"></div>
-    <div class="snippet">
-A black hole is a region in space where gravity is so strong that nothing—not even light—can escape from it. The idea may sound like science fiction, but black holes are real and have become one of the most fascinating subjects in modern astronomy and physics. </div>
-  </a>
-</div>
 
-
-<div class="results">
-  <a href="result1007.html" class="result-link">
-    <h2 class="result-title">Quantum Mechanics</h2>
-    <div class="author"></div>
-    <div class="snippet">Quantum mechanics is the branch of physics that studies the behavior of matter and energy on the smallest scales, such as atoms and subatomic particles.</div>
-  </a>
-</div>
 
 <div id="results"></div> <!-- search results will appear here -->
 
@@ -163,7 +147,7 @@ A black hole is a region in space where gravity is so strong that nothing—not 
       document: {
         id: "id",
         index: ["title", "content","url"],
-        store: ["title", "content","url"]
+        store: ["id","title", "content","url"]
       }
     });
     
@@ -215,13 +199,30 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
               }
 
               // Search using FlexSearch
-              const searchResults = index.search(query, { enrich: true });
+              const searchResults = index.search(query, { enrich: true, limit: 100, index: ["title", "content", "url"] });
+
 
               // Flatten results because it's returned by field
-              const flatResults = [];
-              searchResults.forEach(fieldResult => {
-                fieldResult.result.forEach(r => flatResults.push(r.doc));
-              });
+              
+
+const seen = new Set();
+const flatResults = [];
+
+searchResults.forEach(fieldResult => {
+  fieldResult.result.forEach(r => {
+      
+    if (!seen.has(r.doc.id)) {
+      seen.add(r.doc.id);
+      flatResults.push(r.doc);
+    }
+  });
+});
+
+
+              
+              
+              
+              
 
               // Show results
               if (flatResults.length === 0) {
@@ -231,7 +232,7 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
                 
                 
                 
-                const WORDS_TO_SHOW = 3; // <-- adjustable number of words
+                const WORDS_TO_SHOW = 30; // <-- adjustable number of words
 
 resultsContainer.innerHTML = flatResults.map(r => {
   // Split content into words and take the first N words
