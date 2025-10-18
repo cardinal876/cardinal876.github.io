@@ -46,6 +46,7 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
   flex: 1;
+    flex-grow: 1; /* Makes the results section grow and fill available space */
 }
 
 .result-link {
@@ -79,6 +80,9 @@ footer {
   color: #888;
   border-top: 1px solid var(--border-color);
   width: 100%;
+  margin-top:auto;
+  bottom: -100px;  /* Position the footer below the viewport initially */
+
 }
 
 
