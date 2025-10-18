@@ -6,7 +6,8 @@
 <title>edwinbook search</title>
 
 <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
- 
+ <script src="data.js"></script>
+
   
 
 <style>
@@ -93,12 +94,14 @@ footer {
 
 
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.31/dist/flexsearch.bundle.js"></script>
 </head>
 <body>
 
  <header id="header-container"></header>
 
-
+<!--
 
 <div class="results">
   <a href="result1005.html" class="result-link">
@@ -110,125 +113,181 @@ footer {
   </a>
 </div>
 
-
-<div class="results">
-  <a href="result1006.html" class="result-link">
-    <h2 class="result-title">Black Hole</h2>
-    <div class="author"></div>
-    <div class="snippet">
-A black hole is a region in space where gravity is so strong that nothing—not even light—can escape from it. The idea may sound like science fiction, but black holes are real and have become one of the most fascinating subjects in modern astronomy and physics. </div>
-  </a>
-</div>
+-->
 
 
-<div class="results">
-  <a href="result1007.html" class="result-link">
-    <h2 class="result-title">Quantum Mechanics</h2>
-    <div class="author"></div>
-    <div class="snippet">Quantum mechanics is the branch of physics that studies the behavior of matter and energy on the smallest scales, such as atoms and subatomic particles.</div>
-  </a>
-</div>
+<div id="results"></div> <!-- search results will appear here -->
+
+
+
 
 
 
 
 
   <footer>
-    &copy; 2025 CelBook™. <a href="terms.html" style="text-decoration:none;color:inherit;" >Terms & Conditions</a>
+    &copy; 2025 Celbook Education and Learning™. <a href="terms.html" style="text-decoration:none;color:inherit;" >Terms & Conditions</a>
 
   </footer>
 
 
+  
   <script>
-    
-    
+    // Sample documents for FlexSearch
+ /**   const documents = [
+      { id: 1, title: "Apple", content: "A red or green fruit" },
+      { id: 2, title: "Banana", content: "A long yellow fruit" },
+      { id: 3, title: "Cherry", content: "Small red fruit" },
+      { id: 4, title: "Date", content: "Sweet brown fruit" }
+    ];
+    **/
 
-   
-    
-    // Wait until DOM is ready
-    document.addEventListener('DOMContentLoaded', () => {
-      // Create an XMLHttpRequest (works reliably on local servers)
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', 'header.html', true); // relative path to header.html
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200 || xhr.status == 0) { // 0 works for some local servers
-            document.getElementById('header-container').innerHTML = xhr.responseText;
-
-            
-              
-              const menuButton = document.getElementById("menuToggle");
-    const menuDropdown = document.getElementById("menuDropdown");
-
-    menuButton.addEventListener("click", () => {
-      menuDropdown.style.display = 
-        menuDropdown.style.display === "flex" ? "none" : "flex";
-    });
-
-    // Optional: close menu if clicking outside
-    document.addEventListener("click", (e) => {
-      if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-        menuDropdown.style.display = "none";
+    // Create FlexSearch index
+    const index = new FlexSearch.Document({
+      document: {
+        id: "id",
+        index: ["title", "content","url"],
+        store: ["id","title", "content","url"]
       }
     });
-              
-              
-              
-              const body = document.body; // or document.querySelector('body')
-document.body.style.visibility = 'visible';
-    // Set its display style to block
-    //body.style.display = 'block';
-          } else {
-            console.error('Failed to load header.html');
+    
+    // Add documents from external JS
+if (typeof documents !== 'undefined' && Array.isArray(documents)) {
+  documents.forEach(doc => index.add(doc));
+} else {
+  console.error("No documents found in data.js");
+}
+
+    // Add docs to index
+  //  documents.forEach(doc => index.add(doc));
+
+    // Load header.html dynamically
+    document.addEventListener('DOMContentLoaded', () => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'header.html', true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status == 0)) {
+          document.getElementById('header-container').innerHTML = xhr.responseText;
+
+          // Menu toggle logic (optional)
+          const menuButton = document.getElementById("menuToggle");
+          const menuDropdown = document.getElementById("menuDropdown");
+          if (menuButton && menuDropdown) {
+            menuButton.addEventListener("click", () => {
+              menuDropdown.style.display =
+                menuDropdown.style.display === "flex" ? "none" : "flex";
+            });
+            document.addEventListener("click", (e) => {
+              if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
+                menuDropdown.style.display = "none";
+              }
+            });
           }
+
+          // Attach search logic
+          const searchForm = document.getElementById('searchForm');
+          const searchInput = document.getElementById('searchInput');
+          const resultsContainer = document.getElementById('results');
+
+          if (searchForm && searchInput && resultsContainer) {
+            searchForm.addEventListener('submit', (e) => {
+              e.preventDefault();
+              const query = searchInput.value.trim();
+              if (!query) {
+                resultsContainer.innerHTML = "<p>Please enter a search term</p>";
+                return;
+              }
+
+              // Search using FlexSearch
+              const searchResults = index.search(query, { enrich: true, limit: 100, index: ["title", "content", "url"] });
+
+
+              // Flatten results because it's returned by field
+              
+
+const seen = new Set();
+const flatResults = [];
+
+searchResults.forEach(fieldResult => {
+  fieldResult.result.forEach(r => {
+      
+    if (!seen.has(r.doc.id)) {
+      seen.add(r.doc.id);
+      flatResults.push(r.doc);
+    }
+  });
+});
+
+
+              
+              
+              
+              
+
+              // Show results
+              if (flatResults.length === 0) {
+                resultsContainer.innerHTML = "<p>No results found</p>";
+              } else {
+                
+                
+                
+                
+                const WORDS_TO_SHOW = 30; // <-- adjustable number of words
+
+resultsContainer.innerHTML = flatResults.map(r => {
+  // Split content into words and take the first N words
+  const words = r.content.split(/\s+/).slice(0, WORDS_TO_SHOW).join(' ');
+  const more = r.content.split(/\s+/).length > WORDS_TO_SHOW ? "..." : "";
+  
+  return `
+    
+    <div class="results">
+  <a href="${r.url}" class="result-link">
+    <h2 class="result-title">${r.title}</h2>
+    <div class="author"></div>
+    <div class="snippet">${words}${more}</div>
+  </a>
+</div>
+  `;
+}).join('');
+                
+                
+                
+                
+              }
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+            });
+          }
+
+          document.body.style.visibility = 'visible';
+        } else if (xhr.readyState === 4) {
+          console.error('Failed to load header.html');
         }
       };
       xhr.send();
     });
-    
-    
-    
-    
-    
-    /**
-    // Wait until DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('header.html')
-    .then(response => {
-      if (!response.ok) throw new Error('Failed to load header.html');
-      return response.text();
-    })
-    .then(html => {
-      document.getElementById('header-container').innerHTML = html;
-
-      // Menu toggle logic
-      const menuButton = document.getElementById("menuToggle");
-      const menuDropdown = document.getElementById("menuDropdown");
-
-      menuButton.addEventListener("click", () => {
-        menuDropdown.style.display =
-          menuDropdown.style.display === "flex" ? "none" : "flex";
-      });
-
-      // Optional: close menu if clicking outside
-      document.addEventListener("click", (e) => {
-        if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-          menuDropdown.style.display = "none";
-        }
-      });
-
-      // Make body visible after header loads
-      document.body.style.visibility = 'visible';
-    })
-    .catch(err => {
-      console.error(err);
-    });
-});
-**/
-    
-    
-    
   </script>
+
+
+
+
 
 </body>
 </html>
