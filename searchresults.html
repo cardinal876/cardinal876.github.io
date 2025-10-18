@@ -297,6 +297,20 @@ resultsContainer.innerHTML = flatResults.map(r => {
               
               
             });
+            
+            
+            
+            // --- Auto-run search if ?q= is present in the URL ---
+const urlParams = new URLSearchParams(window.location.search);
+const queryFromURL = urlParams.get('q');
+if (queryFromURL) {
+  searchInput.value = queryFromURL;
+  searchForm.dispatchEvent(new Event('submit'));
+}
+
+            
+            
+            
           }
 
           document.body.style.visibility = 'visible';
