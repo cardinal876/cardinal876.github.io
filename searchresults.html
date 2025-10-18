@@ -146,21 +146,34 @@ footer {
     ];
     **/
 
-    // Create FlexSearch index
-    const index = new FlexSearch.Document({
-      document: {
-        id: "id",
-        index: ["title", "content","url"],
-        store: ["id","title", "content","url"]
-      }
-    });
+
     
-    // Add documents from external JS
+    // Create FlexSearch index
+const index = new FlexSearch.Document({
+  document: {
+    id: "id",
+    index: ["combined"], // only search this field
+    store: ["id", "title", "content", "url"] // keep others for displaying
+  }
+});
+
+// Add documents from external JS
 if (typeof documents !== 'undefined' && Array.isArray(documents)) {
-  documents.forEach(doc => index.add(doc));
+  documents.forEach(doc => {
+    index.add({
+      id: doc.id,
+      combined: `${doc.title} ${doc.content} ${doc.url || ''}`, // merged searchable text
+      title: doc.title,
+      content: doc.content,
+      url: doc.url
+    });
+  });
 } else {
   console.error("No documents found in data.js");
 }
+
+    
+
 
     // Add docs to index
   //  documents.forEach(doc => index.add(doc));
@@ -202,8 +215,11 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
                 return;
               }
 
-              // Search using FlexSearch
-              const searchResults = index.search(query, { enrich: true, limit: 100, index: ["title", "content", "url"] });
+
+const searchResults = index.search(query, { enrich: true, limit: 100 });
+
+
+
 
 
               // Flatten results because it's returned by field
@@ -211,6 +227,9 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
 
 const seen = new Set();
 const flatResults = [];
+
+
+
 
 searchResults.forEach(fieldResult => {
   fieldResult.result.forEach(r => {
