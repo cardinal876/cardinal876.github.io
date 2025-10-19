@@ -269,6 +269,8 @@ if (flatResults.length === 0) {
 } else {
   const RESULTS_PER_PAGE = 4;
   let currentPage = 1;
+  
+  let firstLoad = true;
 
   // Helper: render results for a specific page
  
@@ -316,10 +318,17 @@ if (flatResults.length === 0) {
     resultsContainer.innerHTML = htmlResults + paginationHTML;
     
     // Call this line inside renderPage, right after resultsContainer.innerHTML = ...
-if (!skipHistory) {
+/**if (!skipHistory) {
   const newUrl = window.location.pathname + "?q=" + encodeURIComponent(searchInput.value.trim()) + (page > 1 ? `&page=${page}` : '');
   history.pushState({ page }, "", newUrl);
 }
+**/
+
+  if (!skipHistory && !firstLoad) {
+    const newUrl = window.location.pathname + "?q=" + encodeURIComponent(searchInput.value.trim()) + (page > 1 ? `&page=${page}` : '');
+    history.pushState({ page }, "", newUrl);
+  }
+  firstLoad = false;
 
     // Attach button click handlers
     resultsContainer.querySelectorAll('.pagination button[data-page]').forEach(btn => {
