@@ -87,12 +87,32 @@ footer {
 
 
 
+.pagination button {
+  margin: 0 4px;
+  padding: 5px 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+.pagination button:hover:not(:disabled) {
+  background-color: #e8e8e8;
+}
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
 
 
 
 
 
-
+.pagination{
+    
+    margin-bottom: 1rem;
+    
+}
 
 
 
@@ -244,9 +264,93 @@ searchResults.forEach(fieldResult => {
 
               
               
-              
-              
+if (flatResults.length === 0) {
+  resultsContainer.innerHTML = "<p>No results found</p>";
+} else {
+  const RESULTS_PER_PAGE = 4;
+  let currentPage = 1;
 
+  // Helper: render results for a specific page
+ 
+      function renderPage(page, skipHistory = false) {
+
+    const start = (page - 1) * RESULTS_PER_PAGE;
+    const end = start + RESULTS_PER_PAGE;
+    const pageResults = flatResults.slice(start, end);
+
+    const WORDS_TO_SHOW = 30;
+    const htmlResults = pageResults.map(r => {
+      const words = r.content.split(/\s+/).slice(0, WORDS_TO_SHOW).join(' ');
+      const more = r.content.split(/\s+/).length > WORDS_TO_SHOW ? "..." : "";
+      return `
+        <div class="results">
+          <a href="${r.url}" class="result-link">
+            <h2 class="result-title">${r.title}</h2>
+            <div class="author"></div>
+            <div class="snippet">${words}${more}</div>
+          </a>
+        </div>
+      `;
+    }).join('');
+
+    // Pagination buttons
+    const totalPages = Math.ceil(flatResults.length / RESULTS_PER_PAGE);
+    let paginationHTML = `<div class="pagination" style="text-align:center; margin-top:1rem;">`;
+
+    // Prev button
+    paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1}">Prev</button>`;
+
+    // Page numbers (show up to 7 pages centered around current)
+    const maxVisible = 7;
+    const startPage = Math.max(1, page - Math.floor(maxVisible / 2));
+    const endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
+    for (let i = startPage; i <= endPage; i++) {
+      paginationHTML += `<button data-page="${i}" ${i === page ? 'style="background-color:#1a3faa;color:white;border:none;padding:5px 10px;border-radius:4px;"' : ''}>${i}</button>`;
+    }
+
+    // Next button
+    paginationHTML += `<button ${page === totalPages ? 'disabled' : ''} data-page="${page + 1}">Next</button>`;
+    paginationHTML += `</div>`;
+
+    resultsContainer.innerHTML = htmlResults + paginationHTML;
+    
+    // Call this line inside renderPage, right after resultsContainer.innerHTML = ...
+if (!skipHistory) {
+  const newUrl = window.location.pathname + "?q=" + encodeURIComponent(searchInput.value.trim()) + (page > 1 ? `&page=${page}` : '');
+  history.pushState({ page }, "", newUrl);
+}
+
+    // Attach button click handlers
+    resultsContainer.querySelectorAll('.pagination button[data-page]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const newPage = parseInt(btn.dataset.page);
+        if (newPage >= 1 && newPage <= totalPages && newPage !== currentPage) {
+          currentPage = newPage;
+          renderPage(currentPage);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  // Initial render
+ renderPage(currentPage);
+
+
+// Handle browser back/forward within pagination
+window.addEventListener("popstate", (event) => {
+  const page = event.state?.page || 1;
+  currentPage = page;
+  renderPage(currentPage, true);
+});
+
+
+
+}
+              
+      /**        
+// old
               // Show results
               if (flatResults.length === 0) {
                 resultsContainer.innerHTML = "<p>No results found</p>";
@@ -280,7 +384,7 @@ resultsContainer.innerHTML = flatResults.map(r => {
               }
               
               
-              
+              **/
               
               
               
@@ -297,7 +401,7 @@ resultsContainer.innerHTML = flatResults.map(r => {
               
               
             });
-            
+        
             
             
             // --- Auto-run search if ?q= is present in the URL ---
@@ -320,6 +424,11 @@ if (queryFromURL) {
       };
       xhr.send();
     });
+    
+    
+    
+
+
   </script>
 
 
