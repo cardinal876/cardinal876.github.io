@@ -33,6 +33,13 @@ body {
   min-height: 100vh;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
 
 
     
@@ -73,6 +80,7 @@ body {
 .author { font-size: 0.9rem; color: #666; margin-top: 0.25rem;}
 .snippet { margin-top: 0.5rem; font-size: 1rem; color: #333; }
 
+
 footer {
   text-align: center;
   padding: 1rem;
@@ -80,9 +88,9 @@ footer {
   color: #888;
   border-top: 1px solid var(--border-color);
   width: 100%;
-  margin-top:auto;
-  bottom: -100px;  /* Position the footer below the viewport initially */
-
+  margin-top: auto;   /* keeps footer below viewport */
+  position: relative; /* keep bottom: -100px if you like */
+  bottom: -100px;     /* footer stays initially below viewport */
 }
 
 
@@ -110,9 +118,72 @@ footer {
 
 .pagination{
     
+    
     margin-bottom: 1rem;
     
 }
+
+
+
+
+
+
+
+
+
+#results {
+  flex: 1; /* take all available space above footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* push pagination to bottom */
+}
+
+.pagination {
+  text-align: center;
+}
+
+#results {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* keeps pagination at bottom */
+  padding-bottom: 1.5rem;    /* adds space between pagination and footer */
+}
+
+.pagination {
+  text-align: center;
+}
+
+
+#results {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* fills space above footer */
+}
+
+.pagination {
+  margin-top: auto;  /* pushes pagination to bottom of #results */
+  text-align: center;
+}
+
+
+
+#results {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;      /* fill all space above footer */
+}
+
+.pagination {
+  margin-top: auto;     /* push pagination to bottom of #results */
+  text-align: center;
+  padding-bottom: 1rem; /* optional: small space above footer */
+}
+
+footer {
+  flex-shrink: 0;       /* keeps footer at bottom */
+}
+
 
 
 
@@ -230,10 +301,24 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
             searchForm.addEventListener('submit', (e) => {
               e.preventDefault();
               const query = searchInput.value.trim();
+              
+              
+              let flatResults;
+              
               if (!query) {
-                resultsContainer.innerHTML = "<p>Please enter a search term</p>";
-                return;
-              }
+           //     resultsContainer.innerHTML = "<p>Please enter a search term</p>";
+          //      return;
+                
+                
+                
+                // No search term — show all documents
+    flatResults = documents.map(doc => ({
+      id: doc.id,
+      title: doc.title,
+      content: doc.content,
+      url: doc.url
+    }));
+              }else{
 
 
 const searchResults = index.search(query, { enrich: true, limit: 100 });
@@ -246,7 +331,7 @@ const searchResults = index.search(query, { enrich: true, limit: 100 });
               
 
 const seen = new Set();
-const flatResults = [];
+flatResults = [];
 
 
 
@@ -261,7 +346,7 @@ searchResults.forEach(fieldResult => {
   });
 });
 
-
+}
               
               
 if (flatResults.length === 0) {
