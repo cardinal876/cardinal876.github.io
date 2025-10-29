@@ -487,6 +487,20 @@ header{
 }
   
   
+.search-icon,.search-button {
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* removes blue flash on mobile */
+}
+
+
+.search-button:focus,
+.search-button:active,
+.search-icon:focus,
+.search-icon:active {
+  outline: none;
+  background: none; /* prevent blue highlight */
+  box-shadow: none;
+}
 
   
   
