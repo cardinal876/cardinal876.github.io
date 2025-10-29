@@ -99,10 +99,7 @@
   <p>All rights reserved.</p>
 </main>
 
-  <footer>
-    &copy; 2025 edwinbook™. <a href="terms.html" style="text-decoration:none;color:inherit;" >Terms & Conditions</a>
-
-  </footer>
+<footer id="footer-container"></footer>
 
 
    <script>
@@ -150,6 +147,24 @@ document.body.style.visibility = 'visible';
         }
       };
       xhr.send();
+      
+      
+            const xhr2 = new XMLHttpRequest();
+      xhr2.open('GET', 'footer.html', true); // relative path to header.html
+      xhr2.onreadystatechange = function() {
+        if (xhr2.readyState === 4) {
+          if (xhr2.status === 200 || xhr2.status == 0) { // 0 works for some local servers
+            document.getElementById('footer-container').innerHTML = xhr2.responseText;
+
+    }}}
+        
+        
+     xhr2.send();   
+      
+      
+      
+      
+      
     });
     
     
