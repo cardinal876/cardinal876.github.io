@@ -6,7 +6,7 @@
 <title>edwinbook search</title>
 
 <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
- <script src="data.js"></script>
+ <script src="data2.js"></script>
 
   
 
@@ -170,7 +170,7 @@ const index = new FlexSearch.Document({
   document: {
     id: "id",
     index: ["combined"], // only search this field
-    store: ["id", "title", "content", "url"] // keep others for displaying
+    store: ["id", "title", "content","description2", "url"] // keep others for displaying
   }
 });
 
@@ -179,10 +179,11 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
   documents.forEach(doc => {
     index.add({
       id: doc.id,
-      combined: `${doc.title} ${doc.content} ${doc.url || ''}`, // merged searchable text
+      combined: `${doc.title} ${doc.content} ${doc.description2} ${doc.url || ''}`, // merged searchable text
       title: doc.title,
       content: doc.content,
-      url: doc.url
+      url: doc.url,
+      description2: doc.description2
     });
   });
 } else {
@@ -241,7 +242,8 @@ if (!query) {
     id: doc.id,
     title: doc.title,
     content: doc.content,
-    url: doc.url
+    url: doc.url,
+    description2: doc.description2
   }));
 } else {
 
