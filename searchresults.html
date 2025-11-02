@@ -451,8 +451,11 @@ const queryFromURL = urlParams.get('q');
 
 if (queryFromURL !== null) {   // <-- important: empty string is valid
   searchInput.value = queryFromURL;
-  searchForm.dispatchEvent(new Event('submit'));
+  
+}else{
+    searchInput.value = "";
 }
+searchForm.dispatchEvent(new Event('submit'));
 
 
             
