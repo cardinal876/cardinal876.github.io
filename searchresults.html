@@ -111,8 +111,22 @@ footer {
 .pagination{
     
     margin-bottom: 1rem;
+    pqdding-bottom: 1rem;
     
 }
+
+.pagination {
+  
+  text-align: center;
+ /* line-height: 2.5; /* Adds vertical breathing room between lines */
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: center;
+  gap: .25rem; /* Adds horizontal and vertical space between buttons */
+row-gap: 1.0rem;
+    
+}
+
 
 
 
@@ -313,7 +327,12 @@ if (flatResults.length === 0) {
     let paginationHTML = `<div class="pagination" style="text-align:center; margin-top:1rem;">`;
 
     // Prev button
-    paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1}">Prev</button>`;
+  //  paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1}">Prev</button>`;
+    
+    // First and Prev buttons
+paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="1">First</button>`;
+paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1}">Prev</button>`;
+
 
     // Page numbers (show up to 7 pages centered around current)
     const maxVisible = 7;
