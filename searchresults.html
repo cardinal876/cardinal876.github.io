@@ -90,14 +90,15 @@ footer {
 .pagination button {
   margin: 0 4px;
   padding: 5px 10px;
-  border: 1px solid var(--border-color);
-  background-color: var(--input-bg);
+  border: none; /* Remove border from all buttons */
+  background-color: transparent; /* Default background */
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0;
   transition: background-color 0.2s ease;
+  
 }
 .pagination button:hover:not(:disabled) {
-  background-color: #e8e8e8;
+  background-color: #f0f0f0;
 }
 .pagination button:disabled {
   opacity: 0.5;
@@ -111,7 +112,7 @@ footer {
 .pagination{
     
     margin-bottom: 1rem;
-    pqdding-bottom: 1rem;
+    padding-bottom: 1rem;
     
 }
 
@@ -126,6 +127,19 @@ footer {
 row-gap: 1.0rem;
     
 }
+
+
+
+
+
+
+
+/* Highlight selected page button */
+.pagination button.selected {
+  background-color: #1a3faa;
+  color: white;
+}
+
 
 
 
@@ -330,12 +344,12 @@ if (flatResults.length === 0) {
   //  paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1}">Prev</button>`;
     
     // First and Prev buttons
-paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="1">First</button>`;
+//paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="1">First</button>`;
 paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1}">Prev</button>`;
 
 
     // Page numbers (show up to 7 pages centered around current)
-    const maxVisible = 7;
+    const maxVisible = 5;
     const startPage = Math.max(1, page - Math.floor(maxVisible / 2));
     const endPage = Math.min(totalPages, startPage + maxVisible - 1);
 
