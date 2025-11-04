@@ -105,11 +105,21 @@ header {
   color: var(--text-color);
 }
 
+.search-form input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem; /* space for icon on right */
+  font-size: 1rem;
+  border: 5px solid black;   /* black border */
+  border-radius: 0;           /* remove rounding for rectangle */
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
 
 
 .search-form button.search-button {
   position: absolute;
-  right: 0.4rem;
+  right: 0.0rem;
   top: 50%;
   transform: translateY(-50%);
   border: none;
@@ -119,8 +129,8 @@ header {
 }
 
 .search-form img.search-icon {
-  width: 26px;
-  height: 26px;
+  width: 47px;
+  height: 47px;
   display: block;
   pointer-events: none; /* ensures click hits button */
 }
@@ -142,11 +152,11 @@ header {
   width: 100%;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border: 2px solid black;
+  border-radius: 0px;
   background-color: var(--input-bg);
   color: var(--text-color);
-  border-radius: 6px;
+ 
 }
 
 /* Remove default form spacing */
@@ -201,12 +211,13 @@ header {
     width: 100%;
     padding: 0.6rem 1rem;
     font-size: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border: 2px solid black;
+    border-radius: 0;
     background-color: var(--input-bg);
     color: var(--text-color);
   }
-
+  
+  
   .header-left {
     display: flex;
     align-items: center;
@@ -218,6 +229,15 @@ header {
     justify-content: flex-end; /* keeps login far right */
     align-items: center;
   }
+  
+  .search-form img.search-icon {
+  width: 42px;
+  height: 42px;
+  display: block;
+  pointer-events: none; /* ensures click hits button */
+}
+  
+  
 }
 
 
