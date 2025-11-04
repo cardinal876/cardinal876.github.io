@@ -354,7 +354,7 @@ paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1
     const endPage = Math.min(totalPages, startPage + maxVisible - 1);
 
     for (let i = startPage; i <= endPage; i++) {
-      paginationHTML += `<button data-page="${i}" ${i === page ? 'style="background-color:#1a3faa;color:white;border:none;padding:5px 10px;border-radius:4px;"' : ''}>${i}</button>`;
+      paginationHTML += `<button data-page="${i}" ${i === page ? 'style="background-color:#999999;color:white;border:none;padding:5px 10px;border-radius:4px;"' : ''}>${i}</button>`;
     }
 
     // Next button
