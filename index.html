@@ -102,13 +102,37 @@ header {
   z-index: 1000;
 }
 
+
+
+
+
 .menu-dropdown a {
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem 0.6rem 1.4rem; /* ⬅ added left indent */
   text-decoration: none;
   color: var(--text-color);
-  border-bottom: 1px solid var(--border-color);
   font-size: 1rem;
+  border: none;
 }
+
+
+
+/* Section header text */
+.menu-section-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem 0.2rem 1rem;
+  color: #444;
+  pointer-events: none; /* non-clickable */
+}
+
+/* Dividers between groups */
+.menu-dropdown hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 0.4rem 0;
+}
+
+
 
 .menu-dropdown a:last-child { border-bottom: none; }
 .menu-dropdown a:hover { background-color: ; }
@@ -564,6 +588,35 @@ header{
      
          <img src="iconmonstr-menu.svg" alt="menu" class="menu-button" id="menuToggle" />
             </div>
+            
+    <div class="menu-dropdown" id="menuDropdown">
+        
+   <div class="menu-section-title">Search</div>
+  <a href="advanced.html">Advanced Search</a>
+  <a href="searchresults.html">New Articles</a>
+  <a href="searchresults.html">Most Read</a>
+  <hr>       
+        
+
+
+  <div class="menu-section-title">Contributors</div>
+  <a href="contributors.html">Contributors</a>
+  <a href="login.html">Contributor Account</a>
+  <hr>
+
+
+  <div class="menu-section-title">Information</div>
+  <a href="about.html">About</a>
+  <a href="newsletter.html">Newsletter</a>
+  <hr>
+
+
+  <div class="menu-section-title">Contact</div>
+  <a href="feedback.html">Feedback</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!--
              <div class="menu-dropdown" id="menuDropdown">
         <a href="about.html">About</a>
           <a href="contributors.html">Contributors</a>
@@ -575,6 +628,8 @@ header{
         <a href="feedback.html">Feedback</a>
         <a href="contact.html">Contact</a>
       </div>
+      
+      -->
            
     </div>
     
