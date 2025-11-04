@@ -52,16 +52,42 @@ header {
   z-index: 1000;
 }
 
-.menu-dropdown a {
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  color: var(--text-color);
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.95rem;
-}
+
 
 .menu-dropdown a:last-child { border-bottom: none; }
 .menu-dropdown a:hover { background-color: #f5f5f5; }
+
+
+.menu-dropdown a {
+  padding: 0.6rem 1rem 0.6rem 1.4rem; /* ⬅ added left indent */
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1rem;
+  border: none;
+}
+
+
+
+/* Section header text */
+.menu-section-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.4rem 1rem 0.2rem 1rem;
+  color: #444;
+  pointer-events: none; /* non-clickable */
+}
+
+/* Dividers between groups */
+.menu-dropdown hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 0.4rem 0;
+}
+
+
+
+
+
 
 .title {
   display: flex;
