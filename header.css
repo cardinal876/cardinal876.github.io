@@ -152,11 +152,12 @@ header {
   background: none;
   padding: 0;
   cursor: pointer;
+  height:100%;
 }
 
 .search-form img.search-icon {
-  width: 47px;
-  height: 47px;
+  
+  height: 100%;
   display: block;
   pointer-events: none; /* ensures click hits button */
 }
@@ -257,8 +258,8 @@ header {
   }
   
   .search-form img.search-icon {
-  width: 42px;
-  height: 42px;
+  
+  height: 100%;
   display: block;
   pointer-events: none; /* ensures click hits button */
 }
