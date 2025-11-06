@@ -6,7 +6,7 @@
 <title>edwinbook search</title>
 
 <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
- <script src="data2.js"></script>
+ <script src="data.js"></script>
 
   
 
@@ -209,6 +209,7 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
       id: doc.id,
       combined: `${doc.title} ${doc.content} ${doc.description2} ${doc.url || ''}`, // merged searchable text
       title: doc.title,
+      author: doc.author,
       content: doc.content,
       url: doc.url,
       description2: doc.description2
@@ -271,6 +272,7 @@ if (!query) {
     title: doc.title,
     content: doc.content,
     url: doc.url,
+    author: doc.author,
     description2: doc.description2
   }));
 } else {
@@ -329,7 +331,7 @@ if (flatResults.length === 0) {
         <div class="results">
           <a href="${r.url}" class="result-link">
             <h2 class="result-title">${r.title}</h2>
-            <div class="author"></div>
+            <div class="author">${r.author}</div>
             <div class="snippet">${words}${more}</div>
           </a>
         </div>
