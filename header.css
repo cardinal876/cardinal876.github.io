@@ -50,6 +50,8 @@ header {
   flex-direction: column;
   min-width: 150px;
   z-index: 1000;
+    padding-top: .25rem;
+  padding-bottom: .25rem;
 }
 
 
