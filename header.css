@@ -106,7 +106,10 @@ header {
   transform: translateY(-0.06em);
   margin-right: .5rem;
 }
-
+.other-buttons{
+    
+    height:1.7rem;
+}
 .nav-buttons{
     display: flex;
   align-items: center;
@@ -201,6 +204,25 @@ header {
 /* Default (mobile first) */
 .search-container-two { display: none; }   /* hide desktop search bar */
 .search-container { display: block; }      /* show bottom search bar */
+
+
+
+
+/* Default: hide links (mobile) */
+.search-links {
+  display: none;
+}
+
+/* Desktop view: show links */
+@media (min-width: 768px) {
+
+}
+
+
+
+
+
+
 
 /* Desktop view */
 @media (min-width: 768px) {
