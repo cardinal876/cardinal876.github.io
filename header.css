@@ -213,6 +213,10 @@ header {
   display: none;
 }
 
+.results-top{
+    display:none;
+}
+
 /* Desktop view: show links */
 @media (min-width: 768px) {
 
@@ -226,6 +230,18 @@ header {
 
 /* Desktop view */
 @media (min-width: 768px) {
+  
+  .results-top{
+      display: flex;
+  }  
+    
+    
+    .menu-dropdown{
+        
+        min-width: 250px;
+    }
+    
+    
   .search-container-two { display: flex; } /* show desktop search bar */
   .search-container { display: none; }     /* hide bottom search bar */
   
