@@ -213,9 +213,11 @@ header {
   display: none;
 }
 
+/*
 .results-top{
     display:none;
 }
+*/
 
 /* Desktop view: show links */
 @media (min-width: 768px) {
@@ -231,9 +233,7 @@ header {
 /* Desktop view */
 @media (min-width: 768px) {
   
-  .results-top{
-      display: flex;
-  }  
+  
     
     
     .menu-dropdown{
