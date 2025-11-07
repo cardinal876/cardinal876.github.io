@@ -245,6 +245,7 @@ header {
     display: flex;           /* show desktop search bar */
     justify-content: center; /* center search bar */
     width: 100%;
+    padding: 0 .75rem;
   }
 
   .search-container { 
@@ -254,8 +255,8 @@ header {
   /* ADD: search form width */
   .search-container-two form {
     width: 100%;
-    max-width: 500px; /* prevent stretching too wide */
-    margin: 0 auto;   /* center search form */
+  /*  max-width: 500px; /* prevent stretching too wide */
+    margin: 0;   /* center search form */
   }
 
   .search-container-two input[type="text"] {
