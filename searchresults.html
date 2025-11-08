@@ -38,6 +38,8 @@ body {
    /* border: 1px solid green;*/
     
       display: flex;
+      
+  flex-wrap: wrap;
   
   width: 100%;
   max-width: 800px;
@@ -171,6 +173,101 @@ hr {
 
 
 
+
+
+/* General custom dropdowns */
+.custom-select {
+  position: relative;
+  cursor: pointer;
+  color: lightgray;
+  user-select: none;
+}
+
+.custom-select.active > .select-label {
+  color: #333;
+  font-weight: bold;
+}
+
+.select-dropdown {
+    transform: translateX(-1rem); 
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: none;
+  flex-direction: column;
+  z-index: 10;
+  width: max-content;
+  min-width: 120px;
+  font-weight: normal;
+}
+
+.select-dropdown div {
+  padding: 0.5rem 1rem;
+  
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #555;
+}
+
+.select-dropdown div:hover {
+  background-color: #f0f0f0;
+}
+
+.select-dropdown div.selected {
+  color: #000;
+  font-weight: bold;
+}
+
+
+
+/* Author input dropdown */
+.author-dropdown {
+  display: none;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.25rem;
+  border: 1px solid #ccc;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+  min-width: 180px;
+}
+
+.author-dropdown input {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  width: 100%;
+}
+
+.author-dropdown button {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.author-dropdown button:hover {
+  background: #e0e0e0;
+}
+
+.author-clear {
+  background: #ffeded;
+  border-color: #ffcccc;
+}
+.author-clear:hover {
+  background: #ffcfcf;
+}
+
+
+
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.31/dist/flexsearch.bundle.js"></script>
@@ -192,6 +289,11 @@ hr {
 </div>
 
 -->
+
+
+
+
+<!--
 <div class="results-top">
     <div>Sort</div>  
     <div>Type </div>  
@@ -203,6 +305,97 @@ hr {
         
 
 </div> 
+
+-->
+<div class="results-top">
+  <div class="custom-select" data-default="Sort">
+    <div class="select-label">Sort</div>
+    <div class="select-dropdown">
+      <div data-value="clear">Clear</div>
+      <div data-value="publish">Publish Date</div>
+      <div data-value="views">Views</div>
+      <div data-value="relevance">Relevance</div>
+    </div>
+  </div>
+
+  <div class="custom-select" data-default="Type">
+    <div class="select-label">Type</div>
+    <div class="select-dropdown">
+     <div data-value="clear">Clear</div>
+      <div data-value="event">Event</div>
+      <div data-value="biography">Biography</div>
+          <div data-value="thing">Thing</div>
+      <div data-value="place">Place</div>
+      
+         <div data-value="idea">Idea</div>
+      <div data-value="other">Other</div>
+      
+      
+    </div>
+  </div>
+  
+  <div class="custom-select" data-default="Author" data-type="input">
+  <div class="select-label">Author</div>
+
+  <div class="select-dropdown author-dropdown">
+    <button type="button" class="author-clear">Clear</button>
+    <input type="text" class="author-input" placeholder="Type author name..." />
+    <button type="button" class="author-submit">Enter</button>
+  </div>
+</div>
+
+
+  <div class="custom-select" data-default="Area">
+    <div class="select-label">Area</div>
+    <div class="select-dropdown">
+         <div data-value="clear">Clear</div>
+      <div data-value="science">Science</div>
+      <div data-value="history">History</div>
+      <div data-value="art">Art</div>
+        <div data-value="technology">Technology</div>
+          <div data-value="other">Other</div>
+    </div>
+  </div>
+
+  <!-- Repeat for Author, Date, Region, etc. -->
+  
+    <div class="custom-select" data-default="Date">
+    <div class="select-label">Date</div>
+    <div class="select-dropdown">
+      <div data-value="clear">Clear</div>
+      <div data-value="before0">Before 0CE</div>
+      <div data-value="first">0 CE to 1000 CE</div>
+      <div data-value="second">1000 CE to 2000 CE</div>
+      <div data-value="third">2000 to Present</div>
+    </div>
+  </div>
+  
+    <div class="custom-select" data-default="Region">
+    <div class="select-label">Region</div>
+    <div class="select-dropdown">
+     <div data-value="clear">Clear</div>
+      <div data-value="namerica">North America</div>
+      <div data-value="samerica">South America</div>
+            <div data-value="africa">Africa</div>
+      <div data-value="europe">Europe</div>
+            <div data-value="asia">Asia</div>
+      <div data-value="australia">Australia</div>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <div id="results"></div> <!-- search results will appear here -->
 
 
@@ -540,9 +733,138 @@ searchForm.dispatchEvent(new Event('submit'));
       
       
     });
+ /*   
     
-    
-    
+    // General custom select logic
+document.querySelectorAll('.custom-select').forEach(select => {
+  const label = select.querySelector('.select-label');
+  const dropdown = select.querySelector('.select-dropdown');
+  const defaultText = select.dataset.default;
+  let selectedValue = null;
+
+  // Toggle dropdown on label click
+  label.addEventListener('click', (e) => {
+    const isVisible = dropdown.style.display === 'flex';
+    // Close all other dropdowns
+    document.querySelectorAll('.select-dropdown').forEach(dd => dd.style.display = 'none');
+    dropdown.style.display = isVisible ? 'none' : 'flex';
+  });
+
+  // Handle option selection
+  dropdown.querySelectorAll('div[data-value]').forEach(option => {
+    option.addEventListener('click', (e) => {
+      selectedValue = option.dataset.value;
+
+      // Reset previous selection
+      dropdown.querySelectorAll('div').forEach(o => o.classList.remove('selected'));
+      
+
+      // Update label text
+      if (selectedValue === 'clear' || selectedValue === 'all') {
+        label.textContent = defaultText;
+        select.classList.remove('active');
+      } else {
+          option.classList.add('selected');
+        label.textContent = defaultText; // Label remains same, only highlight changes
+        select.classList.add('active');
+      }
+
+      // Close dropdown
+      dropdown.style.display = 'none';
+
+      // TODO: trigger search/filter update here if needed
+      // e.g., updateSearch({sort:selectedSort, type:selectedType, ...});
+    });
+  });
+});
+
+// Close dropdowns if click outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.custom-select')) {
+    document.querySelectorAll('.select-dropdown').forEach(dd => dd.style.display = 'none');
+  }
+});
+ */
+ 
+ document.querySelectorAll('.custom-select').forEach(select => {
+  const label = select.querySelector('.select-label');
+  const dropdown = select.querySelector('.select-dropdown');
+  const defaultText = select.dataset.default;
+  const type = select.dataset.type || 'dropdown';
+  let selectedValue = null;
+
+  // Toggle dropdown/input visibility
+  label.addEventListener('click', (e) => {
+    const isVisible = dropdown.style.display === 'flex';
+    document.querySelectorAll('.select-dropdown').forEach(dd => dd.style.display = 'none');
+    dropdown.style.display = isVisible ? 'none' : 'flex';
+  });
+
+  if (type === 'dropdown') {
+    // Handle dropdown options (same as before)
+    dropdown.querySelectorAll('div[data-value]').forEach(option => {
+      option.addEventListener('click', (e) => {
+        selectedValue = option.dataset.value;
+        dropdown.querySelectorAll('div').forEach(o => o.classList.remove('selected'));
+        if (selectedValue !== 'clear' && selectedValue !== 'all') {
+          option.classList.add('selected');
+        }
+        if (selectedValue === 'clear' || selectedValue === 'all') {
+          label.textContent = defaultText;
+          select.classList.remove('active');
+        } else {
+          label.textContent = defaultText;
+          select.classList.add('active');
+        }
+        dropdown.style.display = 'none';
+      });
+    });
+  } else if (type === 'input') {
+    const input = dropdown.querySelector('.author-input');
+    const submit = dropdown.querySelector('.author-submit');
+    const clearBtn = dropdown.querySelector('.author-clear');
+
+    const updateLabelState = () => {
+      if (input.value.trim() === '') {
+        select.classList.remove('active');
+        label.textContent = defaultText;
+      } else {
+        select.classList.add('active');
+        label.textContent = defaultText;
+      }
+    };
+
+    submit.addEventListener('click', () => {
+      updateLabelState();
+      dropdown.style.display = 'none';
+      // TODO: trigger search update
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        updateLabelState();
+        dropdown.style.display = 'none';
+        // TODO: trigger search update
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      updateLabelState();
+      input.focus();
+      // TODO: trigger search update
+    });
+  }
+});
+
+// Close dropdowns if click outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.custom-select')) {
+    document.querySelectorAll('.select-dropdown').forEach(dd => dd.style.display = 'none');
+  }
+});
+
 
 
   </script>
