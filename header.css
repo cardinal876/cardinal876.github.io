@@ -9,6 +9,10 @@ header {
   
 }
 
+.beta-icon{
+    height:1.5rem;
+}
+
 .header-top {
   display: flex;
   justify-content: space-between;
@@ -218,6 +222,77 @@ header {
     display:none;
 }
 */
+
+.fields{
+   /* border: 1px solid green;*/
+    
+      display: flex;
+  flex-wrap: nowrap; 
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem 1.5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-weight:;
+  color:black;
+  gap:1rem;
+  
+  
+  
+  overflow-x: auto;  /* enable horizontal scroll */
+  overflow-y: hidden; /* hide vertical overflow */
+  scroll-behavior: smooth; /* optional: smooth horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* smooth scroll for mobile */
+
+
+  
+ /* flex: 1;
+    flex-grow: 1;  Makes the results section grow and fill available space */
+ 
+ 
+
+
+  /* Hide scrollbar — cross-browser */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+
+
+    
+    
+    
+    
+}
+
+
+/* Hide scrollbar — Chrome, Safari, Opera */
+.fields::-webkit-scrollbar {
+  display: none;
+}
+   
+
+.fields-middle{
+    margin: 0 auto;
+}
+
+.fields > * {
+  /* flex-shrink: 1; /* allows them to shrink to fit */
+ /* min-width: 0;   /* prevents overflow pushing others wider */
+  white-space: nowrap; /* prevents text from wrapping */
+}
+
+.fields-first{
+    font-weight: bold;
+    color:purple;
+}
+
+
+.top-links{
+    border-bottom: .5px solid var(--border-color);
+}
+
 
 /* Desktop view: show links */
 @media (min-width: 768px) {

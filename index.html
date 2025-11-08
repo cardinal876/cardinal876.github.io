@@ -518,6 +518,98 @@ header{
   
 }
 
+
+.fields-outer{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    
+}
+
+.fields-more{
+    display: flex;
+     justify-content: flex-start;;
+     align-items: center;
+    padding: 1rem 1.5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  
+}
+
+.fields-more img{
+    height:1rem;
+    padding-left: .5rem;
+}
+
+
+.fields-main{
+    
+    
+   /* border: 1px solid green;*/
+    
+      display: flex;
+  flex-wrap: nowrap; 
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem 1.5rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight:;
+  color:black;
+  gap:1rem;
+  
+  
+  
+  overflow-x: auto;  /* enable horizontal scroll */
+  overflow-y: hidden; /* hide vertical overflow */
+  scroll-behavior: smooth; /* optional: smooth horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* smooth scroll for mobile */
+
+
+  
+ /* flex: 1;
+    flex-grow: 1;  Makes the results section grow and fill available space */
+ 
+ 
+
+
+  /* Hide scrollbar — cross-browser */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+
+
+    
+    
+    
+    
+}
+
+
+/* Hide scrollbar — Chrome, Safari, Opera */
+.fields-main::-webkit-scrollbar {
+  display: none;
+}
+   
+
+
+.fields-main > * {
+  /* flex-shrink: 1; /* allows them to shrink to fit */
+ /* min-width: 0;   /* prevents overflow pushing others wider */
+  white-space: nowrap; /* prevents text from wrapping */
+}
+
+.fields-first-main{
+    font-weight: bold;
+    color:purple;
+}
+
+
+
+
 .beta-icon {
     margin-top: -0.3rem; /* moves it up slightly */
 }    
@@ -676,6 +768,56 @@ Rays Book is an encyclopedia by the world's leading experts. It provides a way t
   </form>
 </div>
 
+<div class="fields-outer">
+<div class="fields-main">
+    <div class="fields-first-main">
+        Fields
+        
+    </div>
+        <div>
+        History
+        
+    </div>
+        <div>
+        Physics
+        
+    </div>
+        <div>
+        Biology
+        
+    </div>
+       <div>
+        Economics
+        
+    </div>
+        <div>Archaelology
+        
+        
+    </div>
+     
+        <div>
+        Mathematics
+        
+    </div>
+        <div>
+        Business
+        
+    </div>
+        <div>
+        Psychology
+        
+    </div>
+        <div>
+        Chemistry
+        
+    </div>
+    <div>
+        Medicine
+    </div>
+    
+</div>
+<div class="fields-more">More <img src="plus-svgrepo.svg" /></div>
+<div/>
   
 
     </div>
