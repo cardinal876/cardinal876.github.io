@@ -991,7 +991,7 @@ buttons.forEach(btn => {
 
     // Skip selection/clear logic for Share menu
 
-        if (btn.dataset.menu !== "1" && btn.dataset.menu !== "2") {
+        
       // Add "Clear" option if already selected
       if (btn.dataset.selected === "true") {
         if (!menu.querySelector(".clear-option")) {
@@ -1020,14 +1020,7 @@ buttons.forEach(btn => {
           };
         }
       });
-    } else {
-      // For Share, clicking an option just closes the menu
-      menu.querySelectorAll("div").forEach(option => {
-        option.onclick = () => {
-          menu.style.display = "none";
-        };
-      });
-    }
+    
 
     openMenu = menu;
   });
