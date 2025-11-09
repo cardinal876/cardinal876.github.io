@@ -1026,13 +1026,19 @@ buttons.forEach(btn => {
   });
 });
 
-// Close dropdown on click outside
 document.addEventListener("click", e => {
-  if (!e.target.closest(".menu-btn") && !e.target.closest(".dropdown")) {
+  const anyOpenDropdown = [...document.querySelectorAll(".dropdown")]
+    .some(d => d.style.display === "block");
+
+  if (anyOpenDropdown && !e.target.closest(".menu-btn") && !e.target.closest(".dropdown")) {
     document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
     openMenu = null;
+
+    // Prevent the click **only if we actually closed a menu**
+    e.stopPropagation();
+    e.preventDefault(); 
   }
-});
+}, true); // capture phase ensures we intercept first
 
 
 </script>

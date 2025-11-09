@@ -91,7 +91,36 @@
       width: 100%;
     }
 
-.results-top{
+
+
+
+    /* Desktop float styles */
+    @media (min-width: 600px) {
+        
+
+        
+        
+      figure.float-right {
+        float: right;
+        max-width: 50%;
+        margin: 0 0 1rem 2rem;
+        text-align: center;
+      }
+
+      figure.float-left {
+        float: left;
+        max-width: 50%;
+        margin: 0 2rem 1rem 0;
+        text-align: center;
+      }
+    }
+  </style>
+  
+  
+  
+  <style>
+  
+  .results-top{
    /* border: 1px solid green;*/
     
       display: flex;
@@ -164,33 +193,6 @@
 
 
 
-
-
-    /* Desktop float styles */
-    @media (min-width: 600px) {
-        
-
-        
-        
-      figure.float-right {
-        float: right;
-        max-width: 50%;
-        margin: 0 0 1rem 2rem;
-        text-align: center;
-      }
-
-      figure.float-left {
-        float: left;
-        max-width: 50%;
-        margin: 0 2rem 1rem 0;
-        text-align: center;
-      }
-    }
-  </style>
-  
-  
-  
-  <style>
 
 
   /* Scrollable row */
@@ -641,12 +643,27 @@ buttons.forEach(btn => {
 });
 
 // Close dropdown on click outside
-document.addEventListener("click", e => {
+/*document.addEventListener("click", e => {
   if (!e.target.closest(".menu-btn") && !e.target.closest(".dropdown")) {
     document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
     openMenu = null;
   }
 });
+*/
+document.addEventListener("click", e => {
+  const anyOpenDropdown = [...document.querySelectorAll(".dropdown")]
+    .some(d => d.style.display === "block");
+
+  if (anyOpenDropdown && !e.target.closest(".menu-btn") && !e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    openMenu = null;
+
+    // Prevent the click **only if we actually closed a menu**
+    e.stopPropagation();
+    e.preventDefault();
+  }
+}, true); // capture phase ensures we intercept first
+
 
 
 </script>
