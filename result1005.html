@@ -95,12 +95,14 @@
    /* border: 1px solid green;*/
     
       display: flex;
+      
+      
   
-       flex: 1;
+ ;
       max-width: 800px;
       width: 100%;
       padding: 2rem 1.5rem;
-      margin: 0 auto;
+      margin: 0;
       line-height: 1.6; 
   
   
@@ -111,16 +113,49 @@
   padding: 2rem 1.5rem;
   padding-top: 1rem;
   padding-bottom: 0;
-  margin: 0 auto;
+  margin: 0 ;
   box-sizing: border-box;
   font-weight: bold;
   color:lightgray;
-  gap: .5rem;
+  gap: 1rem;
+ 
+  
+ /* flex: 1;
+    flex-grow: 1;  Makes the results section grow and fill available space */
+      overflow-x: auto;  /* enable horizontal scroll */
+  overflow-y: hidden; /* hide vertical overflow */
+  scroll-behavior: smooth; /* optional: smooth horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* smooth scroll for mobile */
+  
+    /* Hide scrollbar — cross-browser */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+
 
   
  /* flex: 1;
     flex-grow: 1;  Makes the results section grow and fill available space */
+ 
+ 
+
+
+
+
+
+    
+    
+    
+    
 }
+
+
+/* Hide scrollbar — Chrome, Safari, Opera */
+.results-top::-webkit-scrollbar {
+  display: none;
+}
+   
+
 
 .results-top div{
   /*  border: 1px blue solid; */
@@ -152,22 +187,107 @@
       }
     }
   </style>
+  
+  
+  
+  <style>
+
+
+  /* Scrollable row */
+  .scroll-row {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    
+    
+
+  }
+
+  .menu-btn {
+    border: none;
+
+    cursor: pointer;
+    
+  }
+
+  .menu-btn:hover {
+    
+  }
+
+  /* Dropdowns (outside scroll area) */
+  .dropdown {
+    position: absolute;
+    display: none;
+    background: white;
+    border: 1px solid #ccc;
+    ;
+    z-index: 1000;
+  }
+
+  .dropdown div {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+
+  .dropdown div:hover {
+
+  }
+</style>
 </head>
 <body>
  <header id="header-container"></header>
 
 
-<div class="results-top">
-     <div>Share  </div> 
-         <div>Citation </div> 
-    <div>Font</div>  
-    <div>Size </div>  
-        <div>Spacing </div>  
-      <div>Images </div> 
-       
+<div class="results-top scroll-row">
+     <div class="menu-btn" data-menu="1">Share  </div> 
         
+           <div class="menu-btn" data-menu="3">Size </div>  
+    <div class="menu-btn" data-menu="4">Font</div>  
+  
+        <div class="menu-btn" data-menu="5">Spacing </div>  
+      <div class="menu-btn" data-menu="6">Images </div> 
+        <div class="menu-btn" data-menu="2" >Citation </div> 
+    
+ <!-- <div class="menu-btn" data-menu="1">Menu 1</div> -->
+
 
 </div> 
+
+<div class="dropdown" id="dropdown-1">
+  <div>Facebook</div>
+  <div>LinkedIn</div>
+  <div>X.com</div>
+</div>
+
+<div class="dropdown" id="dropdown-2" >
+  <div>Author Last Name, First Initial(s). (Year). Title of article. Title of Encyclopedia. URL </div>
+</div>
+
+
+
+<div class="dropdown" id="dropdown-3">
+  <div>Small</div>
+  <div>Medium</div>
+  <div>Large</div>
+</div>
+
+<div class="dropdown" id="dropdown-4">
+  <div>Helvetica</div>
+  <div>Times</div>
+  <div>Roboto</div>
+</div>
+
+<div class="dropdown" id="dropdown-5">
+  <div>Small</div>
+  <div>Medium</div>
+  <div>Large</div>
+</div>
+
+<div class="dropdown" id="dropdown-6">
+  <div>Show Images</div>
+  <div>Low Resolution Images</div>
+  <div>No Images</div>
+</div>
 
 
   <main>
@@ -445,5 +565,92 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
   </script>
+  
+<script>
+const buttons = document.querySelectorAll(".menu-btn");
+let openMenu = null;
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", e => {
+    const menu = document.getElementById("dropdown-" + btn.dataset.menu);
+    const rect = btn.getBoundingClientRect();
+
+    // Close previously open dropdown
+    if (openMenu && openMenu !== menu) openMenu.style.display = "none";
+
+    // Toggle dropdown
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+      openMenu = null;
+      return;
+    }
+
+    menu.style.display = "block";
+    menu.style.top = rect.bottom + "px";
+
+    const menuWidth = menu.offsetWidth;
+    const viewportWidth = window.innerWidth;
+
+    let leftPos = rect.left;
+    if (rect.left + menuWidth > viewportWidth) leftPos = viewportWidth - menuWidth;
+    if (leftPos < 0) leftPos = 0;
+    menu.style.left = leftPos + "px";
+
+    // Skip selection/clear logic for Share menu
+
+        if (btn.dataset.menu !== "1" && btn.dataset.menu !== "2") {
+      // Add "Clear" option if already selected
+      if (btn.dataset.selected === "true") {
+        if (!menu.querySelector(".clear-option")) {
+          const clearDiv = document.createElement("div");
+          clearDiv.textContent = "Clear";
+          clearDiv.classList.add("clear-option");
+          clearDiv.style.color = ""; // gray
+          menu.prepend(clearDiv);
+
+          clearDiv.addEventListener("click", () => {
+            btn.style.color = "lightgray";
+            btn.dataset.selected = "false";
+            clearDiv.remove();
+            menu.style.display = "none";
+          });
+        }
+      }
+
+      // Attach click handler to options
+      menu.querySelectorAll("div").forEach(option => {
+        if (!option.classList.contains("clear-option")) {
+          option.onclick = () => {
+            btn.style.color = "black";
+            btn.dataset.selected = "true";
+            menu.style.display = "none";
+          };
+        }
+      });
+    } else {
+      // For Share, clicking an option just closes the menu
+      menu.querySelectorAll("div").forEach(option => {
+        option.onclick = () => {
+          menu.style.display = "none";
+        };
+      });
+    }
+
+    openMenu = menu;
+  });
+});
+
+// Close dropdown on click outside
+document.addEventListener("click", e => {
+  if (!e.target.closest(".menu-btn") && !e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    openMenu = null;
+  }
+});
+
+
+</script>
+
+
 </body>
 </html>
