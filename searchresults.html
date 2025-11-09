@@ -149,126 +149,132 @@ hr {
 
 
 
-.results-top{
-   /* border: 1px solid green;*/
-    
-      display: flex;
-      
-  flex-wrap: wrap;
-  
-  width: 100%;
-  max-width: 800px;
-  padding: 1rem 1.5rem;
-  padding-top: 1rem;
-  padding-bottom: 0;
-  margin: 0 auto;
-  box-sizing: border-box;
-  font-weight: bold;
-  color:lightgray;
-  gap:.5rem;
-
-  
- /* flex: 1;
-    flex-grow: 1;  Makes the results section grow and fill available space */
-}
-
-    
-
-
-/* General custom dropdowns */
-.custom-select {
-  position: relative;
-  cursor: pointer;
-  color: lightgray;
-  user-select: none;
-}
-
-.custom-select.active > .select-label {
-  color: #333;
-  font-weight: bold;
-}
-
-.select-dropdown {
-    transform: translateX(-1rem); 
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  display: none;
-  flex-direction: column;
-  z-index: 10;
-  width: max-content;
-  min-width: 120px;
-  font-weight: normal;
-}
-
-.select-dropdown div {
-  padding: 0.5rem 1rem;
-  
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  color: #555;
-}
-
-.select-dropdown div:hover {
-  background-color: #f0f0f0;
-}
-
-.select-dropdown div.selected {
-  color: #000;
-  font-weight: bold;
-}
-
-
-
-/* Author input dropdown */
-.author-dropdown {
-  display: none;
-  flex-direction: column;
-  padding: 0.5rem;
-  gap: 0.25rem;
-  border: 1px solid #ccc;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  z-index: 10;
-  min-width: 180px;
-}
-
-.author-dropdown input {
-  padding: 0.4rem 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  outline: none;
-  width: 100%;
-}
-
-.author-dropdown button {
-  padding: 0.4rem 0.5rem;
-  border: 1px solid #ccc;
-  background: #f5f5f5;
-  cursor: pointer;
-  border-radius: 3px;
-  transition: background 0.2s;
-}
-
-.author-dropdown button:hover {
-  background: #e0e0e0;
-}
-
-.author-clear {
-  background: #ffeded;
-  border-color: #ffcccc;
-}
-.author-clear:hover {
-  background: #ffcfcf;
-}
 
 
 
 
 </style>
+
+
+  <style>
+  
+  .results-top{
+   /* border: 1px solid green;*/
+    
+      display: flex;
+      
+      
+  
+ ;
+      max-width: 800px;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      margin: 0;
+      line-height: 1.6; 
+  
+  
+  
+  
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  margin: 0 ;
+  box-sizing: border-box;
+  font-weight: bold;
+  color:lightgray;
+  gap: 1.5rem;
+ 
+  
+ /* flex: 1;
+    flex-grow: 1;  Makes the results section grow and fill available space */
+      overflow-x: auto;  /* enable horizontal scroll */
+  overflow-y: hidden; /* hide vertical overflow */
+  scroll-behavior: smooth; /* optional: smooth horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* smooth scroll for mobile */
+  
+    /* Hide scrollbar — cross-browser */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+
+
+  
+ /* flex: 1;
+    flex-grow: 1;  Makes the results section grow and fill available space */
+ 
+ 
+
+
+
+
+
+    
+    
+    
+    
+}
+
+
+/* Hide scrollbar — Chrome, Safari, Opera */
+.results-top::-webkit-scrollbar {
+  display: none;
+}
+   
+
+
+.results-top div{
+  /*  border: 1px blue solid; */
+}
+
+
+
+
+
+
+  /* Scrollable row */
+  .scroll-row {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    
+    
+
+  }
+
+  .menu-btn {
+    border: none;
+
+    cursor: pointer;
+    
+  }
+
+  .menu-btn:hover {
+    
+  }
+
+  /* Dropdowns (outside scroll area) */
+  .dropdown {
+    position: absolute;
+    display: none;
+    background: white;
+    border: 1px solid #ccc;
+    ;
+    z-index: 1000;
+  }
+
+  .dropdown div {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+
+  .dropdown div:hover {
+
+  }
+</style> 
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/flexsearch@0.7.31/dist/flexsearch.bundle.js"></script>
 </head>
@@ -307,6 +313,10 @@ hr {
 </div> 
 
 -->
+
+
+<!--
+
 <div class="results-top">
   <div class="custom-select" data-default="Sort">
     <div class="select-label">Sort</div>
@@ -357,7 +367,7 @@ hr {
     </div>
   </div>
 
-  <!-- Repeat for Author, Date, Region, etc. -->
+
   
     <div class="custom-select" data-default="Date">
     <div class="select-label">Date</div>
@@ -385,6 +395,81 @@ hr {
   
   
 </div>
+
+-->
+
+<div class="results-top scroll-row">
+     <div class="menu-btn" data-menu="1">Sort  </div> 
+        
+           <div class="menu-btn" data-menu="2">Type </div>  
+
+    <div class="menu-btn" data-menu="4">Author</div>  
+  
+  
+  
+        <div class="menu-btn" data-menu="5">Area</div>  
+      <div class="menu-btn" data-menu="6">Date </div> 
+                   <div class="menu-btn" data-menu="3" >Region</div> 
+    
+ <!-- <div class="menu-btn" data-menu="1">Menu 1</div> -->
+
+
+</div> 
+
+<div class="dropdown" id="dropdown-1">
+  <div>Publish Date</div>
+  <div>Views</div>
+  <div>Relevance</div>
+</div>
+
+<div class="dropdown" id="dropdown-2" >
+    <div>Event</div>
+      <div >Biography</div>
+          <div >Thing</div>
+      <div >Place</div>
+      
+         <div >Concept</div>
+      <div >Other</div>
+      
+      
+</div>
+
+
+
+<div class="dropdown" id="dropdown-3">
+
+      <div >North America</div>
+      <div>South America</div>
+            <div >Africa</div>
+      <div >Europe</div>
+            <div >Asia</div>
+      <div>Oceania</div>
+            <div>Antarctica</div>
+</div>
+
+<div class="dropdown" id="dropdown-4">
+  <div>Helvetica</div>
+  <div>Times</div>
+  <div>Roboto</div>
+</div>
+
+<div class="dropdown" id="dropdown-5">
+
+
+      <div >Science</div>
+      <div >History</div>
+      <div >Art</div>
+        <div >Technology</div>
+          <div >Other</div>
+</div>
+
+<div class="dropdown" id="dropdown-6">
+        <div >Before 0CE</div>
+      <div >0 CE to 1000 CE</div>
+      <div>1000 CE to 2000 CE</div>
+      <div>2000 to Present</div>
+</div>
+
 
 
 
@@ -785,7 +870,7 @@ document.addEventListener('click', (e) => {
   }
 });
  */
- 
+ /*
  document.querySelectorAll('.custom-select').forEach(select => {
   const label = select.querySelector('.select-label');
   const dropdown = select.querySelector('.select-dropdown');
@@ -865,12 +950,240 @@ document.addEventListener('click', (e) => {
   }
 });
 
-
+*/
 
   </script>
+  
+  <script>
+const buttons = document.querySelectorAll(".menu-btn");
+let openMenu = null;
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", e => {
+      
+      if(btn.dataset.menu ==="4"){
+          return;
+      }
+      
+    const menu = document.getElementById("dropdown-" + btn.dataset.menu);
+    const rect = btn.getBoundingClientRect();
+
+    // Close previously open dropdown
+    if (openMenu && openMenu !== menu) openMenu.style.display = "none";
+
+    // Toggle dropdown
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+      openMenu = null;
+      return;
+    }
+
+    menu.style.display = "block";
+    menu.style.top = rect.bottom + "px";
+
+    const menuWidth = menu.offsetWidth;
+    const viewportWidth = window.innerWidth;
+
+    let leftPos = rect.left;
+    if (rect.left + menuWidth > viewportWidth) leftPos = viewportWidth - menuWidth;
+    if (leftPos < 0) leftPos = 0;
+    menu.style.left = leftPos + "px";
+
+    // Skip selection/clear logic for Share menu
+
+        if (btn.dataset.menu !== "1" && btn.dataset.menu !== "2") {
+      // Add "Clear" option if already selected
+      if (btn.dataset.selected === "true") {
+        if (!menu.querySelector(".clear-option")) {
+          const clearDiv = document.createElement("div");
+          clearDiv.textContent = "Clear";
+          clearDiv.classList.add("clear-option");
+          clearDiv.style.color = ""; // gray
+          menu.prepend(clearDiv);
+
+          clearDiv.addEventListener("click", () => {
+            btn.style.color = "lightgray";
+            btn.dataset.selected = "false";
+            clearDiv.remove();
+            menu.style.display = "none";
+          });
+        }
+      }
+
+      // Attach click handler to options
+      menu.querySelectorAll("div").forEach(option => {
+        if (!option.classList.contains("clear-option")) {
+          option.onclick = () => {
+            btn.style.color = "black";
+            btn.dataset.selected = "true";
+            menu.style.display = "none";
+          };
+        }
+      });
+    } else {
+      // For Share, clicking an option just closes the menu
+      menu.querySelectorAll("div").forEach(option => {
+        option.onclick = () => {
+          menu.style.display = "none";
+        };
+      });
+    }
+
+    openMenu = menu;
+  });
+});
+
+// Close dropdown on click outside
+document.addEventListener("click", e => {
+  if (!e.target.closest(".menu-btn") && !e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    openMenu = null;
+  }
+});
 
 
+</script>
 
+<script>
+    
+    
+document.addEventListener("DOMContentLoaded", () => {
+  const authorBtn = document.querySelector('[data-menu="4"]');
+  if (!authorBtn) return;
+
+  const popup = document.createElement("div");
+  popup.id = "dropdown-4";
+  popup.className = "dropdown";
+  Object.assign(popup.style, {
+    padding: "0.75rem",
+    position: "absolute",
+    display: "none",
+    background: "white",
+    border: "1px solid #ccc",
+    borderRadius: "10px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+    zIndex: "2000",
+  });
+
+  popup.innerHTML = `
+    <input
+      type="text"
+      id="authorInput"
+      placeholder="Type author name..."
+      style="width:100%;padding:0.5rem;border:1px solid #ccc;border-radius:6px;"
+    />
+    <div id="authorSuggestions" style="
+      border:1px solid #eee;
+      border-radius:6px;
+      margin-top:0.5rem;
+      max-height:120px;
+      overflow-y:auto;
+      display:none;
+    "></div>
+    <div style="margin-top:0.75rem;text-align:right;">
+      <button id="authorEnter" style="
+        background:#007bff;
+        color:white;
+        border:none;
+        padding:0.4rem 0.8rem;
+        border-radius:6px;
+        cursor:pointer;
+        margin-right:0.5rem;
+      ">Enter</button>
+      <button id="authorClear" style="
+        background:#eee;
+        border:none;
+        padding:0.4rem 0.8rem;
+        border-radius:6px;
+        cursor:pointer;
+      ">Clear</button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  const authorInput = popup.querySelector("#authorInput");
+  const authorSuggestions = popup.querySelector("#authorSuggestions");
+  const authorEnter = popup.querySelector("#authorEnter");
+  const authorClear = popup.querySelector("#authorClear");
+
+  const authors = (typeof documents !== "undefined")
+    ? [...new Set(documents.map(d => d.author).filter(a => a))].sort()
+    : [];
+
+  function positionPopup() {
+    const rect = authorBtn.getBoundingClientRect();
+    popup.style.top = rect.bottom + window.scrollY + "px";
+    popup.style.left = rect.left + window.scrollX + "px";
+  }
+
+  function updateAuthorButtonColor() {
+    const hasAuthor = authorInput.value.trim().length > 0;
+    authorBtn.style.color = hasAuthor ? "black" : "lightgray";
+  }
+
+  authorBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    const visible = popup.style.display === "block";
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    if (!visible) {
+      positionPopup();
+      popup.style.display = "block";
+      authorInput.focus();
+    } else {
+      popup.style.display = "none";
+      updateAuthorButtonColor();
+    }
+  });
+
+  authorInput.addEventListener("input", () => {
+    const val = authorInput.value.toLowerCase();
+    const matches = authors.filter(a => a.toLowerCase().includes(val)).slice(0, 10);
+    if (!val || matches.length === 0) {
+      authorSuggestions.style.display = "none";
+      updateAuthorButtonColor();
+      return;
+    }
+    authorSuggestions.innerHTML = matches
+      .map(a => `<div style="padding:0.4rem;cursor:pointer;">${a}</div>`)
+      .join("");
+    authorSuggestions.style.display = "block";
+
+    authorSuggestions.querySelectorAll("div").forEach(div => {
+      div.addEventListener("click", () => {
+        authorInput.value = div.textContent;
+        authorSuggestions.style.display = "none";
+        updateAuthorButtonColor();
+      });
+    });
+  });
+
+  authorEnter.addEventListener("click", () => {
+    updateAuthorButtonColor();
+    popup.style.display = "none";
+  });
+
+  authorClear.addEventListener("click", () => {
+    authorInput.value = "";
+    authorSuggestions.style.display = "none";
+    updateAuthorButtonColor();
+  });
+
+  // Click outside — close popup but prevent underlying clicks
+  document.addEventListener("click", e => {
+    if (!popup.contains(e.target) && !authorBtn.contains(e.target)) {
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+        updateAuthorButtonColor();
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    }
+  }, true); // capture phase ensures we intercept first
+
+  window.addEventListener("scroll", () => { if (popup.style.display === "block") positionPopup(); });
+  window.addEventListener("resize", () => { if (popup.style.display === "block") positionPopup(); });
+}); 
+</script>
 
 
 </body>
