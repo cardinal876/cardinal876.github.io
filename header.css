@@ -309,7 +309,9 @@ header {
 @media (min-width: 768px) {
   
   
-    
+    .nav-buttons{
+        gap:.7rem;
+    }
     
     .menu-dropdown{
         
