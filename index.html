@@ -349,6 +349,9 @@ header{
   padding: 0;
   cursor: pointer;
   height:100%;
+  
+  display:flex;
+  height:100%;
 }
 
 
@@ -651,6 +654,18 @@ header{
   box-shadow: none;
 }
 
+.search-buttons{
+    display: flex;
+    flex-wrap:nowrap; 
+    height:100%; 
+    position:absolute; 
+    right:0;
+}
+
+.search-images{
+    display:flex;
+    height:100%
+}
   
   
 
@@ -771,13 +786,13 @@ Rays Book is an encyclopedia by the world's leading experts. It provides a way t
           <div class="search-box">
   <form action="searchresults.html" method="GET" class="search-form">
     <input type="text" name="q" placeholder="Encyclopedia Search" />
-    <div style="display: flex; flex-wrap:nowrap; height:100%; position:absolute; right:0;"  >
+    <div class="search-buttons" >
         
-          <button type="submit" class="new-search-button" style="height:100%; display:flex;">
-    <img src="open-svgrepo.svg" alt="Search" style="display:flex; height:100%"/>
+          <button type="submit" class="new-search-button" >
+    <img src="open-svgrepo.svg" id="openbook" alt="Search" class="search-images"/>
   </button>
-    <button type="submit" style="display:flex; height:100%" class="new-search-button">
-    <img src="iconmonstr-glass.svg" alt="Search" style="display:flex; height:100%"/>
+    <button type="submit" class="new-search-button">
+    <img src="iconmonstr-glass.svg" alt="Search" class="search-images" />
     
     
     
@@ -889,7 +904,7 @@ Rays Book is an encyclopedia by the world's leading experts. It provides a way t
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.search-form input[type="text"]');
-    const openBookIcon = document.querySelector('.search-form img[src*="open-svgrepo.svg"]');
+    const openBookIcon = document.querySelector('#openbook');
 
     if (searchInput && openBookIcon) {
       const toggleBookIcon = () => {
