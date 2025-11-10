@@ -1,11 +1,18 @@
 
 /* HEADER */
-header {
+
+
+
+
+
+header , .header-div{
   border-bottom: .5px solid var(--border-color);
   width: 100%;
   display: flex;
   flex-direction: column; /* mobile stacked */
   align-items: center;
+  
+  
   
 }
 
@@ -111,9 +118,16 @@ header {
   margin-right: .5rem;
 }
 .other-buttons{
-    
-    height:1.7rem;
+
+    height: 2rem;
 }
+
+#otherbutton{
+    height: 1.75rem;
+}
+
+
+
 .nav-buttons{
     display: flex;
   align-items: center;
@@ -245,6 +259,11 @@ header {
   overflow-y: hidden; /* hide vertical overflow */
   scroll-behavior: smooth; /* optional: smooth horizontal scrolling */
   -webkit-overflow-scrolling: touch; /* smooth scroll for mobile */
+  
+    /* Hide scrollbar — cross-browser */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
 
 
   
@@ -254,9 +273,6 @@ header {
  
 
 
-  /* Hide scrollbar — cross-browser */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
 
 
 
