@@ -32,7 +32,7 @@
            L366.67,50
            L200,50
            Z"
-        fill="#FF4040" stroke="#000" stroke-width="0"/>
+        fill="teal" stroke="#000" stroke-width="0"/>
 
   <!-- Strip 1 (blue) -->
   <path d="M216.67,350
@@ -40,7 +40,7 @@
            L533.33,50
            L366.67,50
            Z"
-        fill="#4040FF" stroke="#000" stroke-width="0"/>
+        fill="blue" stroke="#000" stroke-width="0"/>
 
   <!-- Strip 2 (purple) -->
   <path d="M383.33,350
@@ -48,7 +48,7 @@
            L700,50
            L533.33,50
            Z"
-        fill="#C040FF" stroke="#000" stroke-width="0"/>
+        fill="navy" stroke="#000" stroke-width="0"/>
 
   <!-- Full outline (on top) -->
   <path d="M50,350 L550,350 L700,50 L200,50 Z"
