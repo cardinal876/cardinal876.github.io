@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1500" height="900" viewBox="100 0 550 400"
+     xmlns="http://www.w3.org/2000/svg"
+     style="background:white; border:;">
+
+  <!-- Parallelogram vertices -->
+  <!-- A (bottom-left), B (bottom-right), C (top-right), D (top-left) -->
+  <defs>
+    <path id="fullShape" d="M50,350 L550,350 L700,50 L200,50 Z" fill="none" stroke="none"/>
+  </defs>
+
+  <!-- Strip direction = vector A→D = (150, -300) -->
+  <!-- Normalize to unit vector for offsets -->
+  <defs>
+    <g id="stripTemplate">
+      <!-- Will be translated for each strip -->
+    </g>
+  </defs>
+
+  <!-- ==== THREE STRIPS ==== -->
+  <!-- Base length = 500 px, each strip = 500/3 ≈ 166.67 px wide (along base) -->
+  <!-- Perpendicular offset uses unit normal of strip direction -->
+
+  <!-- Unit vector along strip (A→D) -->
+  <!-- length = sqrt(150² + (-300)²) = sqrt(22500+90000)=sqrt(112500)≈335.41 -->
+  <!-- unit = (150/335.41, -300/335.41) ≈ (0.4472, -0.8944) -->
+  <!-- Normal (rotate 90°) = (0.8944, 0.4472) -->
+
+  <!-- Strip 0 (red) -->
+  <path d="M50,350
+           L216.67,350
+           L366.67,50
+           L200,50
+           Z"
+        fill="#FF4040" stroke="#000" stroke-width="0"/>
+
+  <!-- Strip 1 (blue) -->
+  <path d="M216.67,350
+           L383.33,350
+           L533.33,50
+           L366.67,50
+           Z"
+        fill="#4040FF" stroke="#000" stroke-width="0"/>
+
+  <!-- Strip 2 (purple) -->
+  <path d="M383.33,350
+           L550,350
+           L700,50
+           L533.33,50
+           Z"
+        fill="#C040FF" stroke="#000" stroke-width="0"/>
+
+  <!-- Full outline (on top) -->
+  <path d="M50,350 L550,350 L700,50 L200,50 Z"
+        fill="none" stroke="#000" stroke-width="0"/>
+
+</svg>
