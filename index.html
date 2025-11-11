@@ -788,9 +788,7 @@ Rays Book is an encyclopedia by the world's leading experts. It provides a way t
     <input type="text" name="q" placeholder="Encyclopedia Search" />
     <div class="search-buttons" >
         
-          <button type="submit" class="new-search-button" >
-    <img src="open-svgrepo.svg" id="openbook" alt="Search" class="search-images"/>
-  </button>
+       
     <button type="submit" class="new-search-button">
     <img src="iconmonstr-glass.svg" alt="Search" class="search-images" />
     
@@ -901,28 +899,7 @@ Rays Book is an encyclopedia by the world's leading experts. It provides a way t
     });
   </script>
   
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.querySelector('.search-form input[type="text"]');
-    const openBookIcon = document.querySelector('#openbook');
 
-    if (searchInput && openBookIcon) {
-      const toggleBookIcon = () => {
-        if (searchInput.value.trim() === '') {
-          openBookIcon.style.display = 'flex';
-        } else {
-          openBookIcon.style.display = 'none';
-        }
-      };
-
-      // Run immediately in case field is prefilled
-      toggleBookIcon();
-
-      // Hide/show dynamically as user types or deletes
-      searchInput.addEventListener('input', toggleBookIcon);
-    }
-  });
-</script>
 
 </body>
 </html>
