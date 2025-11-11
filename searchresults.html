@@ -38,6 +38,13 @@ body {
 
 
 /* RESULTS */
+.no-results{
+    margin-top: 1rem 
+}
+
+
+
+
 .results {
   width: 100%;
   max-width: 800px;
@@ -46,13 +53,14 @@ body {
   box-sizing: border-box;
   flex: 1;
     flex-grow: 1; /* Makes the results section grow and fill available space */
+    border-bottom: 1px solid var(--border-color);
 }
 
 .result-link {
   display: block;
   text-decoration: none;
   color: inherit;
-  border-bottom: 1px solid var(--border-color);
+  
   padding: 1rem 0;
   transition: background-color 0.2s ease;
 }
@@ -620,9 +628,45 @@ searchResults.forEach(fieldResult => {
 
               
               
+
+
+
 if (flatResults.length === 0) {
-  resultsContainer.innerHTML = "<p>No results found</p>";
-} else {
+  // Create a "No results" placeholder
+  const noResultsEntry = {
+    id: "no-results",
+    title: "No results",
+    author: "View all",
+    description2: "Other results:",
+    content: "",
+    url: "#"
+  };
+
+  // Then append all documents as fallback "browse all" entries
+  const allDocs = (typeof documents !== "undefined")
+    ? documents.map(doc => ({
+        id: doc.id,
+        title: doc.title,
+        author: doc.author,
+        description2: doc.description2,
+        content: doc.content,
+        url: doc.url
+      }))
+    : [];
+
+  // Merge the two — no-results first
+  flatResults = [noResultsEntry, ...allDocs];
+}
+
+
+
+
+
+
+
+
+
+
   const RESULTS_PER_PAGE = 4;
   let currentPage = 1;
   
@@ -640,7 +684,43 @@ if (flatResults.length === 0) {
     const htmlResults = pageResults.map(r => {
       const words = r.content.split(/\s+/).slice(0, WORDS_TO_SHOW).join(' ');
       const more = r.content.split(/\s+/).length > WORDS_TO_SHOW ? "..." : "";
-      return `
+      var toReturn;
+      if( r.id==="no-results"){
+      toReturn= `
+        <div class="results">
+       
+            <h3 class="no-results" style="margin-top: 2rem; font-weight:normal">No Results</h3>
+            
+     <a href="searchresults.html" style="text-decoration:none;display:block;margin-top: 5rem ;margin-bottom: 1em; color:gray">
+  <h3 class="no-results" style="
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2em;
+    margin: 0;
+    font-weight: normal; 
+  ">
+    <img src="open-svgrepo.svg" alt="Open Book" style="height:1.25em;" />
+    View All
+  </h3>
+</a>
+  <a href="searchresults.html" style="text-decoration:none;display:block; margin-bottom: 1em; color: gray">
+  <h3 class="no-results" style="
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2em;
+    margin: 0;
+    font-weight: normal; 
+  ">
+    <img src="newcircle-svgrepo.svg" alt="New sticker" style="height:1.25em;" />
+    New Articles: 
+  </h3>
+</a>
+                  
+        
+          
+        </div>
+      `;}else{
+      toReturn=`
         <div class="results">
           <a href="${r.url}" class="result-link">
             <h2 class="result-title">${r.title}</h2>
@@ -648,7 +728,8 @@ if (flatResults.length === 0) {
             <div class="snippet">${words}${more}</div>
           </a>
         </div>
-      `;
+      `;}
+     return toReturn;
     }).join('');
 
     // Pagination buttons
@@ -717,7 +798,7 @@ window.addEventListener("popstate", (event) => {
 
 
 
-}
+
               
       /**        
 // old
