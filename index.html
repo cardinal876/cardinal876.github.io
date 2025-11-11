@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rays Book Encyclopedia</title>
   <meta name="description" content="Rays Book is an encyclopedia by the world's leading experts. It provides a way to learn directly from the people at the forefront of their respective fields.">
-
+  
+   <script src="fields.json"></script>
+ <script src="data.js"></script>
   <style>
     :root {
       --bg-color: #ffffff;
@@ -804,7 +806,8 @@ Rays Book is an encyclopedia by the world's leading experts. It provides a way t
 
 <div class="fields-outer">
 <div class="fields-main">
-    <div class="fields-first-main">
+    <div class="fields-first-main menu-btn" data-menu="4">
+           
         Fields
         
     </div>
@@ -898,6 +901,162 @@ Rays Book is an encyclopedia by the world's leading experts. It provides a way t
       
     });
   </script>
+  
+  <script>
+    
+    
+document.addEventListener("DOMContentLoaded", () => {
+  const fieldBtn = document.querySelector('[data-menu="4"]');
+  if (!fieldBtn) return;
+
+  const popup = document.createElement("div");
+  popup.id = "dropdown-4";
+  popup.className = "dropdown";
+  Object.assign(popup.style, {
+    padding: "0.75rem",
+    position: "absolute",
+    display: "none",
+    background: "white",
+    border: "1px solid #ccc",
+    borderRadius: "10px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+    zIndex: "2000",
+  });
+
+  popup.innerHTML = `
+    <input
+      type="text"
+      id="fieldInput"
+      placeholder="Type field name..."
+      style="width:100%;padding:0.5rem;border:1px solid #ccc;border-radius:6px;"
+    />
+    <div id="fieldSuggestions" style="
+      border:1px solid #eee;
+      border-radius:6px;
+      margin-top:0.5rem;
+      max-height:120px;
+      overflow-y:auto;
+      display:none;
+    "></div>
+    <div style="margin-top:0.75rem;text-align:right;">
+      <button id="fieldEnter" style="
+      display: none;
+        background:#007bff;
+        color:white;
+        border:none;
+        padding:0.4rem 0.8rem;
+        border-radius:6px;
+        cursor:pointer;
+        margin-right:0.5rem;
+      ">Enter</button>
+      <button id="fieldClear" style="
+      display:none;
+        background:#eee;
+        border:none;
+        padding:0.4rem 0.8rem;
+        border-radius:6px;
+        cursor:pointer;
+      ">Clear</button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  const fieldInput = popup.querySelector("#fieldInput");
+  const fieldSuggestions = popup.querySelector("#fieldSuggestions");
+  const fieldEnter = popup.querySelector("#fieldEnter");
+  const fieldClear = popup.querySelector("#fieldClear");
+
+  const fields = (typeof departments !== "undefined")
+    ? [...departments] : [];
+
+  function positionPopup() {
+    const rect = fieldBtn.getBoundingClientRect();
+    popup.style.top = rect.bottom + window.scrollY -100 + "px";
+    popup.style.left = rect.left + window.scrollX + 50 + "px";
+  }
+
+  function updateFieldButtonColor() {
+    const hasField = fieldInput.value.trim().length > 0;
+    fieldBtn.style.color = hasField ? "black" : "lightgray";
+  }
+
+
+function showSuggestions(list) {
+  fieldSuggestions.innerHTML = list
+    .map(a => `<div style="padding:0.4rem;cursor:pointer;">${a}</div>`)
+    .join("");
+  fieldSuggestions.style.display = "block";
+
+  fieldSuggestions.querySelectorAll("div").forEach(div => {
+    div.addEventListener("click", () => {
+      fieldInput.value = div.textContent;
+      fieldSuggestions.style.display = "none";
+    //  updateFieldButtonColor();
+    });
+  });
+}
+
+
+
+  fieldBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    const visible = popup.style.display === "block";
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    if (!visible) {
+      positionPopup();
+      popup.style.display = "block";
+      fieldInput.focus();
+      showSuggestions(fields);
+
+    } else {
+      popup.style.display = "none";
+   //   updateFieldButtonColor();
+    }
+  });
+
+  
+  fieldInput.addEventListener("input", () => {
+  const val = fieldInput.value.toLowerCase();
+  const matches = fields
+    .filter(a => a.toLowerCase().includes(val))
+    .slice(0, 10);
+  showSuggestions(matches.length ? matches : fields.slice(0, 10));
+});
+ 
+  
+  
+  
+  
+
+  fieldEnter.addEventListener("click", () => {
+   // updateFieldButtonColor();
+    popup.style.display = "none";
+  });
+
+  fieldClear.addEventListener("click", () => {
+    fieldInput.value = "";
+    fieldSuggestions.style.display = "none";
+   // updateFieldButtonColor();
+  });
+
+  // Click outside — close popup but prevent underlying clicks
+  document.addEventListener("click", e => {
+    if (!popup.contains(e.target) && !fieldBtn.contains(e.target)) {
+      if (popup.style.display === "block") {
+        popup.style.display = "none";
+       // updateFieldButtonColor();
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    }
+  }, true); // capture phase ensures we intercept first
+
+  window.addEventListener("scroll", () => { if (popup.style.display === "block") positionPopup(); });
+  window.addEventListener("resize", () => { if (popup.style.display === "block") positionPopup(); });
+}); 
+</script>
+
+  
   
 
 
