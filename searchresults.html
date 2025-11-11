@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
  <script src="data.js"></script>
-
+<script src="fields.json"></script>
   
 
 <style>
@@ -406,8 +406,8 @@ hr {
     <div class="menu-btn" data-menu="4">Author</div>  
   
   
-  
-        <div class="menu-btn" data-menu="5">Area</div>  
+     <div id="fields-button-one" class="menu-btn" data-menu="7">Field</div>  
+        
       <div class="menu-btn" data-menu="6">Date </div> 
                    <div class="menu-btn" data-menu="3" >Region</div> 
     
@@ -1183,7 +1183,344 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => { if (popup.style.display === "block") positionPopup(); });
 }); 
 </script>
+  <script>
+    
+    
+document.addEventListener("DOMContentLoaded", () => {
+  const authorBtn = document.querySelector('[data-menu="4"]');
+  if (!authorBtn) return;
 
+  const popup = document.createElement("div");
+  popup.id = "dropdown-4";
+  popup.className = "dropdown";
+  Object.assign(popup.style, {
+    padding: "0.75rem",
+    position: "absolute",
+    display: "none",
+    background: "white",
+    border: "1px solid #ccc",
+    borderRadius: "10px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+    zIndex: "2000",
+  });
+
+  popup.innerHTML = `
+    <input
+      type="text"
+      id="authorInput"
+      placeholder="Type field name..."
+      style="width:100%;padding:0.5rem;border:1px solid #ccc;border-radius:6px;"
+    />
+    <div id="authorSuggestions" style="
+      border:1px solid #eee;
+      border-radius:6px;
+      margin-top:0.5rem;
+      max-height:120px;
+      overflow-y:auto;
+      display:none;
+    "></div>
+    <div style="margin-top:0.75rem;text-align:right;">
+      <button id="authorEnter" style="
+        background:#007bff;
+        color:white;
+        border:none;
+        padding:0.4rem 0.8rem;
+        border-radius:6px;
+        cursor:pointer;
+        margin-right:0.5rem;
+      ">Enter</button>
+      <button id="authorClear" style="
+        background:#eee;
+        border:none;
+        padding:0.4rem 0.8rem;
+        border-radius:6px;
+        cursor:pointer;
+      ">Clear</button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  const authorInput = popup.querySelector("#authorInput");
+  const authorSuggestions = popup.querySelector("#authorSuggestions");
+  const authorEnter = popup.querySelector("#authorEnter");
+  const authorClear = popup.querySelector("#authorClear");
+
+  const authors = (typeof documents !== "undefined")
+    ? [...new Set(documents.map(d => d.author).filter(a => a))].sort()
+    : [];
+
+  function positionPopup() {
+    const rect = authorBtn.getBoundingClientRect();
+    popup.style.top = rect.bottom + window.scrollY + "px";
+    popup.style.left = rect.left + window.scrollX + "px";
+  }
+
+  function updateAuthorButtonColor() {
+    const hasAuthor = authorInput.value.trim().length > 0;
+    authorBtn.style.color = hasAuthor ? "black" : "lightgray";
+  }
+
+  authorBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    const visible = popup.style.display === "block";
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    if (!visible) {
+      positionPopup();
+      popup.style.display = "block";
+      authorInput.focus();
+    } else {
+      popup.style.display = "none";
+      updateAuthorButtonColor();
+    }
+  });
+
+  authorInput.addEventListener("input", () => {
+    const val = authorInput.value.toLowerCase();
+    const matches = authors.filter(a => a.toLowerCase().includes(val)).slice(0, 10);
+    if (!val || matches.length === 0) {
+      authorSuggestions.style.display = "none";
+      updateAuthorButtonColor();
+      return;
+    }
+    authorSuggestions.innerHTML = matches
+      .map(a => `<div style="padding:0.4rem;cursor:pointer;">${a}</div>`)
+      .join("");
+    authorSuggestions.style.display = "block";
+
+    authorSuggestions.querySelectorAll("div").forEach(div => {
+      div.addEventListener("click", () => {
+        authorInput.value = div.textContent;
+        authorSuggestions.style.display = "none";
+        updateAuthorButtonColor();
+      });
+    });
+  });
+
+  authorEnter.addEventListener("click", () => {
+    updateAuthorButtonColor();
+    popup.style.display = "none";
+  });
+
+  authorClear.addEventListener("click", () => {
+    authorInput.value = "";
+    authorSuggestions.style.display = "none";
+    updateAuthorButtonColor();
+  });
+
+  
+  // Click outside — close popup, block other clicks except .menu-btns
+document.addEventListener("click", e => {
+  const clickedInsidePopup = popup.contains(e.target);
+  const clickedAuthorBtn = authorBtn.contains(e.target);
+  const clickedMenuBtn = e.target.closest(".menu-btn"); // allow clicks on any menu button
+
+  if (popup.style.display === "block" && !clickedInsidePopup && !clickedAuthorBtn) {
+    popup.style.display = "none";
+    updateAuthorButtonColor();
+
+    // If not a .menu-btn click, block it
+    if (!clickedMenuBtn) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }
+});
+
+  
+  
+
+  window.addEventListener("scroll", () => { if (popup.style.display === "block") positionPopup(); });
+  window.addEventListener("resize", () => { if (popup.style.display === "block") positionPopup(); });
+}); 
+</script>
+
+
+  
+  <script>
+    
+    
+document.addEventListener("DOMContentLoaded", () => {
+  const fieldBtn = document.querySelector('#fields-button-one');
+  if (!fieldBtn) return;
+
+  const popup = document.createElement("div");
+  popup.id = "dropdown-4";
+  popup.className = "dropdown";
+  Object.assign(popup.style, {
+    padding: "0.75rem",
+    position: "absolute",
+    display: "none",
+    background: "white",
+    border: "1px solid #ccc",
+    borderRadius: "10px",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+    zIndex: "2000",
+  });
+
+  popup.innerHTML = `
+    <input
+      type="text"
+      id="fieldInput"
+      placeholder="Type field name..."
+      style="width:100%;padding:0.5rem;border:1px solid #ccc;border-radius:6px;"
+    />
+    <div id="fieldSuggestions" style="
+      border:1px solid #eee;
+      border-radius:6px;
+      margin-top:0.5rem;
+      max-height:120px;
+      overflow-y:auto;
+      display:none;
+    "></div>
+    <div style="margin-top:0.75rem;text-align:right;">
+      <button id="fieldEnter" style="
+      
+        background:#007bff;
+        color:white;
+        border:none;
+        padding:0.4rem 0.8rem;
+        border-radius:6px;
+        cursor:pointer;
+        margin-right:0.5rem;
+      ">Enter</button>
+      <button id="fieldClear" style="
+      
+        background:#eee;
+        border:none;
+        padding:0.4rem 0.8rem;
+        border-radius:6px;
+        cursor:pointer;
+      ">Clear</button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  const fieldInput = popup.querySelector("#fieldInput");
+  const fieldSuggestions = popup.querySelector("#fieldSuggestions");
+  const fieldEnter = popup.querySelector("#fieldEnter");
+  const fieldClear = popup.querySelector("#fieldClear");
+
+  const fields = (typeof departments !== "undefined")
+    ? [...departments] : [];
+
+  
+  function positionPopup() {
+  const rect = fieldBtn.getBoundingClientRect();
+  const popupWidth = popup.offsetWidth || 250; // fallback width before render
+  const margin = 8; // small padding from edge
+
+  // Base position: below button, left-aligned
+  let top = rect.bottom + window.scrollY;
+  let left = rect.left + window.scrollX;
+
+  // Compute if it would overflow right edge
+  const viewportWidth = window.innerWidth;
+  const popupRightEdge = left + popupWidth;
+
+  if (popupRightEdge + margin > viewportWidth) {
+    // Shift so right edge aligns with viewport right edge
+    left = viewportWidth - popupWidth - margin;
+  }
+
+  popup.style.top = `${top}px`;
+  popup.style.left = `${Math.max(left, margin)}px`; // prevent going off left side
+}
+
+
+  function updateFieldButtonColor() {
+    const hasField = fieldInput.value.trim().length > 0;
+    fieldBtn.style.color = hasField ? "black" : "lightgray";
+  }
+
+
+function showSuggestions(list) {
+  fieldSuggestions.innerHTML = list
+    .map(a => `<div style="padding:0.4rem;cursor:pointer;">${a}</div>`)
+    .join("");
+  fieldSuggestions.style.display = "block";
+
+  fieldSuggestions.querySelectorAll("div").forEach(div => {
+    div.addEventListener("click", () => {
+      fieldInput.value = div.textContent;
+      fieldSuggestions.style.display = "none";
+      updateFieldButtonColor();
+    });
+  });
+}
+
+
+
+  fieldBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    const visible = popup.style.display === "block";
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    if (!visible) {
+      positionPopup();
+      popup.style.display = "block";
+      fieldInput.focus();
+      showSuggestions(fields);
+
+    } else {
+      popup.style.display = "none";
+      updateFieldButtonColor();
+    }
+  });
+
+  
+  fieldInput.addEventListener("input", () => {
+  const val = fieldInput.value.toLowerCase();
+  const matches = fields
+    .filter(a => a.toLowerCase().includes(val))
+    .slice(0, 10);
+  showSuggestions(matches.length ? matches : fields.slice(0, 10));
+});
+ 
+  
+  
+  
+  
+
+  fieldEnter.addEventListener("click", () => {
+    updateFieldButtonColor();
+    popup.style.display = "none";
+  });
+
+  fieldClear.addEventListener("click", () => {
+    fieldInput.value = "";
+    fieldSuggestions.style.display = "none";
+   updateFieldButtonColor();
+  });
+
+
+  
+  document.addEventListener("click", e => {
+  const clickedInsidePopup = popup.contains(e.target);
+  const clickedFieldBtn = fieldBtn.contains(e.target);
+  const clickedMenuBtn = e.target.closest(".menu-btn"); // any .menu-btn element
+
+  if (popup.style.display === "block" && !clickedInsidePopup && !clickedFieldBtn) {
+    popup.style.display = "none";
+    updateFieldButtonColor();
+
+    // If it's not one of the allowed .menu-btn buttons, block the click
+    if (!clickedMenuBtn) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }
+});
+
+  
+  
+  
+  
+
+  window.addEventListener("scroll", () => { if (popup.style.display === "block") positionPopup(); });
+  window.addEventListener("resize", () => { if (popup.style.display === "block") positionPopup(); });
+}); 
+</script>
+
+  
 
 </body>
 </html>
