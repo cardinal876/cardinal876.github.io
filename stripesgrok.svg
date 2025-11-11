@@ -9,46 +9,43 @@
     <path id="fullShape" d="M50,350 L550,350 L700,50 L200,50 Z" fill="none" stroke="none"/>
   </defs>
 
-  <!-- Strip direction = vector A→D = (150, -300) -->
-  <!-- Normalize to unit vector for offsets -->
-  <defs>
-    <g id="stripTemplate">
-      <!-- Will be translated for each strip -->
-    </g>
-  </defs>
+  <!-- ==== FOUR STRIPS ==== -->
+  <!-- Base length = 500 px, each strip = 500/4 = 125 px wide (along base) -->
+  <!-- Points calculated by dividing the base into four equal parts -->
+  <!-- Bottom: 50 → 175 → 300 → 425 → 550 -->
+  <!-- Top:    200 → 325 → 450 → 575 → 700 -->
 
-  <!-- ==== THREE STRIPS ==== -->
-  <!-- Base length = 500 px, each strip = 500/3 ≈ 166.67 px wide (along base) -->
-  <!-- Perpendicular offset uses unit normal of strip direction -->
-
-  <!-- Unit vector along strip (A→D) -->
-  <!-- length = sqrt(150² + (-300)²) = sqrt(22500+90000)=sqrt(112500)≈335.41 -->
-  <!-- unit = (150/335.41, -300/335.41) ≈ (0.4472, -0.8944) -->
-  <!-- Normal (rotate 90°) = (0.8944, 0.4472) -->
-
-  <!-- Strip 0 (red) -->
+  <!-- Strip 0 (teal) -->
   <path d="M50,350
-           L216.67,350
-           L366.67,50
+           L175,350
+           L325,50
            L200,50
            Z"
         fill="teal" stroke="#000" stroke-width="0"/>
 
-  <!-- Strip 1 (blue) -->
-  <path d="M216.67,350
-           L383.33,350
-           L533.33,50
-           L366.67,50
+  <!-- Strip 1 (orange) - NEW COLOR -->
+  <path d="M175,350
+           L300,350
+           L450,50
+           L325,50
            Z"
         fill="blue" stroke="#000" stroke-width="0"/>
 
-  <!-- Strip 2 (purple) -->
-  <path d="M383.33,350
+  <!-- Strip 2 (blue) -->
+  <path d="M300,350
+           L425,350
+           L575,50
+           L450,50
+           Z"
+        fill="purple" stroke="#000" stroke-width="0"/>
+
+  <!-- Strip 3 (purple) -->
+  <path d="M425,350
            L550,350
            L700,50
-           L533.33,50
+           L575,50
            Z"
-        fill="#6c3baa" stroke="#000" stroke-width="0"/>
+        fill="#301934" stroke="#000" stroke-width="0"/>
 
   <!-- Full outline (on top) -->
   <path d="M50,350 L550,350 L700,50 L200,50 Z"
