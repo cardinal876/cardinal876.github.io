@@ -1,0 +1,15 @@
+const departments = [
+  "Physics", "Chemistry", "Biology", "Psychology", "Medicine", "Law", "Engineering", "Computer Science", "Political Science", "Economics",
+  "Mathematics", "Philosophy", "History", "Sociology", "Anthropology", "Environmental Science", "Art History", "Linguistics", "Architecture", 
+  "Education", "Music", "English Literature", "Business Administration", "Accounting", "Marketing", "Finance", "International Relations", 
+  "Neuroscience", "Molecular Biology", "Public Policy", "Urban Studies", "Theater", "Dance", "Communication Studies", "Religious Studies", 
+  "African American Studies", "Gender Studies", "Archaeology", "Graphic Design", "Industrial Engineering", "Aerospace Engineering", 
+  "Chemical Engineering", "Electrical Engineering", "Mechanical Engineering", "Civil Engineering", "Environmental Engineering", "Biomedical Engineering", 
+  "Materials Science", "Applied Mathematics", "Data Science", "Computational Biology", "Artificial Intelligence", "Cybersecurity", "Information Systems", 
+  "Philosophy of Science", "Public Health", "Global Studies", "Chemistry of Materials", "Environmental Policy", "Urban Planning", "Human Resources", 
+  "Sports Management", "Supply Chain Management", "Agricultural Science", "Veterinary Medicine", "Nursing", "Dentistry", "Optometry", "Pharmacy", 
+  "Social Work", "Hotel and Restaurant Management", "Hospitality Management", "Marine Biology", "Oceanography", "Astronomy", "Astronomy & Astrophysics", 
+  "Forensic Science", "Homeland Security", "Geography", "Geology", "Meteorology", "Earth Sciences", "Food Science", "Textile Engineering", "Library Science", 
+  "Information Technology", "Public Administration", "Human Development", "School of Law", "Speech-Language Pathology", "Rehabilitation Sciences", 
+  "Women's Studies", "Queer Studies", "Cognitive Science", "Robotics", "Genetic Engineering", "Toxicology", "Pharmacology", "Biochemistry"
+];
