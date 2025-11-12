@@ -209,10 +209,7 @@ hr {
 
 
   
- /* flex: 1;
-    flex-grow: 1;  Makes the results section grow and fill available space */
- 
- 
+
 
 
 
@@ -290,121 +287,9 @@ hr {
 
  <header id="header-container"></header>
 
-<!--
-
-<div class="results">
-  <a href="result1005.html" class="result-link">
-    <h2 class="result-title">Relativity</h2>
-    <div class="author"></div>
-    <div class="snippet">
-        Relativity is one of the most important and far-reaching ideas in modern science. It changed the way people understand space, time, gravity, and even the nature of the universe itself.
-    </div>
-  </a>
-</div>
-
--->
 
 
 
-
-<!--
-<div class="results-top">
-    <div>Sort</div>  
-    <div>Type </div>  
-      <div>Field </div> 
-        <div>Author </div> 
-        <div>Date  </div> 
-       
-         <div>Region</div>
-        
-
-</div> 
-
--->
-
-
-<!--
-
-<div class="results-top">
-  <div class="custom-select" data-default="Sort">
-    <div class="select-label">Sort</div>
-    <div class="select-dropdown">
-      <div data-value="clear">Clear</div>
-      <div data-value="publish">Publish Date</div>
-      <div data-value="views">Views</div>
-      <div data-value="relevance">Relevance</div>
-    </div>
-  </div>
-
-  <div class="custom-select" data-default="Type">
-    <div class="select-label">Type</div>
-    <div class="select-dropdown">
-     <div data-value="clear">Clear</div>
-      <div data-value="event">Event</div>
-      <div data-value="biography">Biography</div>
-          <div data-value="thing">Thing</div>
-      <div data-value="place">Place</div>
-      
-         <div data-value="concept">Concept</div>
-      <div data-value="other">Other</div>
-      
-      
-    </div>
-  </div>
-  
-  <div class="custom-select" data-default="Author" data-type="input">
-  <div class="select-label">Author</div>
-
-  <div class="select-dropdown author-dropdown">
-    <button type="button" class="author-clear">Clear</button>
-    <input type="text" class="author-input" placeholder="Author Name" />
-    <button type="button" class="author-submit">Enter</button>
-  </div>
-</div>
-
-
-  <div class="custom-select" data-default="Area">
-    <div class="select-label">Area</div>
-    <div class="select-dropdown">
-         <div data-value="clear">Clear</div>
-      <div data-value="science">Science</div>
-      <div data-value="history">History</div>
-      <div data-value="art">Art</div>
-        <div data-value="technology">Technology</div>
-          <div data-value="other">Other</div>
-    </div>
-  </div>
-
-
-  
-    <div class="custom-select" data-default="Date">
-    <div class="select-label">Date</div>
-    <div class="select-dropdown">
-      <div data-value="clear">Clear</div>
-      <div data-value="before0">Before 0CE</div>
-      <div data-value="first">0 CE to 1000 CE</div>
-      <div data-value="second">1000 CE to 2000 CE</div>
-      <div data-value="third">2000 to Present</div>
-    </div>
-  </div>
-  
-    <div class="custom-select" data-default="Region">
-    <div class="select-label">Region</div>
-    <div class="select-dropdown">
-     <div data-value="clear">Clear</div>
-      <div data-value="namerica">North America</div>
-      <div data-value="samerica">South America</div>
-            <div data-value="africa">Africa</div>
-      <div data-value="europe">Europe</div>
-            <div data-value="asia">Asia</div>
-      <div data-value="australia">Australia</div>
-    </div>
-  </div>
-  
-  
-</div>
-
--->
 
 <div class="results-top scroll-row">
      <div class="menu-btn" data-menu="1">Sort  </div> 
@@ -414,7 +299,7 @@ hr {
     <div class="menu-btn" data-menu="4">Author</div>  
   
   
-     <div id="fields-button-one" class="menu-btn" data-menu="7">Field</div>  
+     <div id="fields-button-one"  data-menu="7">Field</div>  
         
       <div class="menu-btn" data-menu="6">Date </div> 
                    <div class="menu-btn" data-menu="3" >Region</div> 
@@ -503,15 +388,12 @@ hr {
 
   
   <script>
-    // Sample documents for FlexSearch
- /**   const documents = [
-      { id: 1, title: "Apple", content: "A red or green fruit" },
-      { id: 2, title: "Banana", content: "A long yellow fruit" },
-      { id: 3, title: "Cherry", content: "Small red fruit" },
-      { id: 4, title: "Date", content: "Sweet brown fruit" }
-    ];
-    **/
 
+      
+      let flatResults;
+  let currentPage;
+  let firstLoad;
+  let renderPage; 
 
     
     // Create FlexSearch index
@@ -519,7 +401,7 @@ const index = new FlexSearch.Document({
   document: {
     id: "id",
     index: ["combined"], // only search this field
-    store: ["id", "title", "content", "author","description2", "url"] // keep others for displaying
+    store: ["id", "title", "content", "field", "author","description2", "url"] // keep others for displaying
   }
 });
 
@@ -528,10 +410,11 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
   documents.forEach(doc => {
     index.add({
       id: doc.id,
-      combined: `${doc.title} ${doc.content} ${doc.description2} ${doc.url || ''}`, // merged searchable text
+      combined: `${doc.title} ${doc.content} ${doc.field} ${doc.description2} ${doc.url || ''}`, // merged searchable text
       title: doc.title,
       author: doc.author,
       content: doc.content,
+      field: doc.field,
       url: doc.url,
       description2: doc.description2
     });
@@ -584,7 +467,7 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
               
               
 
-let flatResults;
+
 
 if (!query) {
   // No search term — show all documents
@@ -592,6 +475,7 @@ if (!query) {
     id: doc.id,
     title: doc.title,
     content: doc.content,
+    field: doc.field,
     url: doc.url,
     author: doc.author,
     description2: doc.description2
@@ -639,6 +523,7 @@ if (flatResults.length === 0) {
     author: "View all",
     description2: "Other results:",
     content: "",
+    field: "",
     url: "#"
   };
 
@@ -650,6 +535,7 @@ if (flatResults.length === 0) {
         author: doc.author,
         description2: doc.description2,
         content: doc.content,
+        field: doc.field,
         url: doc.url
       }))
     : [];
@@ -668,13 +554,13 @@ if (flatResults.length === 0) {
 
 
   const RESULTS_PER_PAGE = 4;
-  let currentPage = 1;
+  currentPage = 1;
   
-  let firstLoad = true;
+  firstLoad = true;
 
   // Helper: render results for a specific page
  
-      function renderPage(page, skipHistory = false) {
+  renderPage =  function (page, skipHistory = false) {
 
     const start = (page - 1) * RESULTS_PER_PAGE;
     const end = start + RESULTS_PER_PAGE;
@@ -737,10 +623,7 @@ if (flatResults.length === 0) {
     let paginationHTML = `<div class="pagination" style="text-align:center; margin-top:1rem;">`;
 
     // Prev button
-  //  paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1}">Prev</button>`;
-    
-    // First and Prev buttons
-//paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="1">First</button>`;
+
 paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1}">Prev</button>`;
 
 
@@ -759,12 +642,7 @@ paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1
 
     resultsContainer.innerHTML = htmlResults + paginationHTML;
     
-    // Call this line inside renderPage, right after resultsContainer.innerHTML = ...
-/**if (!skipHistory) {
-  const newUrl = window.location.pathname + "?q=" + encodeURIComponent(searchInput.value.trim()) + (page > 1 ? `&page=${page}` : '');
-  history.pushState({ page }, "", newUrl);
-}
-**/
+
 
   if (!skipHistory && !firstLoad) {
     const newUrl = window.location.pathname + "?q=" + encodeURIComponent(searchInput.value.trim()) + (page > 1 ? `&page=${page}` : '');
@@ -800,42 +678,7 @@ window.addEventListener("popstate", (event) => {
 
 
               
-      /**        
-// old
-              // Show results
-              if (flatResults.length === 0) {
-                resultsContainer.innerHTML = "<p>No results found</p>";
-              } else {
-                
-                
-                
-                
-                const WORDS_TO_SHOW = 30; // <-- adjustable number of words
-
-resultsContainer.innerHTML = flatResults.map(r => {
-  // Split content into words and take the first N words
-  const words = r.content.split(/\s+/).slice(0, WORDS_TO_SHOW).join(' ');
-  const more = r.content.split(/\s+/).length > WORDS_TO_SHOW ? "..." : "";
-  
-  return `
-    
-    <div class="results">
-  <a href="${r.url}" class="result-link">
-    <h2 class="result-title">${r.title}</h2>
-    <div class="author"></div>
-    <div class="snippet">${words}${more}</div>
-  </a>
-</div>
-  `;
-}).join('');
-                
-                
-                
-                
-              }
-              
-              
-              **/
+      
               
               
               
@@ -899,139 +742,7 @@ searchForm.dispatchEvent(new Event('submit'));
       
       
     });
- /*   
-    
-    // General custom select logic
-document.querySelectorAll('.custom-select').forEach(select => {
-  const label = select.querySelector('.select-label');
-  const dropdown = select.querySelector('.select-dropdown');
-  const defaultText = select.dataset.default;
-  let selectedValue = null;
 
-  // Toggle dropdown on label click
-  label.addEventListener('click', (e) => {
-    const isVisible = dropdown.style.display === 'flex';
-    // Close all other dropdowns
-    document.querySelectorAll('.select-dropdown').forEach(dd => dd.style.display = 'none');
-    dropdown.style.display = isVisible ? 'none' : 'flex';
-  });
-
-  // Handle option selection
-  dropdown.querySelectorAll('div[data-value]').forEach(option => {
-    option.addEventListener('click', (e) => {
-      selectedValue = option.dataset.value;
-
-      // Reset previous selection
-      dropdown.querySelectorAll('div').forEach(o => o.classList.remove('selected'));
-      
-
-      // Update label text
-      if (selectedValue === 'clear' || selectedValue === 'all') {
-        label.textContent = defaultText;
-        select.classList.remove('active');
-      } else {
-          option.classList.add('selected');
-        label.textContent = defaultText; // Label remains same, only highlight changes
-        select.classList.add('active');
-      }
-
-      // Close dropdown
-      dropdown.style.display = 'none';
-
-      // TODO: trigger search/filter update here if needed
-      // e.g., updateSearch({sort:selectedSort, type:selectedType, ...});
-    });
-  });
-});
-
-// Close dropdowns if click outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.custom-select')) {
-    document.querySelectorAll('.select-dropdown').forEach(dd => dd.style.display = 'none');
-  }
-});
- */
- /*
- document.querySelectorAll('.custom-select').forEach(select => {
-  const label = select.querySelector('.select-label');
-  const dropdown = select.querySelector('.select-dropdown');
-  const defaultText = select.dataset.default;
-  const type = select.dataset.type || 'dropdown';
-  let selectedValue = null;
-
-  // Toggle dropdown/input visibility
-  label.addEventListener('click', (e) => {
-    const isVisible = dropdown.style.display === 'flex';
-    document.querySelectorAll('.select-dropdown').forEach(dd => dd.style.display = 'none');
-    dropdown.style.display = isVisible ? 'none' : 'flex';
-  });
-
-  if (type === 'dropdown') {
-    // Handle dropdown options (same as before)
-    dropdown.querySelectorAll('div[data-value]').forEach(option => {
-      option.addEventListener('click', (e) => {
-        selectedValue = option.dataset.value;
-        dropdown.querySelectorAll('div').forEach(o => o.classList.remove('selected'));
-        if (selectedValue !== 'clear' && selectedValue !== 'all') {
-          option.classList.add('selected');
-        }
-        if (selectedValue === 'clear' || selectedValue === 'all') {
-          label.textContent = defaultText;
-          select.classList.remove('active');
-        } else {
-          label.textContent = defaultText;
-          select.classList.add('active');
-        }
-        dropdown.style.display = 'none';
-      });
-    });
-  } else if (type === 'input') {
-    const input = dropdown.querySelector('.author-input');
-    const submit = dropdown.querySelector('.author-submit');
-    const clearBtn = dropdown.querySelector('.author-clear');
-
-    const updateLabelState = () => {
-      if (input.value.trim() === '') {
-        select.classList.remove('active');
-        label.textContent = defaultText;
-      } else {
-        select.classList.add('active');
-        label.textContent = defaultText;
-      }
-    };
-
-    submit.addEventListener('click', () => {
-      updateLabelState();
-      dropdown.style.display = 'none';
-      // TODO: trigger search update
-    });
-
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        updateLabelState();
-        dropdown.style.display = 'none';
-        // TODO: trigger search update
-      }
-    });
-
-    clearBtn.addEventListener('click', () => {
-      input.value = '';
-      updateLabelState();
-      input.focus();
-      // TODO: trigger search update
-    });
-  }
-});
-
-// Close dropdowns if click outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.custom-select')) {
-    document.querySelectorAll('.select-dropdown').forEach(dd => dd.style.display = 'none');
-  }
-});
-
-*/
 
   </script>
   
@@ -1561,15 +1272,43 @@ function showSuggestions(list) {
   
   
 
-  fieldEnter.addEventListener("click", () => {
+    fieldEnter.addEventListener("click", () => {
     updateFieldButtonColor();
     popup.style.display = "none";
+
+    const selectedField = fieldInput.value.trim().toLowerCase();
+    
+    
+    console.log(selectedField)
+    documents.forEach(x=>
+        
+        
+        console.log(x.field)
+        );
+    flatResults = selectedField
+      ? documents.filter(doc => (doc.field || "").toLowerCase().includes(selectedField))
+      : documents.map(doc => ({ ...doc }));
+
+ //  if (typeof renderPage === "function") {
+        
+        
+      currentPage = 1;
+      renderPage(currentPage);
+//   }
   });
 
+
+  
   fieldClear.addEventListener("click", () => {
     fieldInput.value = "";
     fieldSuggestions.style.display = "none";
-   updateFieldButtonColor();
+    updateFieldButtonColor();
+
+    flatResults = documents.map(doc => ({ ...doc }));
+    if (typeof renderPage === "function") {
+      currentPage = 1;
+      renderPage(currentPage);
+    }
   });
 
 
