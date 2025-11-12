@@ -1240,22 +1240,29 @@ function showSuggestions(list) {
   });
 }
 
-
-
-  fieldBtn.addEventListener("click", e => {
-    e.stopPropagation();
-    const visible = popup.style.display === "block";
-    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
-    if (!visible) {
-      positionPopup();
+let showFieldsFunc = function(){
+    positionPopup();
       popup.style.display = "block";
       fieldInput.focus();
       showSuggestions(fields);
+}
+
+let showFields = function (){
+    
+    const visible = popup.style.display === "block";
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    if (!visible) {
+      showFieldsFunc();
 
     } else {
       popup.style.display = "none";
       updateFieldButtonColor();
     }
+}
+
+  fieldBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    showFields();
   });
 
   
@@ -1301,14 +1308,18 @@ function showSuggestions(list) {
   
   fieldClear.addEventListener("click", () => {
     fieldInput.value = "";
-    fieldSuggestions.style.display = "none";
+   // fieldSuggestions.style.display = "none";
     updateFieldButtonColor();
+    
+    showFieldsFunc();
 
     flatResults = documents.map(doc => ({ ...doc }));
-    if (typeof renderPage === "function") {
+  //  if (typeof renderPage === "function") {
+  
+  console.log(flatResults)
       currentPage = 1;
       renderPage(currentPage);
-    }
+  //  }
   });
 
 
