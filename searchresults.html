@@ -287,7 +287,7 @@ hr {
 
  <header id="header-container"></header>
 
-
+ 
 
 
 
@@ -822,7 +822,7 @@ document.addEventListener("click", e => {
   const anyOpenDropdown = [...document.querySelectorAll(".dropdown")]
     .some(d => d.style.display === "block");
 
-  if (anyOpenDropdown && !e.target.closest(".menu-btn") && !e.target.closest(".dropdown")) {
+  if (anyOpenDropdown && !e.target.closest(".results-top") && !e.target.closest(".dropdown")) {
     document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
     openMenu = null;
 
@@ -1104,7 +1104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("click", e => {
   const clickedInsidePopup = popup.contains(e.target);
   const clickedAuthorBtn = authorBtn.contains(e.target);
-  const clickedMenuBtn = e.target.closest(".menu-btn"); // allow clicks on any menu button
+  const clickedMenuBtn = e.target.closest(".results-top"); // allow clicks on any menu button
 
   if (popup.style.display === "block" && !clickedInsidePopup && !clickedAuthorBtn) {
     popup.style.display = "none";
@@ -1327,7 +1327,7 @@ let showFields = function (){
   document.addEventListener("click", e => {
   const clickedInsidePopup = popup.contains(e.target);
   const clickedFieldBtn = fieldBtn.contains(e.target);
-  const clickedMenuBtn = e.target.closest(".menu-btn"); // any .menu-btn element
+  const clickedMenuBtn = e.target.closest(".results-top"); // any .menu-btn element
 
   if (popup.style.display === "block" && !clickedInsidePopup && !clickedFieldBtn) {
     popup.style.display = "none";
