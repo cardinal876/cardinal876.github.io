@@ -10,6 +10,16 @@
 <script src="fields.json"></script>
   
 
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+
+  
+  
 <style>
 :root {
   --bg-color: #ffffff;
@@ -25,7 +35,7 @@ body {
     visibility:hidden;
   margin: 0;
   padding: 0;
-  font-family: system-ui, sans-serif;
+  
   background-color: var(--bg-color);
   color: var(--text-color);
   display: flex;
@@ -277,6 +287,19 @@ hr {
   .dropdown div:hover {
 
   }
+  
+  
+  
+  html, header, body, footer, input::placeholder{
+    
+    
+  font-family: 'Source Sans Pro', sans-serif;
+
+
+
+  
+}
+
 </style> 
 
 
@@ -394,6 +417,11 @@ hr {
   let currentPage;
   let firstLoad;
   let renderPage; 
+  
+  // Filtered subset of flatResults
+let filteredResults = [];
+let useFilter =false;
+
 
     
     // Create FlexSearch index
@@ -401,7 +429,7 @@ const index = new FlexSearch.Document({
   document: {
     id: "id",
     index: ["combined"], // only search this field
-    store: ["id", "title", "content", "field", "author","description2", "url"] // keep others for displaying
+    store: ["id", "title", "content", "date","region", "type", "field", "author","description2", "url"] // keep others for displaying
   }
 });
 
@@ -415,6 +443,9 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
       author: doc.author,
       content: doc.content,
       field: doc.field,
+      date:doc.date,
+      region:doc.region,
+      type:doc.type,
       url: doc.url,
       description2: doc.description2
     });
@@ -476,6 +507,9 @@ if (!query) {
     title: doc.title,
     content: doc.content,
     field: doc.field,
+    date:doc.date,
+      region:doc.region,
+      type:doc.type,
     url: doc.url,
     author: doc.author,
     description2: doc.description2
@@ -536,6 +570,9 @@ if (flatResults.length === 0) {
         description2: doc.description2,
         content: doc.content,
         field: doc.field,
+        date:doc.date,
+      region:doc.region,
+      type:doc.type,
         url: doc.url
       }))
     : [];
@@ -561,10 +598,25 @@ if (flatResults.length === 0) {
   // Helper: render results for a specific page
  
   renderPage =  function (page, skipHistory = false) {
+      
+      
+      console.log("render called")
+      console.log(filteredResults.length)
+     
+    let activeResults = flatResults; 
+     
+     if (useFilter){
+         console.log("use filter ")
+         activeResults = filteredResults;
+         useFilter= false;
+     }
+      
+    
+    console.log(filteredResults.length)
 
     const start = (page - 1) * RESULTS_PER_PAGE;
     const end = start + RESULTS_PER_PAGE;
-    const pageResults = flatResults.slice(start, end);
+    const pageResults = activeResults.slice(start, end);
 
     const WORDS_TO_SHOW = 30;
     const htmlResults = pageResults.map(r => {
@@ -619,7 +671,7 @@ if (flatResults.length === 0) {
     }).join('');
 
     // Pagination buttons
-    const totalPages = Math.ceil(flatResults.length / RESULTS_PER_PAGE);
+    const totalPages = Math.ceil(activeResults.length / RESULTS_PER_PAGE);
     let paginationHTML = `<div class="pagination" style="text-align:center; margin-top:1rem;">`;
 
     // Prev button
@@ -747,6 +799,163 @@ searchForm.dispatchEvent(new Event('submit'));
   </script>
   
   <script>
+      
+      
+      
+//// --- MENU FILTER BUTTONS CODE --- ////
+
+const buttons = document.querySelectorAll(".menu-btn");
+let openMenu = null;
+
+// Track active filters (excluding author + field)
+const activeFilters = {
+  type: null,
+  region: null,
+  date: null,
+  sort: null
+};
+
+
+// Helper: Date range logic
+function dateMatchesFilter(dateStr, filter) {
+  if (!dateStr) return false;
+  const year = parseInt(dateStr.match(/-?\d+/)?.[0]) || 0;
+  if (filter === "Before 0CE") return year < 0;
+  if (filter === "0 CE to 1000 CE") return year >= 0 && year <= 1000;
+  if (filter === "1000 CE to 2000 CE") return year > 1000 && year <= 2000;
+  if (filter === "2000 to Present") return year > 2000;
+  return true;
+}
+
+// Apply filters to current flatResults and re-render
+function applyFilters() {
+  if (!flatResults) return;
+
+  filteredResults = flatResults.filter(doc => {
+      
+      
+   console.log("filt " + activeFilters.type)   
+      
+    return (!activeFilters.type || doc.type.toLowerCase() === activeFilters.type.toLowerCase())
+        && (!activeFilters.region || doc.region.toLowerCase() === activeFilters.region.toLowerCase())
+        && (!activeFilters.date || dateMatchesFilter(doc.date.toLowerCase(), activeFilters.date.toLowerCase()));
+  });
+
+  // Sorting
+  if (activeFilters.sort === "Publish Date") {
+    filteredResults.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  } else if (activeFilters.sort === "Views") {
+    filteredResults.sort((a, b) => (b.views || 0) - (a.views || 0));
+  } // Relevance = keep natural order
+
+
+if(activeFilters.type || activeFilters.region || activeFilters.date){
+
+useFilter =true;
+
+}
+
+
+  renderPage(1);
+}
+
+// Main dropdown logic
+buttons.forEach(btn => {
+  btn.addEventListener("click", e => {
+
+    // Skip author / field menus
+    if (btn.dataset.menu === "4" || btn.dataset.menu === "7") return;
+
+    const menu = document.getElementById("dropdown-" + btn.dataset.menu);
+    const rect = btn.getBoundingClientRect();
+
+    // Close previously open dropdown
+    if (openMenu && openMenu !== menu) openMenu.style.display = "none";
+
+    // Toggle dropdown visibility
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+      openMenu = null;
+      return;
+    }
+
+    menu.style.display = "block";
+    menu.style.top = rect.bottom + "px";
+
+    const menuWidth = menu.offsetWidth;
+    const viewportWidth = window.innerWidth;
+    let leftPos = rect.left;
+    if (rect.left + menuWidth > viewportWidth) leftPos = viewportWidth - menuWidth;
+    if (leftPos < 0) leftPos = 0;
+    menu.style.left = leftPos + "px";
+
+    // Add Clear option if already selected
+    if (btn.dataset.selected === "true") {
+      if (!menu.querySelector(".clear-option")) {
+        const clearDiv = document.createElement("div");
+        clearDiv.textContent = "Clear";
+        clearDiv.classList.add("clear-option");
+        clearDiv.style.color = "";
+        menu.prepend(clearDiv);
+
+        clearDiv.addEventListener("click", () => {
+          btn.style.color = "lightgray";
+          btn.dataset.selected = "false";
+          clearDiv.remove();
+          menu.style.display = "none";
+
+          // Reset correct filter field
+          if (btn.dataset.menu === "1") activeFilters.sort = null;
+          if (btn.dataset.menu === "2") activeFilters.type = null;
+          if (btn.dataset.menu === "3") activeFilters.region = null;
+          if (btn.dataset.menu === "6") activeFilters.date = null;
+
+          applyFilters();
+        });
+      }
+    }
+
+    // Handle each option click
+    menu.querySelectorAll("div").forEach(option => {
+      if (!option.classList.contains("clear-option")) {
+        option.onclick = () => {
+          btn.style.color = "black";
+          btn.dataset.selected = "true";
+          menu.style.display = "none";
+
+          // Update activeFilters by menu type
+          if (btn.dataset.menu === "1") activeFilters.sort = option.textContent.trim();
+          if (btn.dataset.menu === "2") activeFilters.type = option.textContent.trim();
+          if (btn.dataset.menu === "3") activeFilters.region = option.textContent.trim();
+          if (btn.dataset.menu === "6") activeFilters.date = option.textContent.trim();
+
+          applyFilters();
+        };
+      }
+    });
+
+    openMenu = menu;
+  });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", e => {
+  const anyOpenDropdown = [...document.querySelectorAll(".dropdown")]
+    .some(d => d.style.display === "block");
+
+  if (anyOpenDropdown && !e.target.closest(".results-top") && !e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+    openMenu = null;
+    e.stopPropagation();
+    e.preventDefault();
+  }
+}, true);
+
+
+      
+   /// menu button code   
+      
+      /*
 const buttons = document.querySelectorAll(".menu-btn");
 let openMenu = null;
 
@@ -832,7 +1041,7 @@ document.addEventListener("click", e => {
   }
 }, true); // capture phase ensures we intercept first
 
-
+*/
 </script>
 
 <script>
