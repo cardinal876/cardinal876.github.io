@@ -429,7 +429,7 @@ const index = new FlexSearch.Document({
   document: {
     id: "id",
     index: ["combined"], // only search this field
-    store: ["id", "title", "content", "date","region", "type", "field", "author","description2", "url"] // keep others for displaying
+    store: ["id", "title", "content", "date","region", "type", "field", "author","description2", "url", "views"] // keep others for displaying
   }
 });
 
@@ -442,6 +442,7 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
       title: doc.title,
       author: doc.author,
       content: doc.content,
+      views: doc.views,
       field: doc.field,
       date:doc.date,
       region:doc.region,
@@ -506,6 +507,7 @@ if (!query) {
     id: doc.id,
     title: doc.title,
     content: doc.content,
+    views: doc.views,
     field: doc.field,
     date:doc.date,
       region:doc.region,
@@ -569,6 +571,7 @@ if (flatResults.length === 0) {
         author: doc.author,
         description2: doc.description2,
         content: doc.content,
+        views: doc.views,
         field: doc.field,
         date:doc.date,
       region:doc.region,
@@ -812,7 +815,8 @@ const activeFilters = {
   type: null,
   region: null,
   date: null,
-  sort: null
+  sort: null,
+  author: null
 };
 
 
@@ -837,27 +841,41 @@ function applyFilters() {
   filteredResults = flatResults.filter(doc => {
       
       
-   console.log("filt " + activeFilters.date)   
+   console.log("filt " + activeFilters.author)   
+   
+   console.log("doc " + doc.author)   
+      
       
     return (!activeFilters.type || doc.type.toLowerCase() === activeFilters.type.toLowerCase())
         && (!activeFilters.region || doc.region.toLowerCase() === activeFilters.region.toLowerCase())
-        && (!activeFilters.date || dateMatchesFilter(doc.date.toLowerCase(), activeFilters.date));
+        && (!activeFilters.date || dateMatchesFilter(doc.date.toLowerCase(), activeFilters.date))
+        && (!activeFilters.author || doc.author.toLowerCase() === activeFilters.author.toLowerCase());;
   });
   
   console.log("len" +filteredResults.length)
-
+console.log("");
   // Sorting
   if (activeFilters.sort === "Publish Date") {
-    filteredResults.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+      console.log("date sort");
+      
+      filteredResults.forEach(x => console.log(x.date))
+      
+    filteredResults.sort((a, b) => {
+  if (a.date > b.date) return -1;
+  if (a.date < b.date) return 1;
+  return 0;
+});
   } else if (activeFilters.sort === "Views") {
-    filteredResults.sort((a, b) => (b.views || 0) - (a.views || 0));
+    filteredResults.sort((a, b) => (b.views  - a.views));
   } // Relevance = keep natural order
 
 
-if(activeFilters.type || activeFilters.region || activeFilters.date){
+if(activeFilters.type || activeFilters.region || activeFilters.date || activeFilters.author || activeFilters.sort){
 console.log("use filter is true")
 useFilter =true;
 
+}else{
+    console.log(" use filter false")
 }
 
 
@@ -1050,7 +1068,7 @@ document.addEventListener("click", e => {
 </script>
 
 <script>
-    
+    /*
     
 document.addEventListener("DOMContentLoaded", () => {
   const authorBtn = document.querySelector('[data-menu="4"]');
@@ -1188,6 +1206,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => { if (popup.style.display === "block") positionPopup(); });
   window.addEventListener("resize", () => { if (popup.style.display === "block") positionPopup(); });
 }); 
+*/
 </script>
   <script>
     
@@ -1260,6 +1279,47 @@ document.addEventListener("DOMContentLoaded", () => {
     popup.style.top = rect.bottom + window.scrollY + "px";
     popup.style.left = rect.left + window.scrollX + "px";
   }
+  
+  
+  
+  
+  
+  
+  
+  function applyAuthorFilter() {
+    const val = authorInput.value.trim();
+    activeFilters.author = val || null; // null if empty
+    applyFilters(); // use the existing function to filter + render
+}
+/*
+
+authorEnter.addEventListener("click", () => {
+    applyAuthorFilter();
+    popup.style.display = "none";
+});
+
+authorSuggestions.querySelectorAll("div").forEach(div => {
+    div.addEventListener("click", () => {
+        authorInput.value = div.textContent;
+        applyAuthorFilter();
+        authorSuggestions.style.display = "none";
+    });
+});
+
+authorClear.addEventListener("click", () => {
+    authorInput.value = "";
+    activeFilters.author = null;
+    authorSuggestions.style.display = "none";
+    applyFilters();
+});
+
+*/
+  
+  
+  
+  
+  
+  
 
   function updateAuthorButtonColor() {
     const hasAuthor = authorInput.value.trim().length > 0;
@@ -1296,6 +1356,7 @@ document.addEventListener("DOMContentLoaded", () => {
     authorSuggestions.querySelectorAll("div").forEach(div => {
       div.addEventListener("click", () => {
         authorInput.value = div.textContent;
+        applyAuthorFilter();
         authorSuggestions.style.display = "none";
         updateAuthorButtonColor();
       });
@@ -1304,6 +1365,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   authorEnter.addEventListener("click", () => {
     updateAuthorButtonColor();
+    applyAuthorFilter();
     popup.style.display = "none";
   });
 
@@ -1311,6 +1373,8 @@ document.addEventListener("DOMContentLoaded", () => {
     authorInput.value = "";
     authorSuggestions.style.display = "none";
     updateAuthorButtonColor();
+    activeFilters.author = null;
+    applyFilters();
   });
 
   
