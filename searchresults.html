@@ -820,6 +820,9 @@ const activeFilters = {
 function dateMatchesFilter(dateStr, filter) {
   if (!dateStr) return false;
   const year = parseInt(dateStr.match(/-?\d+/)?.[0]) || 0;
+  
+  console.log("year " +year)
+  console.log("year filter" + filter)
   if (filter === "Before 0CE") return year < 0;
   if (filter === "0 CE to 1000 CE") return year >= 0 && year <= 1000;
   if (filter === "1000 CE to 2000 CE") return year > 1000 && year <= 2000;
@@ -834,12 +837,14 @@ function applyFilters() {
   filteredResults = flatResults.filter(doc => {
       
       
-   console.log("filt " + activeFilters.type)   
+   console.log("filt " + activeFilters.date)   
       
     return (!activeFilters.type || doc.type.toLowerCase() === activeFilters.type.toLowerCase())
         && (!activeFilters.region || doc.region.toLowerCase() === activeFilters.region.toLowerCase())
-        && (!activeFilters.date || dateMatchesFilter(doc.date.toLowerCase(), activeFilters.date.toLowerCase()));
+        && (!activeFilters.date || dateMatchesFilter(doc.date.toLowerCase(), activeFilters.date));
   });
+  
+  console.log("len" +filteredResults.length)
 
   // Sorting
   if (activeFilters.sort === "Publish Date") {
@@ -850,7 +855,7 @@ function applyFilters() {
 
 
 if(activeFilters.type || activeFilters.region || activeFilters.date){
-
+console.log("use filter is true")
 useFilter =true;
 
 }
