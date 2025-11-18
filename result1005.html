@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
  
   
-  
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Merriweather&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg-color: #ffffff;
@@ -291,10 +292,16 @@
   <div>Large</div>
 </div>
 
+
 <div class="dropdown" id="dropdown-4">
-  <div>Helvetica</div>
-  <div>Times</div>
-  <div>Roboto</div>
+    
+  <div data-font="Roboto">Roboto</div>
+  <div data-font="Open Sans">Open Sans</div>
+  <div data-font="Lora">Lora</div>
+  <div data-font="Merriweather">Merriweather</div>
+</div>
+
+
 </div>
 
 <div class="dropdown" id="dropdown-5">
@@ -608,6 +615,14 @@ buttons.forEach(btn => {
             oneRem +"px"
         
           }
+          
+          if (btn.dataset.menu === "4") { // Font menu
+    const article = document.querySelector(".article");
+
+    // Reset to default font
+    article.style.fontFamily = ""; // empty string removes inline style
+}
+
             
           });
         }
@@ -645,6 +660,19 @@ buttons.forEach(btn => {
             article.style.fontSize = oneRem + 2 + "px"
         }
     }
+    
+    
+    // --- FONT FAMILY LOGIC for "Font" (menu 4) ---
+
+if (btn.dataset.menu === "4") {
+    const article = document.querySelector(".article");
+    const fontName = option.dataset.font; // use data-font attribute
+    article.style.fontFamily = `'${fontName}', ${fontName.includes('Sans') ? 'sans-serif' : 'serif'}`;
+}
+
+
+
+
 };
 
           
