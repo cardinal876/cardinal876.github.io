@@ -326,9 +326,9 @@
 </div>
 
 <div class="dropdown" id="dropdown-5">
-  <div>Small</div>
-  <div>Medium</div>
-  <div>Large</div>
+  <div data-height="1.0">Small</div>
+  <div data-height="1.8">Medium</div>
+  <div data-height="2.5">Large</div>
 </div>
 
 <div class="dropdown" id="dropdown-6">
@@ -643,6 +643,12 @@ buttons.forEach(btn => {
     // Reset to default font
     article.style.fontFamily = ""; // empty string removes inline style
 }
+      if (btn.dataset.menu === "5") { // Font menu
+    const article = document.querySelector(".article");
+
+    // Reset to default font
+    article.style.lineHeight = ""; // empty string removes inline style
+}
 
             
           });
@@ -689,6 +695,33 @@ if (btn.dataset.menu === "4") {
     const article = document.querySelector(".article");
     const fontName = option.dataset.font; // use data-font attribute
     article.style.fontFamily = `'${fontName}', ${fontName.includes('Sans') ? 'sans-serif' : 'serif'}`;
+}
+
+if (btn.dataset.menu === "5") {
+    
+    const par = document.querySelector("p");
+    console.log(par.style.lineHeight)
+        
+    const article = document.querySelector(".article");
+    
+    console.log( article.style.lineHeight)
+    
+
+    let multiplier = option.dataset.height; // use data-font attribute
+    multiplier = parseFloat(multiplier);
+    
+
+
+    
+   article.style.lineHeight = multiplier;
+   
+   
+   
+   
+   
+   
+   
+   
 }
 
 
