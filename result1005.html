@@ -16,6 +16,21 @@
   href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;800;900&display=swap"
   rel="stylesheet"
 />
+
+
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="My Awesome Article" />
+  <meta property="og:description" content="This article explains how to do X, Y, and Z." />
+  <meta property="og:image" content="https://example.com/img/article-cover.jpg" />
+  <meta property="og:url" content="https://example.com/my-article" />
+  <meta property="og:type" content="article" />
+
+
+
+
+
+
   
 
   <style>
@@ -131,6 +146,17 @@
   
   
   <style>
+  
+
+  .share-buttons,
+.share-buttons:visited,
+.share-buttons:hover,
+.share-buttons:active {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
   
   .results-top{
    /* border: 1px solid green;*/
@@ -296,10 +322,48 @@
 </div> 
 
 <div class="dropdown" id="dropdown-1">
-  <div>Facebook</div>
-  <div>LinkedIn</div>
-  <div>X.com</div>
+  <a  href="" target="_blank" rel="noopener" id="facebook-button" class="share-buttons">
+   <div>Facebook</div></a>
+   
+    <a  href="" target="_blank" rel="noopener" id="x-button" class="share-buttons">
+   <div>X.com</div></a>
+    <a  href="" target="_blank" rel="noopener" id="linkedin-button" class="share-buttons">
+   <div>LinkedIn</div></a>
 </div>
+
+
+
+<script>
+  const shareButton = document.getElementById("facebook-button");
+  const url = encodeURIComponent(window.location.href); // encode for URL safety
+  shareButton.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  
+  
+
+  const linkedInButton = document.getElementById("linkedin-button");
+  
+  linkedInButton.href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+  
+  
+  
+
+  const xButton = document.getElementById("x-button");
+
+  // Grab OG title and description
+  const ogTitle = document.querySelector('meta[property="og:title"]')?.content || "";
+  const ogDesc  = document.querySelector('meta[property="og:description"]')?.content || "";
+
+  // Compose tweet text
+  const tweetText = encodeURIComponent(`${ogTitle} - ${ogDesc}`);
+  
+
+  xButton.href = `https://twitter.com/intent/tweet?url=${url}&text=${tweetText}`;
+</script>
+
+</script>
+
+</script>
+
 
 <div class="dropdown" id="dropdown-2" >
   <div>Author Last Name, First Initial(s). (Year). Title of article. Title of Encyclopedia. URL </div>
