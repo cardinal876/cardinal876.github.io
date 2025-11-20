@@ -1422,6 +1422,15 @@ document.addEventListener("click", e => {
     
     
 document.addEventListener("DOMContentLoaded", () => {
+    
+    // =======================
+// READ URL PARAM ?field=
+// =======================
+const params = new URLSearchParams(window.location.search);
+const urlField = (params.get("field") || "").trim().toLowerCase();
+
+    
+    
   const fieldBtn = document.querySelector('#fields-button-one');
   if (!fieldBtn) return;
 
@@ -1478,6 +1487,37 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(popup);
 
   const fieldInput = popup.querySelector("#fieldInput");
+  
+  
+  function fieldEnterFunction(){
+      updateFieldButtonColor();
+    popup.style.display = "none";
+
+    const selectedField = fieldInput.value.trim().toLowerCase();
+    
+    
+    console.log(selectedField)
+    documents.forEach(x=>
+        
+        
+        console.log(x.field)
+        );
+    flatResults = selectedField
+      ? documents.filter(doc => (doc.field || "").toLowerCase().includes(selectedField))
+      : documents.map(doc => ({ ...doc }));
+
+ //  if (typeof renderPage === "function") {
+        
+        
+      currentPage = 1;
+      renderPage(currentPage);
+//   }
+  }
+  
+
+  
+  
+  
   const fieldSuggestions = popup.querySelector("#fieldSuggestions");
   const fieldEnter = popup.querySelector("#fieldEnter");
   const fieldClear = popup.querySelector("#fieldClear");
@@ -1570,28 +1610,7 @@ let showFields = function (){
   
 
     fieldEnter.addEventListener("click", () => {
-    updateFieldButtonColor();
-    popup.style.display = "none";
-
-    const selectedField = fieldInput.value.trim().toLowerCase();
-    
-    
-    console.log(selectedField)
-    documents.forEach(x=>
-        
-        
-        console.log(x.field)
-        );
-    flatResults = selectedField
-      ? documents.filter(doc => (doc.field || "").toLowerCase().includes(selectedField))
-      : documents.map(doc => ({ ...doc }));
-
- //  if (typeof renderPage === "function") {
-        
-        
-      currentPage = 1;
-      renderPage(currentPage);
-//   }
+    fieldEnterFunction();
   });
 
 
@@ -1638,6 +1657,20 @@ let showFields = function (){
 
   window.addEventListener("scroll", () => { if (popup.style.display === "block") positionPopup(); });
   window.addEventListener("resize", () => { if (popup.style.display === "block") positionPopup(); });
+  
+  
+    // If ?field= is in URL → apply it immediately
+
+if (urlField) {
+  const wait = setInterval(() => {
+    if (typeof documents !== "undefined" && documents.length) {
+      clearInterval(wait);
+      fieldInput.value = urlField;
+      fieldEnterFunction();
+    }
+  }, 30);
+}
+
 }); 
 </script>
 
