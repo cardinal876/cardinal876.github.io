@@ -1057,7 +1057,7 @@ function positionPopup() {
     // --- Show suggestions ---
     function showSuggestions(list) {
       suggestions.innerHTML = list
-        .map(a => `<div style="padding:0.4rem;cursor:pointer;"><a href="searchresults.html?field=${encodeURIComponent(a)}" class="field-link-class">${a}</a></div>`)
+        .map(a => `<a href="searchresults.html?field=${encodeURIComponent(a)}" class="field-link-class"><div style="padding:0.4rem;cursor:pointer;">${a}</div></a>`)
         .join("");
       suggestions.style.display = "block";
   /*    suggestions.querySelectorAll("div").forEach(div => {
