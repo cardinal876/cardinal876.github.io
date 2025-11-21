@@ -6,7 +6,7 @@
 <title>edwinbook search</title>
 
 <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
- <script src="data.js"></script>
+ <script src="data.js" id="data-script"></script>
 <script src="fields.json"></script>
   
 
@@ -429,6 +429,7 @@ hr {
   let currentPage;
   let firstLoad;
   let renderPage; 
+  let firstRender=false;
   
   // Filtered subset of flatResults
 let filteredResults = [];
@@ -728,10 +729,23 @@ paginationHTML += `<button ${page === 1 ? 'disabled' : ''} data-page="${page - 1
         }
       });
     });
+    
+    firstRender=true;
   }
-
-  // Initial render
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
  renderPage(currentPage);
+ 
+
+
+
 
 
 // Handle browser back/forward within pagination
@@ -1663,7 +1677,7 @@ let showFields = function (){
 
 if (urlField) {
   const wait = setInterval(() => {
-    if (typeof documents !== "undefined" && documents.length) {
+    if (typeof documents !== "undefined" && documents.length && firstRender) {
       clearInterval(wait);
       fieldInput.value = urlField;
       fieldEnterFunction();
@@ -1674,7 +1688,6 @@ if (urlField) {
 }); 
 </script>
 
-  
 
 </body>
 </html>
