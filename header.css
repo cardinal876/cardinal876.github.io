@@ -435,4 +435,11 @@ header , .header-div{
   box-shadow: none;
 }
 
-
+.field-link-class,
+.field-link-class:visited,
+.field-link-class:hover,
+.field-link-class:active {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
