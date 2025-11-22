@@ -4,7 +4,7 @@
   
   
     /** buttons above article **/
-const buttons = document.querySelectorAll(".menu-btn");
+const buttons = document.querySelectorAll(".menu-btn-article");
 let openMenu = null;
 
 buttons.forEach(btn => {
