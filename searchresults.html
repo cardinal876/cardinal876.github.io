@@ -468,7 +468,26 @@ if (typeof documents !== 'undefined' && Array.isArray(documents)) {
   console.error("No documents found in data.js");
 }
 
+
+function addFieldsListLinks(){
     
+  const fields2 = document.querySelectorAll(".field-link");
+
+  fields2.forEach(field => {
+      
+    const fieldValue = field.textContent.trim();                // text inside the div
+    const base = `searchresults.html`;         // base URL
+    const url = `${base}?field=${encodeURIComponent(fieldValue)}`;
+
+    // Replace the div's content with a link
+    field.innerHTML = `<a href="${url}" class="field-link-class" >${fieldValue}</a>`;
+    
+    console.log(url)
+    
+  });
+
+  
+}
 
 function addFieldsPopup(){
      const fieldBtn = document.querySelector('[data-menu="4"]');
@@ -637,7 +656,7 @@ function positionPopup() {
           
           
           addFieldsPopup();
-
+addFieldsListLinks();
           // Menu toggle logic (optional)
           const menuButton = document.getElementById("menuToggle");
           const menuDropdown = document.getElementById("menuDropdown");
@@ -1843,6 +1862,9 @@ if (urlField) {
 
 }); 
 </script>
+
+
+
 
 
 </body>
