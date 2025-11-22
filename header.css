@@ -327,6 +327,14 @@ header , .header-div{
     border-bottom: .5px solid var(--border-color);
 }
 
+.top-links a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
 
 /* Desktop view: show links */
 @media (min-width: 768px) {

@@ -489,8 +489,8 @@ function addFieldsListLinks(){
   
 }
 
-function addFieldsPopup(){
-     const fieldBtn = document.querySelector('[data-menu="4"]');
+function addFieldsPopup(selector = '[data-menu="4"]'){
+     const fieldBtn = document.querySelector(selector);
   if (fieldBtn) createPopup(fieldBtn, "dropdown-4", "right");
 
   // ---- New Button (Left Popup) ----
@@ -656,6 +656,7 @@ function positionPopup() {
           
           
           addFieldsPopup();
+        
 addFieldsListLinks();
           // Menu toggle logic (optional)
           const menuButton = document.getElementById("menuToggle");
