@@ -532,7 +532,7 @@ document.body.style.visibility = 'visible';
       }
       
       
-    function loadOtherHtml(file, container){
+    function loadOtherHtml(file, container, callBack){
           // article buttons
       const xhr = new XMLHttpRequest();
       xhr.open('GET', file, true); // relative path to header.html
@@ -540,6 +540,7 @@ document.body.style.visibility = 'visible';
         if (xhr.readyState === 4) {
           if (xhr.status === 200 || xhr.status == 0) { // 0 works for some local servers
             document.getElementById(container).innerHTML = xhr.responseText;
+            callBack();
       }
         }
       }
@@ -557,23 +558,36 @@ document.body.style.visibility = 'visible';
     
   /** Overview: Get Header **/
   
-    loadOtherHtml("header.html", "header-container");
+  
+  let count=0;
+  let loaded=0;
+  
+  count++;
+  
+  
+  function updateLoaded(){
+      loaded++;
+  }
+  
+    loadOtherHtml("header.html", "header-container", updateLoaded);
        
-    loadOtherHtml("templates-articleButtons.html", "article-buttons-container");
+       count++;
+    loadOtherHtml("templates-articleButtons.html", "article-buttons-container", updateLoaded);
    
- 
-loadOtherHtml("footer.html", "footer-container");
+ count++;
+loadOtherHtml("footer.html", "footer-container", updateLoaded);
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
 
     
-      
-        setTimeout(() => {
-  // Code to be executed after 5 seconds
-  console.log("5 seconds have passed!");
-  addFieldsPopup();
+    
+    let i = setInterval(() => {
+    if (count===loaded) {
+      clearInterval(i);
+      makeBodyVisible(); 
+      addFieldsPopup();
             setupSandwichMenu();
 setupButtonsAboveArticle();
 
@@ -582,21 +596,12 @@ setupButtonsAboveArticle();
  
 addFieldsListLinks();
 
-}, 5000); // 5000 milliseconds = 5 seconds
-            
-            makeBodyVisible(); 
-
-            
-
-              
-
-});  
-       
-          
+    }
+  }, 10);
       
+        
       
-      
-  
+});
 
     
           
