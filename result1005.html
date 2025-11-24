@@ -570,8 +570,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
       
-        
-            addFieldsPopup();
+        setTimeout(() => {
+  // Code to be executed after 5 seconds
+  console.log("5 seconds have passed!");
+  addFieldsPopup();
             setupSandwichMenu();
 setupButtonsAboveArticle();
 
@@ -580,6 +582,8 @@ setupButtonsAboveArticle();
  
 addFieldsListLinks();
 
+}, 5000); // 5000 milliseconds = 5 seconds
+            
             makeBodyVisible(); 
 
             
