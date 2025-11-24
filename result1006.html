@@ -5,112 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Superconductivity – edwinbook</title>
   
-  <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
- 
+<!-- JSON -->
+  <script src="fields.json"></script>
+  
+  <!-- JS -->
+  <script src="addFieldsPopupScript.js" defer></script>
+  <script src="templates-buttonsAboveArticleScript.js" defer></script>
+    <script src="templates-setupSandwichMenuScript.js" defer></script>
   
   
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #111111;
-      --accent-color: #10a37f;
-      --border-color: #e2e2e2;
-      --input-bg: #f9f9f9;
-      --banner-blue: #3b82f6;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-        visibility:hidden;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+  
+  
+  <!--fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;800;900&display=swap"
+  rel="stylesheet"
+/>
 
 
-    
 
-    
-
-    main {
-      flex: 1;
-      max-width: 800px;
-      width: 100%;
-      padding: 2rem 1.5rem;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    .author { font-size: 0.95rem; color: #666;  margin-bottom: 1.5rem; }
+  <!-- Open Graph For social media share buttons-->
+  <meta property="og:title" content="My Awesome Article" />
+  <meta property="og:description" content="This article explains how to do X, Y, and Z." />
+  <meta property="og:image" content="https://example.com/img/article-cover.jpg" />
+  <meta property="og:url" content="https://example.com/my-article" />
+  <meta property="og:type" content="article" />
 
 
-    
-    
-    .author-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.author-link:hover {
-  text-decoration: underline;
-}
 
 
-    p { margin-bottom: 1.25rem; font-size: 1.05rem; color: #333; }
+    <!-- CSS -->
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="template-article.css">
+  
 
-    figure {
-      margin: 2rem auto;
-      text-align: center;
-    }
-
-    img.article-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    figcaption {
-      font-size: 0.9rem;
-      color: #777;
-      margin-top: 0.5rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      border-top: 1px solid var(--border-color);
-      width: 100%;
-    }
-
-    /* Desktop float styles */
-    @media (min-width: 600px) {
-      figure.float-right {
-        float: right;
-        max-width: 50%;
-        margin: 0 0 1rem 2rem;
-        text-align: center;
-      }
-
-      figure.float-left {
-        float: left;
-        max-width: 50%;
-        margin: 0 2rem 1rem 0;
-        text-align: center;
-      }
-    }
-  </style>
 </head>
 
-<!-- Google tag (gtag.js) -->
+<!-- Google Analytics tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M17YHQ7Y49"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -120,227 +54,133 @@
   gtag('config', 'G-M17YHQ7Y49');
 </script>
 
+
 <body>
- <header id="header-container"></header>
-
-
-
-
-
-  <main>
-    <h1> Indigo</h1>
     
-    <p class="author" style="">
-      <a href="author2.html" class="author-link">Edmund Knecht, Ph.D.</a>
-    </p>
+    
+<header id="header-container">
+</header>
 
-(The example encyclopedia article is from 1911.)
-Indigo, earlier <i>indico</i>, from Lat. <i>indicum</i>, the Indian substance
-or dye, is one of
-the most important and valuable of all dyestuffs. Until comparatively
-recently it was obtained exclusively from the aqueous
-extract of certain plants, principally of the genus <i>Indigofera</i>
-which belongs to the natural order Leguminosae. Small
-quantities are also obtained from <i>Lonchocarpus eyanescens</i>
-(west coast of Africa), <i>Polygonum tintorium</i> (China) and the
-woad plant <i>Isatis tinctoria</i>. The latter is of historical interest,
-since up to the middle of the 17th century it was the only blue
-dyestuff used by dyers in England and on the adjoining continent;
-at the present time woad is still cultivated in Europe, but
-serves merely as a ferment in the setting of the fermentation
-indigo vat or so-called “woad vat” used in wool dyeing.
-</p><p>The bulk of the natural indigo which is brought into the
-market comes from India, while smaller quantities are imported
-from Java, Guatemala and other places. The plant from which
-indigo is made in Bengal is the <i>Indigofera sumatrana</i>, which is
-reared from seed sown about the end of April or the beginning
-of March. By the middle of June the plant has attained a
-height of from 3 to 5 ft., and it is at this period that the first
-manufacturing begins, a second crop being obtained in August.
-The indigo is contained in the leaf of the plant in the form of
-a colourless glucoside, known as indican, C<sub>14</sub>H<sub>17</sub>O<sub>6</sub>N·3H<sub>2</sub>O.
-This substance is soluble in water and by the joint action of
-an enzyme, contained in the leaf, and atmospheric oxygen it
-yields indigotine, the colouring matter of indigo. It is on these
-facts that the manufacturing of indigo from the plant is based.
-</p><p>The plant is cut early in the morning and transported to the
-factory in bullock carts. Here it is steeped in water in steeping
-vats having a capacity of about 1000 cub. ft. for periods varying,
-according to circumstances, from nine to fourteen hours, when
-the liquid—the colour of which varies from a bright orange to
-an olive green—is run into the beating vats which lie at a lower
-level. The beating, the object of which is to bring the liquor
-as freely as possible into contact with the air, was formerly
-done by striking the surface with bamboo sticks, but is now
-effected either by means of a paddle wheel or by forcing a current
-of air from a steam blower or a compressor through the liquid.
-When the beating is finished, the precipitated indigo is allowed
-to settle, the supernatant liquid being drawn off and run to
-waste. The indigo mud thus obtained, which is known as mal,
-is strained, boiled for a short period for the purpose of sterilizing,
-formed into bars, cut into blocks of about 3 in. cube and dried.<sup id="cite_ref-f1_1-0" class="reference"><a href="https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Indigo#cite_note-f1-1"><span class="cite-bracket">[</span>1<span class="cite-bracket">]</span></a></sup>
-The actual amount of colouring matter yielded by the leaf is
-but small, averaging, according to Ch. Rawson, 0.5%, but the
-yield from the whole plant is considerably less, since the stalks
-and twigs contain practically no colour.
-</p><p>Since the introduction on a large scale of synthetic indigo
-efforts have been made in India and in Java to place the cultivation
-of the plant and the manufacture of the natural product
-on a more scientific basis. But although many important
-improvements have been achieved from the agricultural as well
-as from the manufacturing point of view, resulting no doubt
-in the <span style="border-bottom: 1px dashed red;" title="amended from retension">retention</span> of a portion of the industry, the synthetic
-product has gained the upper hand and is likely to retain it.
-</p><p>Natural indigoes vary considerably in composition, containing
-in some qualities as much as 90% and in others as little as 20%
-of colouring matter. The blue colouring matter which indigo
-contains is known as indigotine, but there are usually also present
-in small quantities other colouring matters such as indigo red
-or indirubrine, a yellow colour known as kaempferol, indigo
-green and indigo brown, as well as indigo gluten and more or
-less mineral matter.
-</p><p>The bulk of the indigo which now comes into the European
-market is prepared synthetically from coal tar. The following
-figures indicate the values of the imports into England of
-natural and synthetic indigo, and are taken from the official
-Board of Trade returns:—
-</p>
-<table style="font-size:92%;line-height:130%;margin-top:5px;margin-bottom:5px;border:1px solid;border-collapse:collapse;" align="center">
-<tbody><tr><td style="border:1px solid;">&nbsp;</td> <td style="padding-left:0.5em;padding-right:0.5em;vertical-align:top;text-align:center;border:1px solid;">Natural Indigo.</td> <td style="text-align:center;border:1px solid;"> Synthetic Indigo. </td></tr>
-<tr><td style="text-align:center;border-right:1px solid;"><span class="wst-gap __gap" style="display:inline-block; inline-size:2em"></span>1899<span class="wst-gap __gap" style="display:inline-block; inline-size:2em"></span></td> <td style="text-align:center;border-right:1px solid;">£986,090</td> <td style="text-align:center;border-right:1px solid;">..</td></tr>
-<tr><td style="text-align:center;border-right:1px solid;">1900</td> <td style="text-align:center;border-right:1px solid;">542,089</td> <td style="text-align:center;border-right:1px solid;">..</td></tr>
-<tr><td style="text-align:center;border-right:1px solid;">1901</td> <td style="text-align:center;border-right:1px solid;">788,820</td> <td style="text-align:center;border-right:1px solid;">..</td></tr>
-<tr><td style="text-align:center;border-right:1px solid;">1902</td> <td style="text-align:center;border-right:1px solid;">498,043</td> <td style="text-align:center;border-right:1px solid;">£143,613 </td></tr>
-<tr><td style="text-align:center;border-right:1px solid;">1903</td> <td style="text-align:center;border-right:1px solid;">262,775</td> <td style="text-align:center;border-right:1px solid;">110,970</td></tr>
-<tr><td style="text-align:center;border-right:1px solid;">1904</td> <td style="text-align:center;border-right:1px solid;">316,070</td> <td style="text-align:center;border-right:1px solid;"> 83,397</td></tr>
-<tr><td style="text-align:center;border-right:1px solid;">1905</td> <td style="text-align:center;border-right:1px solid;">116,902</td> <td style="text-align:center;border-right:1px solid;">121,269</td></tr>
-<tr><td style="text-align:center;border-right:1px solid;">1906</td> <td style="text-align:center;border-right:1px solid;">111,455 </td> <td style="text-align:center;border-right:1px solid;">147,325</td></tr>
-<tr><td style="text-align:center;border-right:1px solid;">1907</td> <td style="text-align:center;border-right:1px solid;">151,297</td> <td style="text-align:center;border-right:1px solid;">158,481</td></tr>
-<tr><td style="padding-left:0.5em;padding-right:0.5em;vertical-align:top;text-align:center;border-left:1px solid;border-right:1px solid;border-bottom:1px solid;">1908</td> <td style="padding-left:0.5em;padding-right:0.5em;vertical-align:top;text-align:center;border-right:1px solid;border-bottom:1px solid;">136,882</td> <td style="padding-left:0.5em;padding-right:0.5em;vertical-align:top;text-align:center;border-right:1px solid;border-bottom:1px solid;">134,052</td></tr>
-</tbody></table>
-<p>During the period 1899–1908, the average price of indigo had
-declined from a fraction under 3s. to about 2s. 2<span class="sfrac">⁠<span class="tion" style="font-size:61%;"><span class="num">1</span><span class="sr-only">/</span><span class="den">2</span></span>⁠</span>d. per ℔. At
-first sight it might appear that the use of indigo in England
-was rapidly declining, but this does not necessarily follow when
-it is borne in mind that London was formerly the distributing
-centre of natural indigo for the continent and America.
-</p>
-<div style="font-size: 92%; line-height: 1.3em">
+<div id="article-buttons-container"></div>
+    
+
+    
+    
+
+<div id="article-container"></div>
 
 
 
 
-  </main>
+
+
+ 
+  
+  
 
 <footer id="footer-container"></footer>
 
-  <script>
-    
-    
 
-   
-    
-    // Wait until DOM is ready
-    document.addEventListener('DOMContentLoaded', () => {
-      // Create an XMLHttpRequest (works reliably on local servers)
+  <script>
+     
+     
+      
+      
+      function makeBodyVisible(){
+              const body = document.body; 
+document.body.style.visibility = 'visible';
+      }
+      
+      
+    function loadOtherHtml(file, container, callBack){
+          // article buttons
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', 'header.html', true); // relative path to header.html
+      xhr.open('GET', file, true); // relative path to header.html
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           if (xhr.status === 200 || xhr.status == 0) { // 0 works for some local servers
-            document.getElementById('header-container').innerHTML = xhr.responseText;
-
-            
-              
-              const menuButton = document.getElementById("menuToggle");
-    const menuDropdown = document.getElementById("menuDropdown");
-
-    menuButton.addEventListener("click", () => {
-      menuDropdown.style.display = 
-        menuDropdown.style.display === "flex" ? "none" : "flex";
-    });
-
-    // Optional: close menu if clicking outside
-    document.addEventListener("click", (e) => {
-      if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-        menuDropdown.style.display = "none";
+            document.getElementById(container).innerHTML = xhr.responseText;
+            callBack();
       }
-    });
-              
-              
-              
-              const body = document.body; // or document.querySelector('body')
-document.body.style.visibility = 'visible';
-    // Set its display style to block
-    //body.style.display = 'block';
-          } else {
-            console.error('Failed to load header.html');
-          }
         }
-      };
+      }
       xhr.send();
+      }
       
       
-            const xhr2 = new XMLHttpRequest();
-      xhr2.open('GET', 'footer.html', true); // relative path to header.html
-      xhr2.onreadystatechange = function() {
-        if (xhr2.readyState === 4) {
-          if (xhr2.status === 200 || xhr2.status == 0) { // 0 works for some local servers
-            document.getElementById('footer-container').innerHTML = xhr2.responseText;
-
-    }}}
         
+      
+      
+      
+
+  
+  
+  let count=0;
+  let loaded=0;
+  
+  
+  
+  
+  function updateLoaded(){
+      loaded++;
+  }
+  
+  count++;
+    loadOtherHtml("header.html", "header-container", updateLoaded);
+       
+       count++;
+    loadOtherHtml("templates-articleButtons.html", "article-buttons-container", updateLoaded);
+   
+   
+   count++;
+loadOtherHtml("template-indigo.html", "article-container", updateLoaded);
+
+   
+ count++;
+loadOtherHtml("footer.html", "footer-container", updateLoaded);
+
+
+function addJs(){
+    addFieldsPopup();
+    setupSandwichMenu();
+    setupButtonsAboveArticle();
+    addFieldsListLinks();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    
+    
+    let i = setInterval(() => {
+    if (count===loaded) {
+      clearInterval(i);
+    //  makeBodyVisible(); 
+      addJs();
+    }
+  }, 3);
+      
         
-     xhr2.send();   
       
-      
-      
-      
-      
-    });
-    
-    
-    
-    
-    
-    /**
-    // Wait until DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('header.html')
-    .then(response => {
-      if (!response.ok) throw new Error('Failed to load header.html');
-      return response.text();
-    })
-    .then(html => {
-      document.getElementById('header-container').innerHTML = html;
-
-      // Menu toggle logic
-      const menuButton = document.getElementById("menuToggle");
-      const menuDropdown = document.getElementById("menuDropdown");
-
-      menuButton.addEventListener("click", () => {
-        menuDropdown.style.display =
-          menuDropdown.style.display === "flex" ? "none" : "flex";
-      });
-
-      // Optional: close menu if clicking outside
-      document.addEventListener("click", (e) => {
-        if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-          menuDropdown.style.display = "none";
-        }
-      });
-
-      // Make body visible after header loads
-      document.body.style.visibility = 'visible';
-    })
-    .catch(err => {
-      console.error(err);
-    });
 });
-**/
+
+    
+          
+      
+
+      
+      
+      
+      
+
     
     
     
-  </script>
+    
+    
+  </script> 
+  
+
+
+
 </body>
 </html>
