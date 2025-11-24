@@ -5,18 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Superconductivity – edwinbook</title>
   
-  <link rel="stylesheet" href="header.css"> <!-- NEW: CSS loads before JS -->
- 
-  
+  <!-- part 1-->
+  <link rel="stylesheet" href="header.css">
   <script src="fields.json"></script>
   
   <script src="addFieldsPopupScript.js" defer></script>
+  <script src="templates-buttonsAboveArticleScript.js" defer></script>
+    <script src="templates-setupSandwichMenuScript.js" defer></script>
   
-  <script src="buttonsAboveArticleScript.js" defer></script>
   
   
+  
+  <!--fonts-->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -26,14 +27,12 @@
 
 
 
-  <!-- Open Graph -->
+  <!-- Open Graph For social media share buttons-->
   <meta property="og:title" content="My Awesome Article" />
   <meta property="og:description" content="This article explains how to do X, Y, and Z." />
   <meta property="og:image" content="https://example.com/img/article-cover.jpg" />
   <meta property="og:url" content="https://example.com/my-article" />
   <meta property="og:type" content="article" />
-
-
 
 
 
@@ -54,9 +53,9 @@
 
     body {
         
+        visibility: hidden;
         
         
-        visibility:hidden;
       margin: 0;
       padding: 0;
       font-family: system-ui, sans-serif;
@@ -335,80 +334,21 @@
 
 
 <body>
- <header id="header-container"></header>
-
-
-<div class="results-top scroll-row">
-     <div class="menu-btn-article" data-menu="1">Share  </div> 
-        
-           <div class="menu-btn-article" data-menu="3">Size </div>  
-    <div class="menu-btn-article" data-menu="4">Font</div>  
-  
-        <div class="menu-btn-article" data-menu="5">Spacing </div>  
-      <div class="menu-btn-article" data-menu="6">Images </div> 
-        <div class="menu-btn-article" data-menu="2" >Citation </div> 
     
- <!-- <div class="menu-btn-article" data-menu="1">Menu 1</div> -->
-
-
-</div> 
-
-<div class="dropdown" id="dropdown-1">
-  <a  href="" target="_blank" rel="noopener" id="facebook-button" class="share-buttons">
-   <div>Facebook</div></a>
-   
-    <a  href="" target="_blank" rel="noopener" id="x-button" class="share-buttons">
-   <div>X.com</div></a>
-    <a  href="" target="_blank" rel="noopener" id="linkedin-button" class="share-buttons">
-   <div>LinkedIn</div></a>
-</div>
-
-
-
-<script>
-  
-</script>
-
-</script>
-
-</script>
-
-
-<div class="dropdown" id="dropdown-2" >
-  <div id="citation-div"> </div>
-</div>
-
-
-
-<div class="dropdown" id="dropdown-3">
-  <div>Small</div>
-  <div>Medium</div>
-  <div>Large</div>
-</div>
-
-
-<div class="dropdown" id="dropdown-4">
     
-  <div data-font="Roboto">Roboto</div>
-  <div data-font="Open Sans">Open Sans</div>
-  
-  <div data-font="Merriweather">Merriweather</div>
-</div>
+<header id="header-container">
+</header>
+
+<div id="article-buttons-container"></div>
+    
+
+    
+    
 
 
-</div>
 
-<div class="dropdown" id="dropdown-5">
-  <div data-height="1.0">Small</div>
-  <div data-height="1.8">Medium</div>
-  <div data-height="2.5">Large</div>
-</div>
 
-<div class="dropdown" id="dropdown-6">
-  <div>Show Images</div>
-  <div>Low Resolution Images</div>
-  <div>No Images</div>
-</div>
+
 
 
   <main>
@@ -575,98 +515,102 @@ suggests, will do so still more in the future!"  (S. M. C.) test test test
 </p>
   </main>
   </div>
+  
+  // tem
 
 <footer id="footer-container"></footer>
 
 
   <script>
-    
+     
+     
+      
+      
+      function makeBodyVisible(){
+              const body = document.body; 
+document.body.style.visibility = 'visible';
+      }
+      
+      
+    function loadOtherHtml(file, container){
+          // article buttons
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', file, true); // relative path to header.html
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200 || xhr.status == 0) { // 0 works for some local servers
+            document.getElementById(container).innerHTML = xhr.responseText;
+      }
+        }
+      }
+      xhr.send();
+      }
+      
+      
+        
+      
+      
+      
+
 
     // Wait until DOM is ready
     
   /** Overview: Get Header **/
-    document.addEventListener('DOMContentLoaded', () => {
-      // Create an XMLHttpRequest (works reliably on local servers)
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', 'header.html', true); // relative path to header.html
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200 || xhr.status == 0) { // 0 works for some local servers
-            document.getElementById('header-container').innerHTML = xhr.responseText;
-            
-            
-            
-            
-            ///
-            addFieldsPopup();
-addFieldsListLinks();
+  
+    loadOtherHtml("header.html", "header-container");
+       
+    loadOtherHtml("templates-articleButtons.html", "article-buttons-container");
+   
+ 
+loadOtherHtml("footer.html", "footer-container");
 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    
+      makeBodyVisible(); 
+        
+            addFieldsPopup();
+            setupSandwichMenu();
 setupButtonsAboveArticle();
 
+
+ 
+ 
+addFieldsListLinks();
+
             
-              /** sandwich menu **/
-              const menuButton = document.getElementById("menuToggle");
-    const menuDropdown = document.getElementById("menuDropdown");
 
-    menuButton.addEventListener("click", () => {
-      menuDropdown.style.display = 
-        menuDropdown.style.display === "flex" ? "none" : "flex";
-    });
+            
 
-    // Optional: close menu if clicking outside
-    document.addEventListener("click", (e) => {
-      if (!menuButton.contains(e.target) && !menuDropdown.contains(e.target)) {
-        menuDropdown.style.display = "none";
-      }
-    });
               
-              
-              /** make body visible after loading header **/
-              const body = document.body; // or document.querySelector('body')
-document.body.style.visibility = 'visible';
-    // Set its display style to block
-    //body.style.display = 'block';
-          } else {
-            console.error('Failed to load header.html');
-          }
-        }
-      };
-      xhr.send();
-      
-      
-      /** Load Footer **/
-            const xhr2 = new XMLHttpRequest();
-      xhr2.open('GET', 'footer.html', true); // relative path to header.html
-      xhr2.onreadystatechange = function() {
-        if (xhr2.readyState === 4) {
-          if (xhr2.status === 200 || xhr2.status == 0) { // 0 works for some local servers
-            document.getElementById('footer-container').innerHTML = xhr2.responseText;
 
-    }}}
-        
-        
-     xhr2.send();   
+});  
+       
+          
       
       
       
-      
-    });
-    
-    
-    
-    
-    
-  </script>
   
-<script>
+
     
+          
+      
 
+      
+      
+      
+      
 
-</script>
+    
+    
+    
+    
+    
+  </script> 
+  
 
-<script>
-
-</script>
 
 
 </body>
