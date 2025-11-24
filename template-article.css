@@ -1,0 +1,281 @@
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111111;
+      --accent-color: #10a37f;
+      --border-color: #e2e2e2;
+      --input-bg: #f9f9f9;
+      --banner-blue: #3b82f6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        
+        visibility:;
+        
+        
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    
+
+    
+
+    main {
+      flex: 1;
+      max-width: 800px;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .author { font-size: 0.95rem; color: #666;  margin-bottom: 1.5rem; }
+
+
+    
+    
+    .author-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.author-link:hover {
+  text-decoration: underline;
+}
+
+
+    p { margin-bottom: 1.25rem; font-size: 1.05rem; color: #333; }
+
+    figure {
+      margin: 2rem auto;
+      text-align: center;
+    }
+
+    img.article-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    figcaption {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid var(--border-color);
+      width: 100%;
+    }
+
+
+
+
+    /* Desktop float styles */
+    @media (min-width: 600px) {
+        
+
+        
+        
+      figure.float-right {
+        float: right;
+        max-width: 50%;
+        margin: 0 0 1rem 2rem;
+        text-align: center;
+      }
+
+      figure.float-left {
+        float: left;
+        max-width: 50%;
+        margin: 0 2rem 1rem 0;
+        text-align: center;
+      }
+    }
+  </style>
+  
+  
+  
+  <style>
+  
+
+ 
+
+
+/* Align citation dropdown to right and wrap text safely */
+#dropdown-2 {
+  right: 0;
+  left: auto;              /* override left-positioning if any */
+  max-width: 100vw;         /* 80% of screen width */
+  width: max-content;      /* expands only as needed, capped by max-width */
+
+  white-space: normal !important; /* allow wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;   /* breaks VERY long URLs */
+  
+  text-align: left;        /* keep text readable */
+  padding: .25rem;
+}
+
+/* Make the inner citation text also wrap */
+#citation-div {
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+  
+  .results-top{
+   /* border: 1px solid green;*/
+    
+      display: flex;
+      
+     
+ 
+      margin: 0 auto;
+      
+  
+ ;
+      max-width: 800px;
+      width: 100%;
+      padding: 2rem 1.5rem;
+     
+      line-height: 1.6; 
+  
+  
+  
+  
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 0;
+ 
+  box-sizing: border-box;
+  font-weight: bold;
+  color:lightgray;
+  gap: 1rem;
+ 
+  
+ /* flex: 1;
+    flex-grow: 1;  Makes the results section grow and fill available space */
+      overflow-x: auto;  /* enable horizontal scroll */
+  overflow-y: hidden; /* hide vertical overflow */
+  scroll-behavior: smooth; /* optional: smooth horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* smooth scroll for mobile */
+  
+    /* Hide scrollbar — cross-browser */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+
+ 
+  
+ /* flex: 1;
+    flex-grow: 1;  Makes the results section grow and fill available space */
+ 
+ 
+
+
+
+
+
+    
+    
+    
+    
+}
+
+
+/* Hide scrollbar — Chrome, Safari, Opera */
+.results-top::-webkit-scrollbar {
+  display: none;
+}
+   
+
+
+.results-top div{
+  /*  border: 1px blue solid; */
+}
+
+
+
+
+
+
+  /* Scrollable row */
+  .scroll-row {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    
+    
+
+  }
+
+  .menu-btn {
+    border: none;
+
+    cursor: pointer;
+    
+  }
+
+  .menu-btn:hover {
+    
+  }
+
+  /* Dropdowns (outside scroll area) */
+  .dropdown {
+    position: absolute;
+    display: none;
+    background: white;
+    border: 1px solid #ccc;
+    ;
+    z-index: 1000;
+  }
+
+  .dropdown div {
+    padding: 0.5rem 1rem;
+    
+  }
+
+  .dropdown div:hover {
+
+  }
+  
+  
+  
+    html, header, body, footer, input::placeholder{
+    
+    
+  font-family: 'Source Sans Pro', sans-serif;
+
+
+
+  
+}
+  
+  
+  
+   .share-buttons,
+.share-buttons:visited,
+.share-buttons:hover,
+.share-buttons:active {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
